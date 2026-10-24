@@ -6,20 +6,20 @@ const MODULES = [];
 MODULES.push({
   id: "alphabet", en: "The Alphabet", te: "వర్ణమాల", kn: "ಕನ್ನಡ ವರ್ಣಮಾಲೆ", ta: "தமிழ் எழுத்துக்கள்",
   src: SRC + "kannada-alphabet",
-  big: "Kannada and Telugu grew from the same script, so every Telugu letter has a Kannada twin in the same position. Learning to read Kannada is mostly learning new shapes for letters you already know. Tamil is a smaller alphabet: one letter often stands for a whole Telugu row (క ఖ గ ఘ are all <b>க</b>), and context tells you how to say it.",
+  big: "⟦kn|Kannada and Telugu grew from the same script, so every Telugu letter has a Kannada twin in the same position. Learning to read Kannada is mostly learning new shapes for letters you already know.⟧⟦kn ta| ⟧⟦ta|Tamil is a smaller alphabet: one letter often stands for a whole Telugu row (క ఖ గ ఘ are all <b>க</b>), and context tells you how to say it.⟧",
   sections: [
-    { h: "Vowels · అచ్చులు · ಸ್ವರಗಳು · உயிர் எழுத்துக்கள்", noRead: true,
-      p: "Telugu and Kannada have the same 13 core vowels. Tamil has 12: there is no ఋ. Tamil calls vowels <i>uyir</i> (“life”).",
+    { h: "Vowels · అచ్చులు⟦kn| · ಸ್ವರಗಳು⟧⟦ta| · உயிர் எழுத்துக்கள்⟧", noRead: true,
+      p: "⟦kn|Telugu and Kannada have the same 13 core vowels.⟧⟦kn ta| ⟧⟦ta !kn|Telugu has 13 core vowels. ⟧⟦ta|Tamil has 12: there is no ఋ. Tamil calls vowels <i>uyir</i> (“life”).⟧",
       rows: [
         ["a", "అ", "ಅ", "அ"], ["ā", "ఆ", "ಆ", "ஆ"], ["i", "ఇ", "ಇ", "இ"], ["ī", "ఈ", "ಈ", "ஈ"],
         ["u", "ఉ", "ಉ", "உ"], ["ū", "ఊ", "ಊ", "ஊ"], ["ṛ", "ఋ", "ಋ", "—"], ["e", "ఎ", "ಎ", "எ"],
         ["ē", "ఏ", "ಏ", "ஏ"], ["ai", "ఐ", "ಐ", "ஐ"], ["o", "ఒ", "ಒ", "ஒ"], ["ō", "ఓ", "ಓ", "ஓ"],
-        ["au", "ఔ", "ಔ", "ஔ"], ["aṃ (anusvāra)", "అం", "ಅಂ", "—"], ["aḥ (visarga / āytam)", "అః", "ಅಃ", "ஃ"]
+        ["au", "ఔ", "ಔ", "ஔ"], ["aṃ (anusvāra)", "అం", "ಅಂ", "—"], ["aḥ (visarga⟦ta| / āytam⟧)", "అః", "ಅಃ", "ஃ"]
       ],
-      tip: "Short ఎ/ఒ and long ఏ/ఓ are kept apart in all three languages, just as in Telugu. Hindi speakers struggle with this; you won’t."
+      tip: "Short ఎ/ఒ and long ఏ/ఓ are kept apart in ⟦#langs⟧, just as in Telugu. Hindi speakers struggle with this; you won’t."
     },
-    { h: "Structured consonants · వర్గ హల్లులు · ವರ್ಗೀಯ ವ್ಯಂಜನಗಳು", noRead: true,
-      p: "Kannada keeps all five Telugu letters in each row. Tamil keeps only the plain stop and the nasal. A Tamil reader decides from position whether க is k or g (see Module 2).",
+    { h: "Structured consonants · వర్గ హల్లులు⟦kn| · ವರ್ಗೀಯ ವ್ಯಂಜನಗಳು⟧", noRead: true,
+      p: "⟦kn|Kannada keeps all five Telugu letters in each row.⟧⟦kn ta| ⟧⟦ta|Tamil keeps only the plain stop and the nasal. A Tamil reader decides from position whether க is k or g (see Module 2).⟧",
       rows: [
         ["Velar k-row", "క ఖ గ ఘ ఙ", "ಕ ಖ ಗ ಘ ಙ", "க · · · ங"],
         ["Palatal c-row", "చ ఛ జ ఝ ఞ", "ಚ ಛ ಜ ಝ ಞ", "ச · ஜ · ஞ"],
@@ -27,20 +27,20 @@ MODULES.push({
         ["Dental t-row", "త థ ద ధ న", "ತ ಥ ದ ಧ ನ", "த · · · ந"],
         ["Labial p-row", "ప ఫ బ భ మ", "ಪ ಫ ಬ ಭ ಮ", "ப · · · ம"]
       ],
-      tip: "ஜ is a Grantha letter, borrowed for Sanskrit and English words. The dots mark letters Tamil does not have."
+      tip: "⟦ta|ஜ is a Grantha letter, borrowed for Sanskrit and English words. The dots mark letters Tamil does not have.⟧⟦kn !ta|The rows line up letter for letter, so you can read Kannada consonants by position.⟧"
     },
-    { h: "Other consonants · అవర్గ హల్లులు · ಅವರ್ಗೀಯ ವ್ಯಂಜನಗಳು", noRead: true,
-      p: "Tamil has three consonants a Telugu speaker needs to learn as new sounds: <b>ழ</b> (ḻa, the curled “zh” of தமிழ்), <b>ற</b> (a hard trilled r, the same sound as Telugu’s old <b>ఱ</b> బండి ర) and <b>ன</b> (an alveolar n, used mostly inside and at the end of words).",
+    { h: "Other consonants · అవర్గ హల్లులు⟦kn| · ಅವರ್ಗೀಯ ವ್ಯಂಜನಗಳು⟧", noRead: true,
+      p: "⟦kn !ta|These match Telugu letter for letter. Like Telugu, Kannada once had ఱ and ఴ, but both have dropped out of modern use.⟧⟦ta|Tamil has three consonants a Telugu speaker needs to learn as new sounds: <b>ழ</b> (ḻa, the curled “zh” of தமிழ்), <b>ற</b> (a hard trilled r, the same sound as Telugu’s old <b>ఱ</b> బండి ర) and <b>ன</b> (an alveolar n, used mostly inside and at the end of words).⟧",
       rows: [
         ["y", "య", "ಯ", "ய"], ["r", "ర", "ರ", "ர"], ["hard r", "ఱ", "ಱ (old)", "ற"], ["l", "ల", "ಲ", "ல"],
         ["v", "వ", "ವ", "வ"], ["ś", "శ", "ಶ", "ஶ (rare)"], ["ṣ", "ష", "ಷ", "ஷ"], ["s", "స", "ಸ", "ஸ"],
         ["h", "హ", "ಹ", "ஹ"], ["ḷ", "ళ", "ಳ", "ள"], ["ḻ (zh)", "ఴ (old)", "ೞ (old)", "ழ"], ["alveolar n", "—", "—", "ன"],
         ["kṣ", "క్ష", "ಕ್ಷ", "க்ஷ"]
       ],
-      tip: "On this site, Tamil ழ is shown in Telugu script as an underlined <span class='zha'>ళ</span>. Say it with the tongue curled back, letting air flow over it, halfway between ళ and ర."
+      tip: "⟦ta|On this site, Tamil ழ is shown in Telugu script as an underlined <span class='zha'>ళ</span>. Say it with the tongue curled back, letting air flow over it, halfway between ళ and ర.⟧"
     },
     { h: "Native digits", noRead: true,
-      p: "All three languages have their own digit shapes. Everyday life uses 0–9, but you will see these on old signs, calendars and in Kannada government print.",
+      p: "⟦many|All three languages⟧⟦one|Both languages⟧ have their own digit shapes. Everyday life uses 0–9, but you will see these on old signs, calendars⟦kn| and in Kannada government print⟧⟦!kn| and in print⟧.",
       rows: [
         ["1 2 3 4 5", "౧ ౨ ౩ ౪ ౫", "೧ ೨ ೩ ೪ ೫", "௧ ௨ ௩ ௪ ௫"],
         ["6 7 8 9 0", "౬ ౭ ౮ ౯ ౦", "೬ ೭ ೮ ೯ ೦", "௬ ௭ ௮ ௯ ௦"]
@@ -52,10 +52,10 @@ MODULES.push({
 MODULES.push({
   id: "vowel-signs", en: "Vowel Signs & Reading Rules", te: "గుణింతాలు", kn: "ಕಾಗುಣಿತ", ta: "உயிர்மெய் எழுத்துக்கள்",
   src: SRC + "additional-features-of-kannada-alphabet",
-  big: "Kannada ಕಾಗುಣಿತ works like Telugu గుణింతం: one consonant, 13 vowel signs, in the same order. Tamil’s உயிர்மெய் (“life + body”) works the same way, but three signs (ெ ே ை) sit <b>to the left</b> of the consonant, and the u/ū signs change shape from letter to letter.",
+  big: "⟦kn|Kannada ಕಾಗುಣಿತ works like Telugu గుణింతం: one consonant, 13 vowel signs, in the same order.⟧⟦kn ta| ⟧⟦ta|Tamil’s உயிர்மெய் (“life + body”) works ⟧⟦kn ta|the same way⟧⟦ta !kn|like Telugu గుణింతం⟧⟦ta|, but three signs (ெ ே ை) sit <b>to the left</b> of the consonant, and the u/ū signs change shape from letter to letter.⟧",
   sections: [
-    { h: "The k-row in three scripts", noRead: true,
-      p: "Read across: the Kannada row is a letter-for-letter match of the Telugu row.",
+    { h: "The k-row in ⟦many|three⟧⟦one|two⟧ scripts", noRead: true,
+      p: "Read across: ⟦kn|the Kannada row is a letter-for-letter match of the Telugu row.⟧⟦!kn|each Telugu syllable sits next to its Tamil form.⟧",
       rows: [
         ["ka kā ki kī", "క కా కి కీ", "ಕ ಕಾ ಕಿ ಕೀ", "க கா கி கீ"],
         ["ku kū kṛ", "కు కూ కృ", "ಕು ಕೂ ಕೃ", "கு கூ —"],
@@ -63,10 +63,10 @@ MODULES.push({
         ["ko kō kau", "కొ కో కౌ", "ಕೊ ಕೋ ಕೌ", "கொ கோ கௌ"],
         ["k (no vowel)", "క్", "ಕ್", "க்"]
       ],
-      tip: "The Telugu pollu ్, the Kannada ್ and the Tamil dot ் (puḷḷi) all mean “no vowel”. Tamil uses the dot constantly because it never stacks letters into conjuncts."
+      tip: "The Telugu pollu ్⟦kn ta|, the Kannada ್ and the Tamil dot ் (puḷḷi) all⟧⟦kn !ta| and the Kannada ್ both⟧⟦ta !kn| and the Tamil dot ் (puḷḷi) both⟧ mean “no vowel”.⟦ta| Tamil uses the dot constantly because it never stacks letters into conjuncts.⟧"
     },
-    { h: "Tamil u / ū signs: learn these by sight", noRead: true,
-      p: "In Telugu and Kannada the u-sign looks the same on every letter. In Tamil it fuses with the letter, so learn these as whole shapes.",
+    { h: "Tamil u / ū signs: learn these by sight", noRead: true, only: "ta",
+      p: "In Telugu⟦kn| and Kannada⟧ the u-sign looks the same on every letter. In Tamil it fuses with the letter, so learn these as whole shapes.",
       rows: [
         ["ku ṅu cu ñu ṭu ṇu", "కు ఙు చు ఞు టు ణు", "ಕು ಙು ಚು ಞು ಟು ಣು", "கு ஙு சு ஞு டு ணு"],
         ["tu nu pu mu yu ru", "తు ను పు ము యు రు", "ತು ನು ಪು ಮು ಯು ರು", "து நு பு மு யு ரு"],
@@ -74,7 +74,7 @@ MODULES.push({
         ["kū cū ṭū tū pū mū", "కూ చూ టూ తూ పూ మూ", "ಕೂ ಚೂ ಟೂ ತೂ ಪೂ ಮೂ", "கூ சூ டூ தூ பூ மூ"]
       ]
     },
-    { h: "How Tamil decides k or g, t or d",
+    { h: "How Tamil decides k or g, t or d", only: "ta",
       p: "Since Tamil writes క and గ with one letter, pronunciation follows simple rules. Our Telugu-script readings apply them for you.",
       rows: [
         ["Word start → hard (k, t, p) · leg", "కాలు", "ಕಾಲು", "கால்"],
@@ -88,7 +88,7 @@ MODULES.push({
       ],
       tip: "Initial ச is usually “s” (சரி sari, செய் sey), though some words such as சின்ன and சென்னை are said with “ch”. Between vowels ச is “s” (பசு pasu)."
     },
-    { h: "Visual differences: Telugu vs Kannada", noRead: true,
+    { h: "Visual differences: Telugu vs Kannada", noRead: true, only: "kn",
       p: "Kannada letters drop the Telugu tick-mark (తలకట్టు) and use a flat headstroke instead. A few pairs look different enough to practise:",
       rows: [
         ["ē / ī", "ఏ ఈ", "ಏ ಈ", "ஏ ஈ"],
@@ -104,7 +104,7 @@ MODULES.push({
 MODULES.push({
   id: "clusters", en: "Consonant Clusters", te: "సంయుక్తాక్షరాలు / ఒత్తులు", kn: "ಒತ್ತಕ್ಷರಗಳು", ta: "மெய்யெழுத்துத் தொடர்",
   src: SRC + "consonant-clusters",
-  big: "Kannada writes clusters exactly like Telugu: the second consonant drops below as an ఒత్తు (ಒತ್ತು). Tamil never stacks. It writes the first consonant with a dot (்) and puts the next letter beside it: క్క → க்க.",
+  big: "⟦kn|Kannada writes clusters exactly like Telugu: the second consonant drops below as an ఒత్తు (ಒತ್ತು).⟧⟦kn ta| ⟧⟦ta|Tamil never stacks. It writes the first consonant with a dot (்) and puts the next letter beside it: క్క → க்க.⟧",
   sections: [
     { h: "Doubled and joined consonants",
       rows: [
@@ -118,10 +118,10 @@ MODULES.push({
         ["Krishna", "కృష్ణ", "ಕೃಷ್ಣ", "கிருஷ்ணன்"],
         ["moon", "చంద్రుడు", "ಚಂದ್ರ", "சந்திரன்"]
       ],
-      tip: "Kannada often has ṇṇ (ಣ್ಣ) where Telugu has nn (న్న): ಅಣ್ಣ / అన్న, ಹಣ್ಣು / పండు. Tamil agrees with Kannada: அண்ணன்."
+      tip: "⟦kn|Kannada often has ṇṇ (ಣ್ಣ) where Telugu has nn (న్న): ಅಣ್ಣ / అన్న, ಹಣ್ಣು / పండు.⟧⟦kn ta| Tamil agrees with Kannada: அண்ணன்.⟧⟦ta !kn|Tamil often has ṇṇ (ண்ண) where Telugu has nn (న్న): அண்ணன் / అన్న.⟧"
     },
-    { h: "Anusvāra (ం / ಂ) vs. Tamil’s written nasals",
-      p: "Telugu and Kannada write ం before any consonant. Tamil has no ం in native words: it writes the matching nasal with a dot.",
+    { h: "Anusvāra (ం⟦kn| / ಂ⟧)⟦ta| vs. Tamil’s written nasals⟧",
+      p: "Telugu⟦kn| and Kannada⟧ write⟦!kn|s⟧ ం before any consonant.⟦ta| Tamil has no ం in native words: it writes the matching nasal with a dot.⟧",
       rows: [
         ["five (Sanskrit)", "పంచ", "ಪಂಚ", "பஞ்ச"],
         ["throat", "కంఠం", "ಕಂಠ", "கண்டம்"],
@@ -131,7 +131,7 @@ MODULES.push({
       ]
     },
     { h: "Visarga, ṛ and borrowed sounds",
-      p: "Visarga (ః) appears only in Sanskrit words in all three. Tamil rewrites Sanskrit sounds to fit its own letters, and has no f, so English ‘f’ becomes ப (or ஃப in careful spelling).",
+      p: "Visarga (ః) appears only in Sanskrit words in ⟦#langs+te⟧.⟦ta| Tamil rewrites Sanskrit sounds to fit its own letters, and has no f, so English ‘f’ becomes ப (or ஃப in careful spelling).⟧⟦kn !ta| Kannada keeps ṛ (ಋ) and borrowed sounds like f (ಫ) just as Telugu does.⟧",
       rows: [
         ["sorrow", "దుఃఖం", "ದುಃಖ", "துக்கம்"],
         ["sage", "ఋషి", "ಋಷಿ", "ரிஷி"],
@@ -150,7 +150,7 @@ MODULES.push({
         ["tree", "చెట్టు", "ಮರ", "மரம்"], ["unripe fruit", "కాయ", "ಕಾಯಿ", "காய்"], ["debt", "అప్పు", "ಸಾಲ", "கடன்"],
         ["milk", "పాలు", "ಹಾಲು", "பால்"]
       ],
-      tip: "Spot the patterns: Telugu -a = Kannada -e = Tamil -ai (తల / ತಲೆ / தலை). Telugu p- = Kannada h- = Tamil p- (పాలు / ಹಾಲು / பால்). The Sound Shortcuts page lists more."
+      tip: "Spot the patterns: Telugu -a =⟦kn| Kannada -e⟧⟦kn ta| =⟧⟦ta| Tamil -ai⟧ (తల⟦kn| / ತಲೆ⟧⟦ta| / தலை⟧). Telugu p- =⟦kn| Kannada h-⟧⟦kn ta| =⟧⟦ta| Tamil p-⟧ (పాలు⟦kn| / ಹಾಲು⟧⟦ta| / பால்⟧). The Sound Shortcuts page lists more."
     }
   ]
 });
@@ -158,7 +158,7 @@ MODULES.push({
 MODULES.push({
   id: "imperative", en: "Commands (Imperative)", te: "విధ్యర్థకం", kn: "ಆಜ್ಞಾರ್ಥಕ ರೂಪಗಳು", ta: "ஏவல் வினை",
   src: SRC + "imperative-mood",
-  big: "You already do this in Telugu: the bare verb is a casual command (చదువు) and adding -ండి makes it plural or polite (చదవండి). Kannada adds <b>-ಇ / -ಇರಿ</b> (ಓದು → ಓದಿ). Tamil adds <b>-உங்கள்</b>, said <b>-ங்க</b> in speech (படி → படியுங்கள் → படிங்க). That -ங்க feels just like Telugu -ండి.",
+  big: "You already do this in Telugu: the bare verb is a casual command (చదువు) and adding -ండి makes it plural or polite (చదవండి). ⟦kn|Kannada adds <b>-ಇ / -ಇರಿ</b> (ಓದು → ಓದಿ).⟧⟦kn ta| ⟧⟦ta|Tamil adds <b>-உங்கள்</b>, said <b>-ங்க</b> in speech (படி → படியுங்கள் → படிங்க). That -ங்க feels just like Telugu -ండి.⟧",
   sections: [
     { h: "The endings",
       cols: ["", "Telugu", "Kannada", "Tamil"],
@@ -168,7 +168,7 @@ MODULES.push({
         ["extra polite", "దయచేసి చదవండి", "-ಇರಿ: ಓದಿರಿ", "தயவுசெய்து படியுங்கள்"],
         ["stems ending in i / e", "రాయి → రాయండి", "ಬರೆ → ಬರೆಯಿರಿ", "குடி → குடியுங்கள்"]
       ],
-      tip: "“Please” is the same idea in Telugu and Tamil: దయ + చేసి = தயவு + செய்து (“having done kindness”). Kannada says ದಯವಿಟ್ಟು."
+      tip: "⟦ta|“Please” is the same idea in Telugu and Tamil: దయ + చేసి = தயவு + செய்து (“having done kindness”).⟧⟦kn ta| Kannada says ದಯವಿಟ್ಟು.⟧⟦kn !ta|“Please” in Kannada is ದಯವಿಟ್ಟು, where Telugu says దయచేసి.⟧"
     },
     { h: "Common verbs: singular · plural",
       rows: [
@@ -192,16 +192,16 @@ MODULES.push({
       ]
     },
     { h: "Irregular: come and bring",
-      p: "“Come” is irregular in all three, and in the same way: a short singular (రా / ಬಾ / வா) and a longer plural.",
+      p: "“Come” is irregular in ⟦#langs+te⟧, and in the same way: a short singular (రా⟦kn| / ಬಾ⟧⟦ta| / வா⟧) and a longer plural.",
       rows: [
         ["come", "రా · రండి", "ಬಾ · ಬನ್ನಿ", "வா · வாருங்கள் (வாங்க)"],
         ["bring", "తీసుకురా · తీసుకురండి", "ತಾ · ತನ್ನಿ", "கொண்டு வா · கொண்டு வாருங்கள்"],
         ["give (to me)", "ఇవ్వు", "ಕೊಡು", "தா · தாருங்கள்"]
       ],
-      tip: "False friend: Kannada ತಾ means “bring”, but Tamil தா means “give (me)”."
+      tip: "⟦kn ta|False friend: Kannada ತಾ means “bring”, but Tamil தா means “give (me)”.⟧⟦kn !ta|Kannada ತಾ is a one-syllable “bring”, much shorter than Telugu తీసుకురా.⟧⟦ta !kn|Tamil தா means “give (me)”, not “bring”.⟧"
     },
-    { h: "Sanskrit verbs: Telugu -ించు = Kannada -ಇಸು",
-      p: "Telugu turns Sanskrit nouns into verbs with -ించు; Kannada uses -ಇಸು in exactly the same slots. Swap the ending and you have the Kannada verb. Tamil usually prefers a native verb or noun + செய் (“do”).",
+    { h: "Sanskrit verbs: Telugu -ించు⟦kn| = Kannada -ಇಸು⟧",
+      p: "Telugu turns Sanskrit nouns into verbs with -ించు⟦kn|; Kannada uses -ಇಸು in exactly the same slots. Swap the ending and you have the Kannada verb⟧.⟦ta| Tamil usually prefers a native verb or noun + செய் (“do”).⟧",
       rows: [
         ["protect", "రక్షించు", "ರಕ್ಷಿಸು", "காப்பாற்று"],
         ["worship", "పూజించు", "ಪೂಜಿಸು", "பூஜை செய்"],
@@ -216,7 +216,7 @@ MODULES.push({
 MODULES.push({
   id: "pronouns", en: "Pronouns", te: "సర్వనామాలు", kn: "ಸರ್ವನಾಮ", ta: "பிரதிப்பெயர்கள்",
   src: SRC + "pronoun",
-  big: "Telugu and Tamil both have two words for “we”: one that includes the listener (మనం / நாம்) and one that excludes them (మేము / நாங்கள்). Kannada has only ನಾವು for both. Kannada and Tamil also give women their own pronoun and verb ending (ಅವಳು ಬಂದಳು, அவள் வந்தாள்). In Telugu, ఆమె takes the neuter ending (ఆమె వచ్చింది).",
+  big: "Telugu⟦ta| and Tamil both⟧ ha⟦ta|ve⟧⟦!ta|s⟧ two words for “we”: one that includes the listener (మనం⟦ta| / நாம்⟧) and one that excludes them (మేము⟦ta| / நாங்கள்⟧).⟦kn| Kannada has only ನಾವು for both.⟧ ⟦#langs⟧ also give⟦one|s⟧ women their own pronoun and verb ending (⟦kn|ಅವಳು ಬಂದಳು⟧⟦kn ta|, ⟧⟦ta|அவள் வந்தாள்⟧). In Telugu, ఆమె takes the neuter ending (ఆమె వచ్చింది).",
   sections: [
     { h: "Personal pronouns",
       rows: [
@@ -228,10 +228,10 @@ MODULES.push({
         ["you (very respectful)", "తమరు / మీరు", "ತಾವು", "தாங்கள்"],
         ["oneself", "తాను / తను", "ತಾನು", "தான்"]
       ],
-      tip: "Telugu తమరు, Kannada ತಾವು and Tamil தாங்கள் all come from the reflexive “self” and are used for “you, sir”."
+      tip: "Telugu తమరు⟦kn ta|, Kannada ತಾವು and Tamil தாங்கள் all⟧⟦kn !ta| and Kannada ತಾವು both⟧⟦ta !kn| and Tamil தாங்கள் both⟧ come from the reflexive “self” and are used for “you, sir”."
     },
     { h: "That one · this one (demonstratives)",
-      p: "All three use a- for “that” and i- for “this”. Learn the a- column and you get the i- column free.",
+      p: "⟦#langs+te⟧ ⟦many|all⟧⟦one|both⟧ use a- for “that” and i- for “this”. Learn the a- column and you get the i- column free.",
       rows: [
         ["he (casual)", "వాడు", "ಅವನು", "அவன்"],
         ["he (neutral)", "అతను", "ಆತ", "அவன் / அவர்"],
@@ -245,7 +245,7 @@ MODULES.push({
         ["these people", "వీళ్ళు / వీరు", "ಇವರು", "இவர்கள்"],
         ["these (things)", "ఇవి", "ಇವು", "இவை"]
       ],
-      tip: "Register works the way you expect from Telugu: ಅವನು / அவன் are like వాడు (friends, children), and ಅವರು / அவர் are like ఆయన / వారు (anyone you respect). ಆತ / ಆಕೆ sit in the middle, like అతను / ఆమె."
+      tip: "Register works the way you expect from Telugu: ⟦kn|ಅವನು⟧⟦kn ta| / ⟧⟦ta|அவன்⟧ ⟦many|are⟧⟦one|is⟧ like వాడు (friends, children), and ⟦kn|ಅವರು⟧⟦kn ta| / ⟧⟦ta|அவர்⟧ ⟦many|are⟧⟦one|is⟧ like ఆయన / వారు (anyone you respect).⟦kn| ಆತ / ಆಕೆ sit in the middle, like అతను / ఆమె.⟧"
     },
     { h: "Who? What?",
       rows: [
@@ -262,7 +262,7 @@ MODULES.push({
 MODULES.push({
   id: "nouns", en: "Nouns: Gender & Plurals", te: "నామవాచకాలు", kn: "ನಾಮಪದ", ta: "பெயர்ச்சொல்",
   src: SRC + "noun",
-  big: "Like Telugu, the noun itself never shows gender; meaning does. Telugu splits the world into మహత్తు (men) and అమహత్తు (women + everything else). Kannada uses three genders: masculine, feminine, neuter. Tamil splits into உயர்திணை (people) and அஃறிணை (things). Plurals are easy: Telugu -లు ≈ Kannada -ಗಳು / -ರು ≈ Tamil -கள்.",
+  big: "Like Telugu, the noun itself never shows gender; meaning does. Telugu splits the world into మహత్తు (men) and అమహత్తు (women + everything else). ⟦kn|Kannada uses three genders: masculine, feminine, neuter.⟧⟦kn ta| ⟧⟦ta|Tamil splits into உயர்திணை (people) and அஃறிணை (things).⟧ Plurals are easy: Telugu -లు⟦kn| ≈ Kannada -ಗಳು / -ರು⟧⟦ta| ≈ Tamil -கள்⟧.",
   sections: [
     { h: "Plural endings",
       cols: ["", "Telugu", "Kannada", "Tamil"],
@@ -286,10 +286,10 @@ MODULES.push({
         ["house", "ఇల్లు → ఇళ్ళు", "ಮನೆ → ಮನೆಗಳು", "வீடு → வீடுகள்"],
         ["child (irregular)", "పిల్ల → పిల్లలు", "ಮಗು → ಮಕ್ಕಳು", "குழந்தை → குழந்தைகள்"]
       ],
-      tip: "False friend: Kannada ಮಕ್ಕಳು means “children”, but Tamil மக்கள் means “people”."
+      tip: "⟦kn ta|False friend: Kannada ಮಕ್ಕಳು means “children”, but Tamil மக்கள் means “people”.⟧⟦kn !ta|Kannada ಮಕ್ಕಳು means “children”, like Telugu పిల్లలు.⟧⟦ta !kn|Watch out: Tamil மக்கள் means “people”, not “children”.⟧"
     },
     { h: "Nouns that don’t count",
-      p: "Mass nouns have one form. Watch out: Telugu treats water as plural (నీళ్ళు ఉన్నాయి); Kannada and Tamil treat it as singular (ನೀರು ಇದೆ, தண்ணீர் இருக்கிறது).",
+      p: "Mass nouns have one form. Watch out: Telugu treats water as plural (నీళ్ళు ఉన్నాయి); ⟦#langs⟧ treat⟦one|s⟧ it as singular (⟦kn|ನೀರು ಇದೆ⟧⟦kn ta|, ⟧⟦ta|தண்ணீர் இருக்கிறது⟧).",
       rows: [
         ["water", "నీళ్ళు", "ನೀರು", "தண்ணீர்"],
         ["rice (raw)", "బియ్యం", "ಅಕ್ಕಿ", "அரிசி"],

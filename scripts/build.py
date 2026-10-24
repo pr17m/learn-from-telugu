@@ -96,10 +96,10 @@ def build_www():
         print("Pillow not installed: keeping the existing www/icons/*.png")
 
     manifest = {
-        "name": "Kannada Learning: Kannada & Tamil for Telugu speakers", "short_name": "Kannada",
+        "name": "Kannada Learning: Kannada, Tamil, Spanish, Italian & French for Telugu speakers", "short_name": "Kannada",
         "start_url": "./index.html", "scope": "./", "display": "standalone",
         "background_color": "#F4F5F7", "theme_color": "#3443B0", "lang": "en",
-        "description": "Learn Kannada and Tamil grammar through Telugu, with progress tracking on your device.",
+        "description": "Learn Kannada, Tamil, Spanish, Italian and French through Telugu, with progress tracking on your device.",
         "icons": [{"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
                   {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
                   {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}

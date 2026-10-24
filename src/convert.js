@@ -126,3 +126,89 @@ function teToTa(s) {
   return o;
 }
 
+
+/* ---------- Spanish / Italian -> Telugu-script reading ---------- */
+// Both spellings are regular enough to read by rule. Vowels use the long Telugu forms (a ā, e ē, o ō),
+// which is how a Telugu speaker hears the open Spanish/Italian vowels. Cells can override with [text, reading].
+const TE_VOW = { a: ["ఆ", "ా"], e: ["ఏ", "ే"], i: ["ఇ", "ి"], o: ["ఓ", "ో"], u: ["ఉ", "ు"], au: ["ఔ", "ౌ"] };
+const LAT_C = { b: "బ", d: "ద", f: "ఫ", k: "క", l: "ల", m: "మ", n: "న", p: "ప", r: "ర", s: "స", t: "త", v: "వ", w: "వ" };
+const isV = c => c && "aeiou".includes(c);
+
+function teSyllables(units) {
+  // units: {c: consonant(s)} | {v: "a".."u"} | {x: raw}
+  let o = "";
+  for (let i = 0; i < units.length; i++) {
+    const u = units[i], n = units[i + 1];
+    if (u.x !== undefined) o += u.x;
+    else if (u.v) o += TE_VOW[u.v][0];
+    else if (n && n.v) { o += u.c + TE_VOW[n.v][1]; i++; }
+    else if ((u.c === "న" || u.c === "మ") && n && n.c && n.c !== u.c) o += "ం"; // n/m before another consonant: anusvara
+    else o += u.c + "్";
+  }
+  return o;
+}
+
+function latUnits(word, lang) {
+  const w = word.toLowerCase().replace(/ñ/g, "\u0001").replace(/ü/g, "\u0002").normalize("NFD").replace(/[\u0300-\u036f'’]/g, ""); // drops accents and apostrophes: c'è → చే
+  const u = [];
+  for (let i = 0; i < w.length; i++) {
+    const c = w[i], n = w[i + 1], n2 = w[i + 2], front = n === "e" || n === "i";
+    if (isV(c)) {
+      const pu = u[u.length - 1];
+      // i / u between a consonant and a vowel is a glide: పియానో, బువేనో, లుయి
+      if ((c === "i" || c === "u") && isV(n) && pu && pu.c) { u.push({ v: c }); u.push({ c: c === "i" || n === "i" ? "య" : "వ" }); continue; }
+      // between two vowels it is just a consonant: aiutare → ఆయుతారే
+      if ((c === "i" || c === "u") && isV(n) && pu && pu.v) { u.push({ c: c === "i" ? "య" : "వ" }); continue; }
+      if (c === "u" && pu && pu.v === "a" && !isV(n)) { pu.v = "au"; continue; } // autobús → ఔతోబుస్
+      if (c === "i" && pu && pu.v && "aeo".includes(pu.v) && !isV(n)) { u.push({ c: "య" }); continue; } // hay, hoy → ఆయ్
+      const pv = u.length && u[u.length - 1].v;
+      if (pv === "i" || pv === "u") u.push({ c: pv === "i" ? "య" : "వ" }); // io → ఇయో, tuo → తువో
+      u.push({ v: c }); continue;
+    }
+    if (c === "\u0001") { u.push({ c: "న్య" }); continue; }
+    if (c === "\u0002") { u.push({ c: "వ" }); continue; }
+    if (c === "h") continue;
+    if (lang === "es") {
+      if (c === "c" && n === "h") { u.push({ c: "చ" }); i++; continue; }
+      if (c === "l" && n === "l") { u.push({ c: "య" }); i++; continue; }
+      if (c === "r" && n === "r") { u.push({ c: "ర" }); i++; continue; }
+      if (c === "q" && n === "u") { u.push({ c: "క" }); i++; continue; }
+      if (c === "g" && n === "u" && (n2 === "e" || n2 === "i")) { u.push({ c: "గ" }); i++; continue; }
+      if (c === "c") { u.push({ c: front ? "స" : "క" }); continue; }
+      if (c === "g") { u.push({ c: front ? "హ" : "గ" }); continue; }
+      if (c === "j") { u.push({ c: "హ" }); continue; }
+      if (c === "z") { u.push({ c: "స" }); continue; }
+      if (c === "v") { u.push({ c: "బ" }); continue; }
+      if (c === "x") { u.push({ c: "క్స" }); continue; }
+      if (c === "y") { if (isV(n)) u.push({ c: "య" }); else if (u.length && u[u.length - 1].v) u.push({ c: "య" }); else u.push({ v: "i" }); continue; }
+    } else {
+      const dbl = n === c;
+      if (c === "g" && n === "l" && n2 === "i") { u.push({ c: "ల్య" }); i += isV(w[i + 3]) ? 2 : 1; continue; }
+      if (c === "g" && n === "n") { u.push({ c: "న్య" }); i++; continue; }
+      if (c === "s" && n === "c" && n2 === "h") { u.push({ c: "స్క" }); i += 2; continue; }
+      if (c === "s" && n === "c" && (n2 === "e" || n2 === "i")) { u.push({ c: "ష" }); i++; if (n2 === "i" && isV(w[i + 2])) i++; continue; }
+      if (c === "c" || c === "g") {
+        const look = dbl ? n2 : n, frontL = look === "e" || look === "i";
+        const hard = look === "h", base = c === "c" ? (frontL && !hard ? "చ" : "క") : (frontL && !hard ? "జ" : "గ");
+        if (dbl) { u.push({ c: base }); i++; }
+        u.push({ c: base });
+        if (w[i + 1] === "h") i++;
+        else if (frontL && w[i + 1] === "i" && isV(w[i + 2])) i++; // cia, gio: the i only softens
+        continue;
+      }
+      if (c === "q" && n === "u") { u.push({ c: "క్వ" }); i++; continue; }
+      if (c === "z") { u.push({ c: "ట్స" }); if (dbl) i++; continue; }
+      if (c === "j" || c === "y") { u.push({ c: "య" }); continue; }
+      if (c === "x") { u.push({ c: "క్స" }); continue; }
+    }
+    if (LAT_C[c]) { u.push({ c: LAT_C[c] }); continue; }
+    u.push({ x: c });
+  }
+  return u;
+}
+
+function latToTe(s, lang) {
+  return s.split(/([^A-Za-zÀ-ÿ'’]+)/).map(p => /[A-Za-zÀ-ÿ]/.test(p) ? teSyllables(latUnits(p, lang)) : p).join("");
+}
+const esToTe = s => latToTe(s, "es");
+const itToTe = s => latToTe(s, "it");

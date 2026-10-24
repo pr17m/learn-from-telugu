@@ -1,7 +1,7 @@
 MODULES.push({
   id: "adjectives", en: "Adjectives & Adverbs", te: "విశేషణాలు & క్రియా విశేషణాలు", kn: "ಗುಣವಾಚಕಗಳು ಮತ್ತು ಕ್ರಿಯಾ ವಿಶೇಷಣಗಳು", ta: "பெயரடை & வினையடை",
   src: SRC + "adjectives-and-adverbs",
-  big: "Adjectives sit before the noun and never change, as in Telugu. To make an adverb, Telugu adds -గా (కొత్తగా). Kannada adds <b>-ಆಗಿ</b> (ಹೊಸದಾಗಿ) and Tamil adds <b>-ஆக</b> (புதிதாக). All three come from the verb “to become” (అవు / ಆಗು / ஆகு).",
+  big: "Adjectives sit before the noun and never change, as in Telugu. To make an adverb, Telugu adds -గా (కొత్తగా).⟦kn| Kannada adds <b>-ಆಗಿ</b> (ಹೊಸದಾಗಿ).⟧⟦ta| Tamil adds <b>-ஆக</b> (புதிதாக).⟧ ⟦many|All three come⟧⟦one|Both come⟧ from the verb “to become” (అవు⟦kn| / ಆಗು⟧⟦ta| / ஆகு⟧).",
   sections: [
     { h: "Adjective + noun",
       rows: [
@@ -11,7 +11,7 @@ MODULES.push({
         ["big village", "పెద్ద ఊరు", "ದೊಡ್ಡ ಹಳ್ಳಿ", "பெரிய கிராமம்"],
         ["good boy", "మంచి అబ్బాయి", "ಒಳ್ಳೆಯ ಹುಡುಗ", "நல்ல பையன்"]
       ],
-      tip: "Kannada ಹೊಸ = Tamil புதிய, and Kannada ಹಳೆಯ = Tamil பழைய: Kannada h- matches Tamil p- (see Sound Shortcuts)."
+      tip: "⟦kn ta|Kannada ಹೊಸ = Tamil புதிய, and Kannada ಹಳೆಯ = Tamil பழைய: Kannada h- matches Tamil p- (see Sound Shortcuts).⟧⟦kn !ta|Kannada ಹಳೆಯ matches Telugu పాత: Kannada h- often stands for Telugu p- (see Sound Shortcuts).⟧⟦ta !kn|Tamil பழைய matches Telugu పాత: same p-, same root (see Sound Shortcuts).⟧"
     },
     { h: "Compound nouns",
       rows: [
@@ -19,7 +19,7 @@ MODULES.push({
         ["banana", "అరటిపండు", "ಬಾಳೆಹಣ್ಣು", "வாழைப்பழம்"],
         ["headache", "తలనొప్పి", "ತಲೆನೋವು", "தலைவலி"]
       ],
-      tip: "Vegetables end in “unripe fruit” in all three: -కాయ · -ಕಾಯಿ · -காய். Fruits end in “ripe fruit”: -పండు · -ಹಣ್ಣು · -பழம்."
+      tip: "Vegetables end in “unripe fruit” in ⟦many|all three⟧⟦one|both⟧: -కాయ⟦kn| · -ಕಾಯಿ⟧⟦ta| · -காய்⟧. Fruits end in “ripe fruit”: -పండు⟦kn| · -ಹಣ್ಣು⟧⟦ta| · -பழம்⟧."
     },
     { h: "A noun of a noun = adjective",
       rows: [
@@ -28,7 +28,7 @@ MODULES.push({
         ["fruit of that tree", "ఆ చెట్టు పండు", "ಆ ಮರದ ಹಣ್ಣು", "அந்த மரத்தின் பழம்"]
       ]
     },
-    { h: "Adverbs: -గా · -ಆಗಿ · -ஆக",
+    { h: "Adverbs: -గా⟦kn| · -ಆಗಿ⟧⟦ta| · -ஆக⟧",
       rows: [
         ["newly", "కొత్తగా", "ಹೊಸದಾಗಿ", "புதிதாக"],
         ["well, nicely", "బాగా", "ಚೆನ್ನಾಗಿ", "நன்றாக"],
@@ -39,7 +39,7 @@ MODULES.push({
         ["This is a newly built house.", "ఇది కొత్తగా కట్టిన ఇల్లు.", "ಇದು ಹೊಸದಾಗಿ ಕಟ್ಟಿದ ಮನೆ.", "இது புதிதாகக் கட்டிய வீடு."],
         ["This water is very cold.", "ఈ నీళ్ళు చాలా చల్లగా ఉన్నాయి.", "ಈ ನೀರು ತುಂಬ ತಣ್ಣಗಿದೆ.", "இந்தத் தண்ணீர் மிகவும் குளிர்ச்சியாக இருக்கிறது."]
       ],
-      tip: "Kannada often fuses -ಆಗಿ with ಇದೆ: ಕಷ್ಟವಾಗಿ + ಇದೆ → ಕಷ್ಟವಾಗಿದೆ (“is difficult”). Compare Telugu కష్టంగా ఉంది."
+      tip: "⟦kn|Kannada often fuses -ಆಗಿ with ಇದೆ: ಕಷ್ಟವಾಗಿ + ಇದೆ → ಕಷ್ಟವಾಗಿದೆ (“is difficult”). Compare Telugu కష్టంగా ఉంది.⟧"
     }
   ]
 });
@@ -47,7 +47,7 @@ MODULES.push({
 MODULES.push({
   id: "numerals", en: "Numbers", te: "సంఖ్యలు", kn: "ಅಂಕೆಗಳು", ta: "எண்கள்",
   src: SRC + "numerals",
-  big: "Kannada and Tamil numbers are close cousins of each other, and many share roots with Telugu: మూడు / ಮೂರು / மூன்று, ఆరు / ಆರು / ஆறு, నూరు / ನೂರು / நூறு. The teens and tens are where Telugu goes its own way, so drill those.",
+  big: "⟦kn ta|Kannada and Tamil numbers are close cousins of each other, and many share roots with Telugu⟧⟦kn !ta|Many Kannada numbers share roots with Telugu⟧⟦ta !kn|Many Tamil numbers share roots with Telugu⟧: మూడు⟦kn| / ಮೂರು⟧⟦ta| / மூன்று⟧, ఆరు⟦kn| / ಆರು⟧⟦ta| / ஆறு⟧, నూరు⟦kn| / ನೂರು⟧⟦ta| / நூறு⟧. The teens and tens are where Telugu goes its own way, so drill those.",
   sections: [
     { h: "1 to 10",
       rows: [
@@ -58,7 +58,7 @@ MODULES.push({
       ]
     },
     { h: "11 to 19",
-      p: "Kannada builds teens on ಹದಿ- / ಹನ್- (“ten”), and Tamil on பதி- / பன்-. Telugu uses పద- / పన్-: the same root, with Kannada’s h- for p-.",
+      p: "⟦kn|Kannada builds teens on ಹದಿ- / ಹನ್- (“ten”).⟧⟦kn ta| Tamil builds them on பதி- / பன்-.⟧⟦ta !kn|Tamil builds teens on பதி- / பன்- (“ten”).⟧ Telugu uses పద- / పన్-: the same root⟦kn|, with Kannada’s h- for p-⟧.",
       rows: [
         ["11", "పదకొండు", "ಹನ್ನೊಂದು", "பதினொன்று"], ["12", "పన్నెండు", "ಹನ್ನೆರಡು", "பன்னிரண்டு"],
         ["13", "పదమూడు", "ಹದಿಮೂರು", "பதின்மூன்று"], ["14", "పద్నాలుగు", "ಹದಿನಾಲ್ಕು", "பதினான்கு"],
@@ -75,7 +75,7 @@ MODULES.push({
         ["200", "రెండు వందలు", "ಇನ್ನೂರು", "இருநூறு"], ["1,000", "వెయ్యి", "ಸಾವಿರ", "ஆயிரம்"],
         ["1,00,000", "లక్ష", "ಲಕ್ಷ", "லட்சம்"], ["1,00,00,000", "కోటి", "ಕೋಟಿ", "கோடி"]
       ],
-      tip: "Telugu tens end in -ఐ (ఇరవై, ముప్పై). Kannada tens end in -ಅತ್ತು (ಇಪ್ಪತ್ತು) and Tamil tens in -பது (இருபது). Same base number, different “ten” suffix."
+      tip: "Telugu tens end in -ఐ (ఇరవై, ముప్పై).⟦kn| Kannada tens end in -ಅತ್ತು (ಇಪ್ಪತ್ತು).⟧⟦ta| Tamil tens end in -பது (இருபது).⟧ Same base number, different “ten” suffix."
     },
     { h: "Joining numbers and fractions",
       rows: [
@@ -90,7 +90,7 @@ MODULES.push({
       ]
     },
     { h: "Numbers with nouns",
-      p: "Before a noun, “one” shortens in Telugu and Tamil (ఒకటి → ఒక, ஒன்று → ஒரு). Kannada keeps ಒಂದು.",
+      p: "Before a noun, “one” shortens in Telugu⟦ta| and Tamil⟧ (ఒకటి → ఒక⟦ta|, ஒன்று → ஒரு⟧).⟦kn| Kannada keeps ಒಂದು.⟧",
       rows: [
         ["one fruit", "ఒక పండు", "ಒಂದು ಹಣ್ಣು", "ஒரு பழம்"],
         ["two books", "రెండు పుస్తకాలు", "ಎರಡು ಪುಸ್ತಕಗಳು", "இரண்டு புத்தகங்கள்"],
@@ -98,7 +98,7 @@ MODULES.push({
         ["a hundred people", "వంద మంది", "ನೂರು ಜನ", "நூறு பேர்"],
         ["four crore", "నాలుగు కోట్లు", "ನಾಲ್ಕು ಕೋಟಿ", "நான்கு கோடி"]
       ],
-      tip: "Counting people uses a special word: Telugu మంది, Kannada ಜನ, Tamil பேர்."
+      tip: "Counting people uses a special word: Telugu మంది⟦kn|, Kannada ಜನ⟧⟦ta|, Tamil பேர்⟧."
     },
     { h: "Counting people",
       rows: [
@@ -119,7 +119,7 @@ MODULES.push({
         ["third man", "మూడవ మనిషి", "ಮೂರನೆಯ ಮನುಷ್ಯ", "மூன்றாவது மனிதன்"],
         ["I am the second son.", "నేను రెండవ కొడుకుని.", "ನಾನು ಎರಡನೆಯ ಮಗ.", "நான் இரண்டாவது மகன்."]
       ],
-      tip: "“First” has a special word in all three, from “beginning”: మొదలు → మొదటి · ಮೊದಲು → ಮೊದಲನೆಯ · முதல்."
+      tip: "“First” has a special word in ⟦many|all three⟧⟦one|both⟧, from “beginning”: మొదలు → మొదటి⟦kn| · ಮೊದಲು → ಮೊದಲನೆಯ⟧⟦ta| · முதல்⟧."
     }
   ]
 });
@@ -127,7 +127,7 @@ MODULES.push({
 MODULES.push({
   id: "causative", en: "Causatives: Making Someone Do", te: "ప్రేరణార్థకం", kn: "ಪ್ರೇರಣಾತ್ಮಕ ಪ್ರತ್ಯಯಗಳು", ta: "பிறவினை",
   src: SRC + "causative-suffixes",
-  big: "Telugu makes “cause to do” with <b>-ించు / -పించు</b> (చేయించు, తినిపించు). Kannada has the same thing in <b>-ಇಸು</b> (ಮಾಡಿಸು, ತಿನ್ನಿಸು). Tamil usually says “put to do”: infinitive + <b>வை</b> (செய்ய வை, படிக்க வை).",
+  big: "Telugu makes “cause to do” with <b>-ించు / -పించు</b> (చేయించు, తినిపించు).⟦kn| Kannada has the same thing in <b>-ಇಸು</b> (ಮಾಡಿಸು, ತಿನ್ನಿಸು).⟧⟦ta| Tamil usually says “put to do”: infinitive + <b>வை</b> (செய்ய வை, படிக்க வை).⟧",
   sections: [
     { h: "Verb → make someone do it",
       rows: [
@@ -142,10 +142,10 @@ MODULES.push({
         ["seat (make sit)", "కూర్చోబెట్టు", "ಕೂರಿಸು", "உட்கார வை"],
         ["make run / drive", "పరిగెత్తించు / నడుపు", "ಓಡಿಸು", "ஓட்டு"]
       ],
-      tip: "Kannada ಓಡು “run” → ಓಡಿಸು “drive”. Tamil does it inside the word: ஓடு “run” → ஓட்டு “drive”."
+      tip: "⟦kn|Kannada ಓಡು “run” → ಓಡಿಸು “drive”.⟧⟦kn ta| ⟧⟦ta|Tamil does it inside the word: ஓடு “run” → ஓட்டு “drive”.⟧"
     },
     { h: "Sanskrit-based verbs",
-      p: "Kannada verbs that already end in -ಇಸು (ರಕ್ಷಿಸು) take <b>-ಉವಂತೆ ಮಾಡು</b> (“make it so that…”) instead. Telugu says -ఏలా చేయు.",
+      p: "⟦kn|Kannada verbs that already end in -ಇಸು (ರಕ್ಷಿಸು) take <b>-ಉವಂತೆ ಮಾಡು</b> (“make it so that…”) instead. ⟧Telugu says -ఏలా చేయు⟦!kn| for verbs that already end in -ించు (రక్షించేలా చేయు)⟧.",
       rows: [
         ["make (someone) protect", "రక్షించేలా చేయు", "ರಕ್ಷಿಸುವಂತೆ ಮಾಡು", "காப்பாற்றச் செய்"],
         ["make (someone) worship", "పూజించేలా చేయు", "ಪೂಜಿಸುವಂತೆ ಮಾಡು", "பூஜை செய்ய வை"]
@@ -159,7 +159,7 @@ MODULES.push({
         ["This is her house.", "ఇది ఆమె ఇల్లు.", "ಇದು ಅವಳ ಮನೆ.", "இது அவளுடைய வீடு."],
         ["This is the bird’s nest.", "ఇది పక్షి గూడు.", "ಇದು ಹಕ್ಕಿಯ ಗೂಡು.", "இது பறவையின் கூடு."]
       ],
-      tip: "Telugu గూడు, Kannada ಗೂಡು and Tamil கூடு all mean “nest”. Tamil writes it with க but says “kūḍu”."
+      tip: "Telugu గూడు⟦kn|, Kannada ಗೂಡು⟧⟦ta| and Tamil கூடு⟧ ⟦many|all mean⟧⟦one|both mean⟧ “nest”.⟦ta| Tamil writes it with க but says “kūḍu”.⟧"
     }
   ]
 });
@@ -167,7 +167,7 @@ MODULES.push({
 MODULES.push({
   id: "modal", en: "May, Can, Must, If", te: "వివిధ క్రియా రూపాలు", kn: "ಕ್ರಿಯಾ ಪದಗಳ ವಿವಿಧ ರೂಪಗಳು", ta: "வினை வடிவங்கள்",
   src: SRC + "the-potential-obligative-and-conditional-verbs",
-  big: "These four forms line up neatly. <b>may</b> = -వచ్చు · -ಬಹುದು · -லாம். <b>can</b> = -గలను · -ಬಲ್ಲೆ · (-ஆல்) முடியும். <b>must</b> = -ఆలి · -ಬೇಕು · -வேண்டும். <b>if</b> = -తే · -ದರೆ · -ஆல். Kannada ಬೇಕು and Tamil வேண்டும் are the same word (b ↔ v).",
+  big: "These four forms line up neatly. <b>may</b> = -వచ్చు⟦kn| · -ಬಹುದು⟧⟦ta| · -லாம்⟧. <b>can</b> = -గలను⟦kn| · -ಬಲ್ಲೆ⟧⟦ta| · (-ஆல்) முடியும்⟧. <b>must</b> = -ఆలి⟦kn| · -ಬೇಕು⟧⟦ta| · -வேண்டும்⟧. <b>if</b> = -తే⟦kn| · -ದರೆ⟧⟦ta| · -ஆல்⟧.⟦kn ta| Kannada ಬೇಕು and Tamil வேண்டும் are the same word (b ↔ v).⟧",
   sections: [
     { h: "May (permission, possibility)",
       rows: [
@@ -177,10 +177,10 @@ MODULES.push({
         ["She may be there.", "ఆమె ఉండవచ్చు.", "ಅವಳು ಇರಬಹುದು.", "அவள் இருக்கலாம்."],
         ["I may do (it).", "నేను చేయవచ్చు.", "ನಾನು ಮಾಡಬಹುದು.", "நான் செய்யலாம்."]
       ],
-      tip: "Telugu -వచ్చు and Kannada -ಬಹುದು both literally mean “it may come” (వచ్చు ← రా, ಬಹುದು ← ಬರು)."
+      tip: "⟦kn|Telugu -వచ్చు and Kannada -ಬಹುದು both literally mean “it may come” (వచ్చు ← రా, ಬಹುದು ← ಬರು).⟧⟦!kn|Telugu -వచ్చు literally means “it may come” (వచ్చు ← రా).⟧"
     },
     { h: "Can (ability)",
-      p: "Kannada ಬಲ್ಲ takes person endings, like Telugu గల. Tamil puts the doer in the instrumental (என்னால், “by me”) and uses முடியும் (“it is possible”). Compare Telugu నా వల్ల అవుతుంది.",
+      p: "⟦kn|Kannada ಬಲ್ಲ takes person endings, like Telugu గల.⟧⟦kn ta| ⟧⟦ta|Tamil puts the doer in the instrumental (என்னால், “by me”) and uses முடியும் (“it is possible”). Compare Telugu నా వల్ల అవుతుంది.⟧",
       rows: [
         ["I can come.", "నేను రాగలను.", "ನಾನು ಬರಬಲ್ಲೆ.", "என்னால் வர முடியும்."],
         ["You can do (it).", "నువ్వు చేయగలవు.", "ನೀನು ಮಾಡಬಲ್ಲೆ.", "உன்னால் செய்ய முடியும்."],
@@ -200,7 +200,7 @@ MODULES.push({
         ["I want (it).", "నాకు కావాలి.", "ನನಗೆ ಬೇಕು.", "எனக்கு வேண்டும்."],
         ["I don’t want (it).", "నాకు వద్దు.", "ನನಗೆ ಬೇಡ.", "எனக்கு வேண்டாம்."]
       ],
-      tip: "“Must” is made stronger with -ఏ / -ಏ / -ஏ in all three: రావాల్సిందే, ಬರಲೇಬೇಕು, வந்தே ஆக வேண்டும். Spoken Tamil shortens வேண்டும் to -ணும் (செய்யணும்)."
+      tip: "“Must” is made stronger with -ఏ⟦kn| / -ಏ⟧⟦ta| / -ஏ⟧ in ⟦many|all three⟧⟦one|both⟧: రావాల్సిందే⟦kn|, ಬರಲೇಬೇಕು⟧⟦ta|, வந்தே ஆக வேண்டும்⟧.⟦ta| Spoken Tamil shortens வேண்டும் to -ணும் (செய்யணும்).⟧"
     },
     { h: "If, only if, even if",
       cols: ["", "Telugu -తే · -తేనే · -నా", "Kannada -ದರೆ · -ದರೇನೇ · -ದರೂ", "Tamil -ஆல் · -ஆல்தான் · -ஆலும்"],
@@ -213,7 +213,7 @@ MODULES.push({
         ["He’ll buy a house only if I do.", "నేను ఇల్లు కొంటేనే అతను కొంటాడు.", "ನಾನು ಮನೆಯನ್ನು ಕೊಂಡುಕೊಂಡರೇನೇ ಅವನು ಕೊಂಡುಕೊಳ್ಳುತ್ತಾನೆ.", "நான் வீடு வாங்கினால்தான் அவன் வாங்குவான்."],
         ["Even if you call, he won’t come.", "నువ్వు పిలిచినా అతను రాడు.", "ನೀನು ಕರೆದರೂ ಅವನು ಬರುವುದಿಲ್ಲ.", "நீ கூப்பிட்டாலும் அவன் வரமாட்டான்."]
       ],
-      tip: "Telugu adds -తే to the verb stem (వస్తే, చదివితే). Kannada and Tamil add their ending to the past stem: ಬಂದ + ರೆ, வந்த + ால். If you know the past, you know the conditional."
+      tip: "Telugu adds -తే to the verb stem (వస్తే, చదివితే). ⟦#langs⟧ ⟦many|add their ending⟧⟦one|adds its ending⟧ to the past stem: ⟦kn|ಬಂದ + ರೆ⟧⟦kn ta|, ⟧⟦ta|வந்த + ால்⟧. If you know the past, you know the conditional."
     }
   ]
 });
@@ -221,7 +221,7 @@ MODULES.push({
 MODULES.push({
   id: "questions", en: "Questions & Negatives", te: "ప్రశ్నార్థకాలు & వ్యతిరేకం", kn: "ಪ್ರಶ್ನಾರ್ಥಕ ಪದಗಳು", ta: "வினாச்சொற்கள் & எதிர்மறை",
   src: SRC + "the-interrogatives",
-  big: "Telugu has a neat “that / this / which” system: అక్కడ / ఇక్కడ / ఎక్కడ. Tamil has exactly the same one: அங்கே / இங்கே / எங்கே. Kannada uses ಅಲ್ಲಿ / ಇಲ್ಲಿ / ಎಲ್ಲಿ. For negatives, all three keep two words apart: “not there” (లేదు · ಇಲ್ಲ · இல்லை) and “not so” (కాదు · ಅಲ್ಲ · அல்ல).",
+  big: "Telugu has a neat “that / this / which” system: అక్కడ / ఇక్కడ / ఎక్కడ.⟦ta| Tamil has exactly the same one: அங்கே / இங்கே / எங்கே.⟧⟦kn| Kannada uses ಅಲ್ಲಿ / ಇಲ್ಲಿ / ಎಲ್ಲಿ.⟧ For negatives, ⟦many|all three keep⟧⟦one|both keep⟧ two words apart: “not there” (లేదు⟦kn| · ಇಲ್ಲ⟧⟦ta| · இல்லை⟧) and “not so” (కాదు⟦kn| · ಅಲ್ಲ⟧⟦ta| · அல்ல⟧).",
   sections: [
     { h: "The a- / i- / e- system",
       cols: ["", "Telugu (that · this · which)", "Kannada", "Tamil"],
@@ -248,15 +248,15 @@ MODULES.push({
         ["What is your name?", "మీ పేరు ఏమిటి?", "ನಿಮ್ಮ ಹೆಸರೇನು?", "உங்கள் பெயர் என்ன?"]
       ]
     },
-    { h: "Yes / no: add -ఆ · -ಆ / -ಏ · -ஆ",
+    { h: "Yes / no: add -ఆ⟦kn| · -ಆ / -ಏ⟧⟦ta| · -ஆ⟧",
       rows: [
         ["Will he (resp.) come today?", "ఆయన ఈరోజు వస్తారా?", "ಅವರು ಈ ದಿನ ಬರುತ್ತಾರೆಯೇ?", "அவர் இன்று வருவாரா?"],
         ["Do you read books?", "నువ్వు పుస్తకాలు చదువుతావా?", "ನೀನು ಪುಸ್ತಕ ಓದುತ್ತೀಯಾ?", "நீ புத்தகம் படிக்கிறாயா?"],
         ["Which is your home town? Mangaluru?", "మీ సొంత ఊరు ఏది? మంగళూరా?", "ನಿಮ್ಮ ಸ್ವಂತ ಊರು ಯಾವುದು? ಮಂಗಳೂರೇ?", "உங்கள் சொந்த ஊர் எது? மங்களூரா?"]
       ]
     },
-    { h: "Not there (లేదు · ಇಲ್ಲ · இல்லை)",
-      p: "Good news for Telugu speakers: Telugu లేదు changes with the person (లేను, లేవు, లేడు, లేరు). Kannada ಇಲ್ಲ and Tamil இல்லை never change.",
+    { h: "Not there (లేదు⟦kn| · ಇಲ್ಲ⟧⟦ta| · இல்லை⟧)",
+      p: "Good news for Telugu speakers: Telugu లేదు changes with the person (లేను, లేవు, లేడు, లేరు).⟦kn ta| Kannada ಇಲ್ಲ and Tamil இல்லை never change.⟧⟦kn !ta| Kannada ಇಲ್ಲ never changes.⟧⟦ta !kn| Tamil இல்லை never changes.⟧",
       rows: [
         ["The book is with me.", "ఆ పుస్తకం నా దగ్గర ఉంది.", "ಆ ಪುಸ್ತಕ ನನ್ನ ಬಳಿ ಇದೆ.", "அந்தப் புத்தகம் என்னிடம் இருக்கிறது."],
         ["The book is not with me.", "ఆ పుస్తకం నా దగ్గర లేదు.", "ಆ ಪುಸ್ತಕ ನನ್ನ ಬಳಿ ಇಲ್ಲ.", "அந்தப் புத்தகம் என்னிடம் இல்லை."],
@@ -267,16 +267,16 @@ MODULES.push({
         ["I don’t know.", "నాకు తెలియదు.", "ನನಗೆ ಗೊತ್ತಿಲ್ಲ.", "எனக்குத் தெரியாது."]
       ]
     },
-    { h: "Not so (కాదు · ಅಲ್ಲ · அல்ல)",
+    { h: "Not so (కాదు⟦kn| · ಅಲ್ಲ⟧⟦ta| · அல்ல⟧)",
       rows: [
         ["That book is mine.", "ఆ పుస్తకం నాది.", "ಆ ಪುಸ್ತಕ ನನ್ನದು.", "அந்தப் புத்தகம் என்னுடையது."],
         ["That book is not mine.", "ఆ పుస్తకం నాది కాదు.", "ಆ ಪುಸ್ತಕ ನನ್ನದಲ್ಲ.", "அந்தப் புத்தகம் என்னுடையது அல்ல."],
         ["That is not a good village.", "అది మంచి ఊరు కాదు.", "ಅದು ಒಳ್ಳೆಯ ಊರಲ್ಲ.", "அது நல்ல ஊர் அல்ல."]
       ],
-      tip: "In everyday Tamil, இல்லை often replaces அல்ல too: என்னுடையது இல்லை."
+      tip: "⟦ta|In everyday Tamil, இல்லை often replaces அல்ல too: என்னுடையது இல்லை.⟧"
     },
     { h: "Negative verbs",
-      p: "Future and habit: Telugu has its own negative endings (రాను, రాడు). Kannada adds <b>-ಉವುದಿಲ್ಲ</b> (spoken -ಅಲ್ಲ: ಬರಲ್ಲ). Tamil adds <b>மாட்டு-</b> with person endings (வரமாட்டேன்). Past: all three use infinitive + “not”: రాలేదు · ಬರಲಿಲ್ಲ · வரவில்லை.",
+      p: "Future and habit: Telugu has its own negative endings (రాను, రాడు).⟦kn| Kannada adds <b>-ಉವುದಿಲ್ಲ</b> (spoken -ಅಲ್ಲ: ಬರಲ್ಲ).⟧⟦ta| Tamil adds <b>மாட்டு-</b> with person endings (வரமாட்டேன்).⟧ Past: ⟦many|all three use⟧⟦one|both use⟧ infinitive + “not”: రాలేదు⟦kn| · ಬರಲಿಲ್ಲ⟧⟦ta| · வரவில்லை⟧.",
       rows: [
         ["I won’t play today.", "నేను ఈరోజు ఆడను.", "ನಾನು ಇವತ್ತು ಆಡುವುದಿಲ್ಲ.", "நான் இன்று விளையாட மாட்டேன்."],
         ["He will not come tomorrow.", "అతను రేపు రాడు.", "ಅವನು ನಾಳೆ ಬರುವುದಿಲ್ಲ.", "அவன் நாளை வரமாட்டான்."],
@@ -295,7 +295,7 @@ MODULES.push({
         ["Don’t come to our house.", "మా ఇంటికి రాకు.", "ನಮ್ಮ ಮನೆಗೆ ಬರಬೇಡ.", "எங்கள் வீட்டுக்கு வராதே."],
         ["Don’t laugh at me.", "నన్ను చూసి నవ్వకు.", "ನನ್ನನ್ನು ನೋಡಿ ನಗಬೇಡ.", "என்னைப் பார்த்துச் சிரிக்காதே."]
       ],
-      tip: "Kannada “don’t” is literally “not needed”: ಮಾಡಬೇಡ = ಮಾಡ + ಬೇಡ. Telugu says it the same way in చేయవద్దు."
+      tip: "⟦kn|Kannada “don’t” is literally “not needed”: ಮಾಡಬೇಡ = ಮಾಡ + ಬೇಡ. Telugu says it the same way in చేయవద్దు.⟧⟦!kn|Telugu can say “don’t” as “not needed”: చేయవద్దు = చేయ + వద్దు.⟧"
     },
     { h: "Not-done (negative participle)",
       rows: [
@@ -309,7 +309,7 @@ MODULES.push({
 MODULES.push({
   id: "spoken", en: "Written vs Spoken", te: "గ్రాంథికం & వ్యావహారికం", kn: "ಲಿಖಿತ ಮತ್ತು ಆಡು ಮಾತಿನ ರೀತಿಗಳು", ta: "எழுத்துத் தமிழ் & பேச்சுத் தமிழ்",
   src: SRC + "the-written-and-spoken-styles",
-  big: "You know this split from Telugu: చేస్తున్నాను is written, చేస్తున్నా is spoken. Kannada’s gap is small and regular: vowels drop (ಬರುತ್ತಾನೆ → ಬರ್ತಾನೆ). Tamil’s gap is the widest of the three: books say வருகிறேன், people say வர்றேன். Learn written forms to read, spoken forms to talk.",
+  big: "You know this split from Telugu: చేస్తున్నాను is written, చేస్తున్నా is spoken.⟦kn| Kannada’s gap is small and regular: vowels drop (ಬರುತ್ತಾನೆ → ಬರ್ತಾನೆ).⟧⟦kn ta| Tamil’s gap is the widest of the three: books say வருகிறேன், people say வர்றேன்.⟧⟦ta !kn| Tamil’s gap is much wider: books say வருகிறேன், people say வர்றேன்.⟧ Learn written forms to read, spoken forms to talk.",
   sections: [
     { h: "Verbs: written → spoken",
       cols: ["", "Telugu", "Kannada", "Tamil"],
@@ -350,25 +350,25 @@ MODULES.push({
         ["I ate the fruit.", "నేను పండు తిన్నాను → తిన్నా", "ಹಣ್ಣನ್ನು ತಿಂದೆನು → ಹಣ್ಣು ತಿಂದೆ", "நான் பழம் சாப்பிட்டேன் → பழம் சாப்ட்டேன்"],
         ["I came from Mysuru.", "నేను మైసూరు నుండి వచ్చాను → మైసూర్నుంచి వచ్చా", "ಮೈಸೂರಿನಿಂದ ಬಂದೆನು → ಮೈಸೂರಿಂದ ಬಂದೆ", "நான் மைசூரிலிருந்து வந்தேன் → மைசூர்லேர்ந்து வந்தேன்"]
       ],
-      tip: "Five Tamil speech rules cover most of it: -கிறேன் → -றேன், -இல் → -ல, -ஐ → -அ, -கள் → -ங்க, and final -ம் is half-swallowed (மரம் ≈ “marõ”)."
+      tip: "⟦ta|Five Tamil speech rules cover most of it: -கிறேன் → -றேன், -இல் → -ல, -ஐ → -அ, -கள் → -ங்க, and final -ம் is half-swallowed (மரம் ≈ “marõ”).⟧"
     }
   ]
 });
 
 const SOUNDS = {
   id: "sounds", en: "Sound Shortcuts", te: "ధ్వని సూత్రాలు", kn: "ಧ್ವನಿ ಸೂತ್ರಗಳು", ta: "ஒலி விதிகள்",
-  big: "All three languages come from one Dravidian parent, so words shifted in regular ways. Learn these patterns and you can often guess a Kannada or Tamil word from the Telugu one.",
+  big: "⟦#langs+te⟧ come from one Dravidian parent, so words shifted in regular ways. Learn these patterns and you can often guess ⟦kn ta|a Kannada or Tamil⟧⟦kn !ta|a Kannada⟧⟦ta !kn|a Tamil⟧ word from the Telugu one.",
   sections: [
-    { h: "1 · Kannada h- = Telugu / Tamil p-",
+    { h: "⟦kn|Kannada h- = ⟧Telugu⟦ta| / Tamil⟧ p-⟦!kn| (shared roots)⟧",
       rows: [
         ["milk", "పాలు", "ಹಾಲು", "பால்"], ["tiger", "పులి", "ಹುಲಿ", "புலி"], ["snake", "పాము", "ಹಾವು", "பாம்பு"],
         ["song", "పాట", "ಹಾಡು", "பாட்டு"], ["ten", "పది", "ಹತ್ತು", "பத்து"], ["name", "పేరు", "ಹೆಸರು", "பெயர்"],
         ["flower", "పువ్వు", "ಹೂವು", "பூ"], ["tooth", "పన్ను / పల్లు", "ಹಲ್ಲು", "பல்"], ["cow", "ఆవు / పశువు", "ಹಸು", "பசு"],
         ["old", "పాత", "ಹಳೆಯ", "பழைய"], ["new", "కొత్త", "ಹೊಸ", "புதிய"]
       ],
-      tip: "This holds for native Dravidian words. Sanskrit and English loans keep p- in Kannada (ಪುಸ್ತಕ, ಪೆನ್ನು). In the last two rows the Telugu word is unrelated; the match is between Kannada and Tamil."
+      tip: "⟦kn|This holds for native Dravidian words. Sanskrit and English loans keep p- in Kannada (ಪುಸ್ತಕ, ಪೆನ್ನು).⟧⟦!kn|Telugu and Tamil both keep the old p- in native words.⟧ In the last two rows the Telugu word is unrelated⟦kn ta|; the match is between Kannada and Tamil⟧."
     },
-    { h: "2 · Kannada b- = Tamil v-",
+    { h: "Kannada b- = Tamil v-", only: "kn ta",
       rows: [
         ["come!", "రా", "ಬಾ", "வா"], ["butter", "వెన్న", "ಬೆಣ್ಣೆ", "வெண்ணெய்"], ["silver", "వెండి", "ಬೆಳ್ಳಿ", "வெள்ளி"],
         ["root", "వేరు", "ಬೇರು", "வேர்"], ["bow", "విల్లు", "ಬಿಲ್ಲು", "வில்"], ["banana plant", "అరటి", "ಬಾಳೆ", "வாழை"],
@@ -376,32 +376,32 @@ const SOUNDS = {
       ],
       tip: "Telugu usually keeps v- (వెన్న, వెండి, వేరు, విల్లు, వల), so Tamil v- words often look familiar."
     },
-    { h: "3 · Telugu -a = Kannada -e = Tamil -ai",
+    { h: "Telugu -a⟦kn| = Kannada -e⟧⟦ta| = Tamil -ai⟧",
       rows: [
         ["head", "తల", "ತಲೆ", "தலை"], ["wave", "అల", "ಅಲೆ", "அலை"], ["net", "వల", "ಬಲೆ", "வலை"],
         ["art", "కళ", "ಕಲೆ", "கலை"], ["father’s sister", "అత్త", "ಅತ್ತೆ", "அத்தை"], ["price", "వెల", "ಬೆಲೆ", "விலை"]
       ]
     },
-    { h: "4 · Telugu ḍ ≈ Kannada ḷ ≈ Tamil ḻ",
+    { h: "Telugu ḍ⟦kn| ≈ Kannada ḷ⟧⟦ta| ≈ Tamil ḻ⟧",
       rows: [
         ["seven", "ఏడు", "ಏಳು", "ஏழு"], ["hen", "కోడి", "ಕೋಳಿ", "கோழி"], ["fruit", "పండు", "ಹಣ್ಣು", "பழம்"],
-        ["shade", "నీడ", "ನೆರಳು", "நிழல்"], ["Tamil", "తమిళం", "ತಮಿಳು", "தமிழ்"]
+        ["shade", "నీడ", "ನೆರಳು", "நிழல்"], ["Tamil", "తమిళం", "ತಮಿಳು", "தமிழ்", { only: "ta" }]
       ]
     },
-    { h: "5 · Tamil drops the final -u",
+    { h: "Tamil drops the final -u", only: "ta",
       rows: [
         ["village", "ఊరు", "ಊರು", "ஊர்"], ["water", "నీరు", "ನೀರು", "நீர்"], ["eye", "కన్ను", "ಕಣ್ಣು", "கண்"],
         ["leg", "కాలు", "ಕಾಲು", "கால்"], ["hand", "చెయ్యి", "ಕೈ", "கை"], ["salt", "ఉప్పు", "ಉಪ್ಪು", "உப்பு"]
       ],
       tip: "Exception: Tamil keeps -u after doubled consonants (உப்பு, பத்து)."
     },
-    { h: "6 · Telugu -ం = Kannada -a = Tamil -ம்",
+    { h: "Telugu -ం⟦kn| = Kannada -a⟧⟦ta| = Tamil -ம்⟧",
       rows: [
         ["book", "పుస్తకం", "ಪುಸ್ತಕ", "புத்தகம்"], ["village", "గ్రామం", "ಗ್ರಾಮ", "கிராமம்"], ["country", "దేశం", "ದೇಶ", "தேசம்"],
         ["knowledge", "జ్ఞానం", "ಜ್ಞಾನ", "ஞானம்"], ["time", "సమయం", "ಸಮಯ", "சமயம் / நேரம்"]
       ]
     },
-    { h: "7 · False friends",
+    { h: "False friends",
       cols: ["Word", "Telugu meaning", "Kannada meaning", "Tamil meaning"],
       noRead: true,
       rows: [

@@ -2,7 +2,7 @@
   "name": "sodara-bhashalu",
   "version": "1.0.0",
   "private": true,
-  "description": "Learn Kannada and Tamil through Telugu. Offline app with on-device progress tracking.",
+  "description": "Learn Kannada, Tamil, Spanish, Italian and French through Telugu. Offline app with on-device progress tracking.",
   "scripts": {
     "build": "python3 scripts/build.py",
     "serve": "python3 -m http.server 8080 --directory www",
