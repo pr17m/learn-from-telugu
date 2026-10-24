@@ -4,7 +4,7 @@
 - [x] npm install && npm run build OK
 ## Phase 1: GitHub
 - [ ] Logged in with gh (personal account pr17m) — pushed over SSH instead; gh still needed for Pages/workflows
-- [x] Repository created and pushed: https://github.com/pr17m/learn-from-telugu (public?, SSH remote)
+- [x] Repository created and pushed: https://github.com/pr17m/learn-from-telugu (public, SSH remote)
 ## Phase 2: Web app
 - [ ] GitHub Pages enabled, workflow green
 - [ ] Live URL: <url>
