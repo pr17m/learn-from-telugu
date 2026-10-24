@@ -9,7 +9,7 @@
 - [x] GitHub Pages enabled, workflow green
 - [x] Live URL: https://pr17m.github.io/learn-from-telugu/ (privacy: https://pr17m.github.io/learn-from-telugu/privacy.html)
 - [ ] Installed on Android home screen and works offline
-- [ ] Added to iPhone home screen
+- [x] Added to iPhone home screen (tested 2026-10-24, works)
 - [x] privacy.html placeholders filled (date 24 October 2026, contact prudhvi05madhu@gmail.com)
 ## Phase 3: APK
 - [ ] Debug APK built and installed on a phone
