@@ -1,4 +1,4 @@
-# Sodara Bhashalu · సోదర భాషలు
+# Kannada Learning · కన్నడ నేర్చుకోండి
 
 Learn **Kannada** and **Tamil** through the **Telugu** you already know. There are 18 grammar modules, following the Kannada Kalike "Learn Basics" sequence. Each one puts Telugu side by side with Kannada and Tamil, in native script with a Telugu-script reading so you can pronounce every word.
 
