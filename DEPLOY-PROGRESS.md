@@ -3,8 +3,8 @@
 - [x] Tools checked (git, node, python3, gh, JDK, Xcode) — 2026-10-24: git 2.50, node 25.8, npm 11.11, python 3.9, gh 2.103 present; **JDK and Xcode missing** (needed only for Phases 4–5)
 - [x] npm install && npm run build OK
 ## Phase 1: GitHub
-- [ ] Logged in with gh (personal account, not the organization)
-- [ ] Repository created and pushed: <url>
+- [ ] Logged in with gh (personal account pr17m) — pushed over SSH instead; gh still needed for Pages/workflows
+- [x] Repository created and pushed: https://github.com/pr17m/learn-from-telugu (public?, SSH remote)
 ## Phase 2: Web app
 - [ ] GitHub Pages enabled, workflow green
 - [ ] Live URL: <url>
