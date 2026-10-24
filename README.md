@@ -7,6 +7,8 @@ Learn **Kannada** and **Tamil** through the **Telugu** you already know. There a
 - Works offline. Progress stays on the device: no account, no tracking.
 - Ships as a web app (PWA), an Android app and an iOS app from the same code.
 
+**Try it:** https://pr17m.github.io/learn-from-telugu/ (on Android choose *Install app*; on iPhone use *Share → Add to Home Screen*). Privacy policy: https://pr17m.github.io/learn-from-telugu/privacy.html
+
 ## Repository layout
 ```
 src/                 course source

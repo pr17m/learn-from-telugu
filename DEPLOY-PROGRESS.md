@@ -6,8 +6,8 @@
 - [ ] Logged in with gh (personal account pr17m) — pushed over SSH instead; gh still needed for Pages/workflows
 - [x] Repository created and pushed: https://github.com/pr17m/learn-from-telugu (public, SSH remote)
 ## Phase 2: Web app
-- [ ] GitHub Pages enabled, workflow green
-- [ ] Live URL: <url>
+- [x] GitHub Pages enabled, workflow green
+- [x] Live URL: https://pr17m.github.io/learn-from-telugu/ (privacy: https://pr17m.github.io/learn-from-telugu/privacy.html)
 - [ ] Installed on Android home screen and works offline
 - [ ] Added to iPhone home screen
 - [x] privacy.html placeholders filled (date 24 October 2026, contact prudhvi05madhu@gmail.com)
