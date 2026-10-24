@@ -27,7 +27,7 @@ You are helping the owner of this repository publish **Sodara Bhashalu**, an app
 ### Project facts
 | Item | Value |
 |---|---|
-| App name | Sodara Bhashalu |
+| App name | Kannada Learning (formerly Sodara Bhashalu) |
 | App / bundle ID | `com.sodarabhashalu.app` (in `capacitor.config.json`; change it **before** the first store upload, never after) |
 | Web app | `www/`, a static PWA with `manifest.webmanifest` and `sw.js`, works offline |
 | Native wrapper | Capacitor 8 (`android/`, `ios/`) using `www/` as `webDir` |

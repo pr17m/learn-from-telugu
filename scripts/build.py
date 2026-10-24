@@ -71,7 +71,7 @@ def build_www():
            '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
            '<meta name="theme-color" content="#3443B0"><meta name="apple-mobile-web-app-capable" content="yes">'
            '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">'
-           '<meta name="apple-mobile-web-app-title" content="Sodara">'
+           '<meta name="apple-mobile-web-app-title" content="Kannada">'
            f"<style>{reset}</style></head><body>" + page(head) +
            '<script>if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(()=>{});</script>'
            "</body></html>")
@@ -96,7 +96,7 @@ def build_www():
         print("Pillow not installed: keeping the existing www/icons/*.png")
 
     manifest = {
-        "name": "Sodara Bhashalu: Kannada & Tamil for Telugu speakers", "short_name": "Sodara",
+        "name": "Kannada Learning: Kannada & Tamil for Telugu speakers", "short_name": "Kannada",
         "start_url": "./index.html", "scope": "./", "display": "standalone",
         "background_color": "#F4F5F7", "theme_color": "#3443B0", "lang": "en",
         "description": "Learn Kannada and Tamil grammar through Telugu, with progress tracking on your device.",

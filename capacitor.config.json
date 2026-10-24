@@ -1,6 +1,6 @@
 {
   "appId": "com.sodarabhashalu.app",
-  "appName": "Sodara Bhashalu",
+  "appName": "Kannada Learning",
   "webDir": "www",
   "ios": {
     "contentInset": "never"

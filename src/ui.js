@@ -360,7 +360,7 @@ function renderProgress() {
       if (!o || o.v !== 2 || typeof o.status !== "object") throw 0;
       S = Object.assign(blank(), o); save(true); applyPrefs(); renderProgress(); refresh();
       document.getElementById("bk-msg").textContent = "Progress restored.";
-    } catch (e) { msg("That doesn’t look like a Sodara Bhashalu backup code. Copy the whole code and try again."); }
+    } catch (e) { msg("That doesn’t look like a Kannada Learning backup code. Copy the whole code and try again."); }
   };
   let armed = false;
   document.getElementById("bk-reset").onclick = e => {

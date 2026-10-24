@@ -1,6 +1,6 @@
 {
-  "name": "Sodara Bhashalu: Kannada & Tamil for Telugu speakers",
-  "short_name": "Sodara",
+  "name": "Kannada Learning: Kannada & Tamil for Telugu speakers",
+  "short_name": "Kannada",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
