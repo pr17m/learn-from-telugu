@@ -1,0 +1,14 @@
+{
+  "appId": "com.sodarabhashalu.app",
+  "appName": "Sodara Bhashalu",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "never"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "native",
+      "style": "DEFAULT"
+    }
+  }
+}

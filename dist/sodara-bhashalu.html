@@ -1,0 +1,2114 @@
+<title>Sodara Bhashalu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Learn Kannada and Tamil grammar through Telugu: 18 modules with side-by-side Telugu, Kannada and Tamil forms and Telugu-script readings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&family=Anek+Telugu:wght@400;500;600;700&family=Anek+Kannada:wght@400;500;600;700&family=Anek+Tamil:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: sticky left rail of modules + a reading column of comparison tables.
+   Each language owns one colour: Telugu (home, indigo), Kannada (flag red), Tamil (temple teal). */
+:root {
+  --bg: #F4F5F7;
+  --surface: #FFFFFF;
+  --sunk: #ECEEF2;
+  --ink: #161C26;
+  --muted: #5A6372;
+  --line: #DCE0E6;
+  --te: #3443B0;
+  --kn: #B0261C;
+  --ta: #0A7466;
+  --te-soft: #E9EBFA;
+  --kn-soft: #FBEAE8;
+  --ta-soft: #E2F3F0;
+  --tip: #FFF6DA;
+  --tip-ink: #6B4E00;
+  --f-ui: "Anek Latin", "Anek Telugu", "Anek Kannada", "Anek Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Tamil", system-ui, sans-serif;
+  --f-prose: "Source Serif 4", "Anek Telugu", "Anek Kannada", "Anek Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Tamil", Georgia, serif;
+  --f-te: "Anek Telugu", "Noto Sans Telugu", sans-serif;
+  --f-kn: "Anek Kannada", "Noto Sans Kannada", sans-serif;
+  --f-ta: "Anek Tamil", "Noto Sans Tamil", sans-serif;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F131A; --surface: #161B24; --sunk: #1C222D; --ink: #E6E9EF; --muted: #9AA3B2; --line: #2A313D;
+    --te: #9AA6FF; --kn: #FF8C82; --ta: #5ED3C1;
+    --te-soft: #1E2340; --kn-soft: #3A1E1C; --ta-soft: #12302C; --tip: #2E2814; --tip-ink: #F2D37A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F131A; --surface: #161B24; --sunk: #1C222D; --ink: #E6E9EF; --muted: #9AA3B2; --line: #2A313D;
+  --te: #9AA6FF; --kn: #FF8C82; --ta: #5ED3C1;
+  --te-soft: #1E2340; --kn-soft: #3A1E1C; --ta-soft: #12302C; --tip: #2E2814; --tip-ink: #F2D37A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-ui); font-size: 16px; line-height: 1.5; }
+a { color: var(--te); }
+:focus-visible { outline: 2px solid var(--te); outline-offset: 2px; border-radius: 4px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface); }
+
+/* Top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px; }
+.top-in { display: flex; align-items: center; gap: 12px 20px; flex-wrap: wrap; max-width: 1280px; margin: 0 auto; }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ink); }
+.ctrls { margin-left: auto; }
+.brand b { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
+.brand span { font-family: var(--f-te); color: var(--muted); font-size: .95rem; }
+.ctrls { display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; background: var(--sunk); }
+.seg button { font: inherit; font-size: .9rem; border: 0; background: transparent; color: var(--muted); padding: 4px 12px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+.seg button[data-set-lang="kn"] { font-family: var(--f-kn); }
+.seg button[data-set-lang="ta"] { font-family: var(--f-ta); }
+.sw { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--muted); cursor: pointer; }
+.sw input { accent-color: var(--te); width: 16px; height: 16px; }
+.menu-btn { display: none; font: inherit; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+
+/* Shell: one centred reading column, bottom bar for Back / Path / Next */
+.shell { max-width: 960px; margin: 0 auto; min-width: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px calc(110px + env(safe-area-inset-bottom, 0px)); }
+.mini { display: flex; gap: 10px; font-size: .82rem; text-decoration: none; color: var(--muted); white-space: nowrap; }
+.mini .pk { color: var(--kn); font-family: var(--f-kn); } .mini .pt { color: var(--ta); font-family: var(--f-ta); }
+.flow { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: var(--surface); border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 10px; align-items: stretch;
+  padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px));
+  padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -4px 16px rgb(0 0 0 / .06); }
+.fl { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 8px 12px; border-radius: 10px; text-decoration: none; color: var(--ink); border: 1px solid var(--line); }
+.fl small { font-size: .74rem; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+.fl span { font-weight: 600; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fl-next { text-align: right; background: var(--te); border-color: var(--te); color: var(--surface); }
+.fl-next small { color: var(--surface); opacity: .85; }
+.fl-none { border: 0; background: none; }
+.fl-map { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 6px 14px; border-radius: 10px; text-decoration: none; color: var(--te); font-size: .74rem; font-weight: 700; }
+.fl-map svg { fill: var(--te); stroke: var(--te); }
+.fl-map.on { background: var(--te-soft); }
+@media (min-width: 961px) { .flow { grid-template-columns: minmax(0, 420px) auto minmax(0, 420px); justify-content: center; } }
+
+/* Module page */
+.mod, .home { max-width: 920px; }
+.eyebrow { margin: 0 0 6px; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+h1 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.1; margin: 0 0 12px; letter-spacing: -0.015em; text-wrap: balance; font-weight: 700; }
+h2 { font-size: 1.3rem; margin: 0 0 8px; line-height: 1.25; text-wrap: balance; font-weight: 650; }
+.trio { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 1.02rem; padding: 3px 12px; border-radius: 999px; border: 1px solid transparent; }
+.p-te { font-family: var(--f-te); background: var(--te-soft); color: var(--te); }
+.p-kn { font-family: var(--f-kn); background: var(--kn-soft); color: var(--kn); }
+.p-ta { font-family: var(--f-ta); background: var(--ta-soft); color: var(--ta); }
+.big { margin: 24px 0 8px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--te); border-radius: var(--r); }
+.big-k, .tip-k { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--te); margin-bottom: 4px; }
+.big p { margin: 0; font-family: var(--f-prose); font-size: 1.08rem; line-height: 1.6; }
+.sec { margin-top: 36px; }
+.lede { font-family: var(--f-prose); color: var(--ink); max-width: 68ch; margin: 0 0 12px; line-height: 1.6; }
+.tip { margin-top: 10px; padding: 10px 14px; background: var(--tip); color: var(--tip-ink); border-radius: 8px; }
+.tip-k { color: var(--tip-ink); }
+.tip p { margin: 0; font-family: var(--f-prose); line-height: 1.55; }
+.zha { text-decoration: underline 2px dotted; text-underline-offset: 3px; }
+
+/* Comparison table */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.cmp { width: 100%; border-collapse: collapse; }
+.cmp th { text-align: left; font-size: .82rem; font-weight: 700; padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--sunk); white-space: nowrap; }
+.cmp th.c-en { color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: .72rem; }
+.cmp th.c-te { color: var(--te); font-family: var(--f-te); }
+.cmp th.c-kn { color: var(--kn); font-family: var(--f-kn); }
+.cmp th.c-ta { color: var(--ta); font-family: var(--f-ta); }
+.cmp td { padding: 9px 12px; vertical-align: top; border-top: 1px solid var(--line); }
+.cmp tbody tr:first-child td { border-top: 0; }
+.cmp td.c-en { color: var(--muted); font-size: .9rem; width: 22%; }
+.nat { display: block; font-size: 1.12rem; line-height: 1.4; }
+.c-te .nat { font-family: var(--f-te); }
+.c-kn .nat { font-family: var(--f-kn); color: var(--kn); }
+.c-ta .nat { font-family: var(--f-ta); color: var(--ta); }
+.rd { display: block; font-family: var(--f-te); font-size: .86rem; color: var(--muted); margin-top: 1px; }
+[data-read="off"] .rd { display: none; }
+[data-lang="kn"] .c-ta, [data-lang="kn"] .p-ta { display: none; }
+[data-lang="ta"] .c-kn, [data-lang="ta"] .p-kn { display: none; }
+
+/* Practice mode */
+[data-practice="on"] td.hide-able { cursor: pointer; position: relative; }
+[data-practice="on"] td.hide-able > * { filter: blur(7px); opacity: .55; transition: filter .15s, opacity .15s; user-select: none; }
+[data-practice="on"] td.hide-able.revealed > * { filter: none; opacity: 1; user-select: auto; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Module footer */
+.mod-f { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+.done-btn { align-self: flex-start; font: inherit; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--ta); color: var(--ta); background: var(--surface); cursor: pointer; }
+.done-btn[aria-pressed="true"] { background: var(--ta); color: var(--surface); }
+.src { font-size: .88rem; color: var(--muted); margin: 0; max-width: 72ch; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pn-a { display: flex; flex-direction: column; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r); text-decoration: none; color: var(--ink); background: var(--surface); font-weight: 600; }
+.pn-a small { color: var(--muted); font-weight: 500; font-size: .8rem; }
+.pn-a:hover { border-color: var(--te); }
+.pn-n { text-align: right; }
+
+/* Home */
+.hero { padding: 8px 0 8px; }
+.hero h1 { font-size: clamp(2rem, 4.6vw, 3.3rem); max-width: 18ch; }
+.hero-p { font-family: var(--f-prose); font-size: 1.12rem; line-height: 1.6; max-width: 62ch; margin: 18px 0 0; }
+.bridge { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 24px; max-width: 640px; }
+.b { display: flex; flex-direction: column; padding: 14px 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+.b-w { font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; font-weight: 600; }
+.b-r { font-family: var(--f-te); color: var(--muted); font-size: .95rem; }
+.b-l { margin-top: 6px; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+.b-te .b-w { font-family: var(--f-te); color: var(--te); } .b-te .b-l { color: var(--te); }
+.b-kn .b-w { font-family: var(--f-kn); color: var(--kn); } .b-kn .b-l { color: var(--kn); }
+.b-ta .b-w { font-family: var(--f-ta); color: var(--ta); } .b-ta .b-l { color: var(--ta); }
+.cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.btn { display: inline-block; padding: 10px 18px; border-radius: 8px; background: var(--te); color: var(--surface); text-decoration: none; font-weight: 600; }
+.btn-2 { background: transparent; color: var(--te); border: 1px solid var(--te); }
+.howto, .mods { margin-top: 44px; }
+.demo { max-width: 720px; }
+.keys { font-family: var(--f-prose); padding-left: 1.2em; margin: 12px 0 0; display: flex; flex-direction: column; gap: 4px; max-width: 68ch; }
+.hgs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; }
+.hg h3 { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; }
+.hl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.hl a { display: grid; grid-template-columns: 30px 1fr auto; gap: 6px; padding: 8px; border-radius: 8px; text-decoration: none; color: var(--ink); }
+.hl a:hover { background: var(--surface); }
+.hl-n { font-variant-numeric: tabular-nums; color: var(--te); font-weight: 700; }
+.hl-t { font-weight: 600; line-height: 1.3; }
+.hl-t small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; }
+.home > .src { margin-top: 36px; }
+
+/* Converter tool */
+.tl { display: block; font-weight: 600; margin: 24px 0 6px; }
+#tool-in { width: 100%; font-family: var(--f-ui); font-size: 1.3rem; padding: 12px 14px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); color: var(--ink); resize: vertical; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { font: inherit; font-size: .88rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--te); }
+.out { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.o { padding: 14px 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+.o-kn { border-left: 4px solid var(--kn); } .o-ta { border-left: 4px solid var(--ta); }
+.o-k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+.o-v { margin: 4px 0 0; font-size: 1.45rem; line-height: 1.4; word-break: break-word; }
+.o-kn .o-v { font-family: var(--f-kn); color: var(--kn); }
+.o-ta .o-v { font-family: var(--f-ta), var(--f-te); color: var(--ta); }
+.o-n { margin: 6px 0 0; font-size: .88rem; color: var(--muted); }
+
+/* Narrow screens */
+@media (max-width: 640px) {
+  .top { position: static; padding-block: 8px; }
+  .top-in { gap: 6px 10px; }
+  .brand b { font-size: 1.1rem; }
+  .seg button { padding: 3px 9px; font-size: .84rem; }
+  .ctrls { gap: 6px 12px; }
+  .brand span { display: none; }
+  .mini { margin-left: auto; }
+  .ctrls { width: 100%; justify-content: space-between; }
+  .sw { font-size: .82rem; }
+  .hgs { grid-template-columns: minmax(0, 1fr); }
+  .cmp thead { display: none; }
+  .cmp, .cmp tbody, .cmp tr, .cmp td { display: block; width: 100%; }
+  .cmp tr { padding: 10px 12px; border-top: 1px solid var(--line); }
+  .cmp tbody tr:first-child { border-top: 0; }
+  .cmp td { border: 0; padding: 3px 0; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+  .cmp td::before { content: attr(data-l); font-size: .74rem; font-weight: 700; color: var(--muted); }
+  .cmp td.c-te::before { color: var(--te); font-family: var(--f-te); }
+  .cmp td.c-kn::before { color: var(--kn); font-family: var(--f-kn); }
+  .cmp td.c-ta::before { color: var(--ta); font-family: var(--f-ta); }
+  .cmp td.c-en { width: 100%; display: block; font-weight: 600; color: var(--ink); padding-bottom: 4px; }
+  .cmp td.c-en::before { content: none; }
+  .cmp td > span { grid-column: 2; }
+  .pn { grid-template-columns: minmax(0, 1fr); }
+  .pn-n { text-align: left; }
+}
+
+/* Progress tracking */
+.dots { display: inline-flex; gap: 4px; align-items: center; }
+.d { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid; vertical-align: middle; }
+.d-kn { border-color: var(--kn); } .d-ta { border-color: var(--ta); }
+.d-kn.s1 { background: linear-gradient(90deg, var(--kn) 50%, transparent 50%); } .d-ta.s1 { background: linear-gradient(90deg, var(--ta) 50%, transparent 50%); }
+.d-kn.s2 { background: var(--kn); } .d-ta.s2 { background: var(--ta); }
+.judge { display: none; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+[data-practice="on"] td.hide-able.revealed .judge { display: flex; filter: none; opacity: 1; }
+.judge button { font: inherit; font-size: .78rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.judge .j-ok { color: var(--ta); border-color: var(--ta); } .judge .j-no { color: var(--kn); border-color: var(--kn); }
+[data-practice="on"] td.k-ok { box-shadow: inset 3px 0 0 var(--ta); }
+[data-practice="on"] td.k-no { box-shadow: inset 3px 0 0 var(--kn); }
+[data-practice="on"] td.k-ok .j-ok { background: var(--ta); color: var(--surface); }
+[data-practice="on"] td.k-no .j-no { background: var(--kn); color: var(--surface); }
+.pbar { margin-top: 16px; padding: 12px 16px; border-radius: var(--r); background: var(--te-soft); color: var(--ink); display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: space-between; }
+.pbar p { margin: 0; max-width: 62ch; font-size: .93rem; }
+.link-btn { font: inherit; font-size: .88rem; background: none; border: 0; color: var(--te); text-decoration: underline; cursor: pointer; padding: 4px 0; }
+.link-btn.danger { color: var(--kn); }
+.panel { padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); display: flex; flex-direction: column; gap: 12px; }
+.panel-h { display: block; font-size: 1.05rem; font-weight: 650; margin: 0; }
+.stat { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 6px 12px; align-items: center; }
+.stat-l { font-weight: 700; } .stat-kn .stat-l { color: var(--kn); font-family: var(--f-kn); } .stat-ta .stat-l { color: var(--ta); font-family: var(--f-ta); }
+.stat-l small { font-family: var(--f-ui); color: var(--muted); font-weight: 500; font-size: .8rem; }
+.seg-s { justify-self: start; flex-wrap: wrap; }
+.stat-kn .seg-s button[aria-pressed="true"] { background: var(--kn); color: var(--surface); }
+.stat-ta .seg-s button[aria-pressed="true"] { background: var(--ta); color: var(--surface); }
+.score { grid-column: 2; margin: 0; font-size: .84rem; color: var(--muted); }
+#note { width: 100%; font: inherit; font-family: var(--f-prose); font-size: 1rem; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); resize: vertical; }
+.hint { margin: 0; font-size: .84rem; color: var(--muted); }
+.resume { display: flex; flex-direction: column; padding: 14px 18px; margin-bottom: 24px; border-radius: var(--r); background: var(--te); color: var(--surface); text-decoration: none; }
+.resume-k { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; opacity: .85; }
+.resume-t { font-size: 1.3rem; font-weight: 700; }
+.resume-s { font-size: .86rem; opacity: .9; }
+.stages { list-style: none; padding: 0; margin: 14px 0 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.stages li:not(.stg-arr) { display: flex; gap: 10px; align-items: center; padding: 8px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); min-width: min(320px, 100%); }
+.stg-n { width: 26px; height: 26px; border-radius: 50%; background: var(--te-soft); color: var(--te); font-weight: 700; display: grid; place-items: center; font-size: .85rem; flex: none; }
+.stg-t { font-weight: 600; } .stg-t small { display: block; font-weight: 400; color: var(--muted); font-size: .82rem; }
+.stg-arr { color: var(--te); padding-left: 24px; font-weight: 700; line-height: 1.1; }
+
+/* Learning path graph */
+.map-tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 20px; }
+.graph { max-width: 520px; }
+.graph svg { display: block; overflow: visible; }
+.g-edge { stroke: var(--line); stroke-width: 2.5; }
+.g-edge.g-done { stroke: var(--ta); }
+.g-arrow { fill: var(--muted); }
+.g-stage { font-family: var(--f-ui); font-size: 10.5px; font-weight: 700; letter-spacing: .09em; fill: var(--muted); }
+.g-card { fill: var(--surface); stroke: var(--line); stroke-width: 1; }
+.g-dot { fill: var(--te-soft); stroke: var(--te); stroke-width: 1.5; }
+.g-num { font-family: var(--f-ui); font-size: 11px; font-weight: 700; fill: var(--te); }
+.g-title { font-family: var(--f-ui); font-size: 14px; font-weight: 650; fill: var(--ink); }
+.g-sub { font-family: var(--f-kn); font-size: 11.5px; fill: var(--muted); }
+.g-s { stroke-width: 1.8; fill: var(--surface); }
+.g-kn { stroke: var(--kn); } .g-ta { stroke: var(--ta); }
+.g-kn.s1 { fill: color-mix(in srgb, var(--kn) 45%, var(--surface)); } .g-ta.s1 { fill: color-mix(in srgb, var(--ta) 45%, var(--surface)); }
+.g-kn.s2 { fill: var(--kn); } .g-ta.s2 { fill: var(--ta); }
+.g-here { font-family: var(--f-ui); font-size: 9px; font-weight: 800; letter-spacing: .08em; fill: var(--te); }
+.g-node { cursor: pointer; }
+.g-node:hover .g-card, .g-node:focus-visible .g-card { stroke: var(--te); }
+.g-node.here .g-card { stroke: var(--te); stroke-width: 2.5; fill: var(--te-soft); }
+.g-node.here .g-dot { fill: var(--te); } .g-node.here .g-num { fill: var(--surface); }
+.g-node.done .g-dot { fill: var(--ta); stroke: var(--ta); } .g-node.done .g-num { fill: var(--surface); }
+.g-node:focus-visible { outline: none; }
+
+/* My Progress page */
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.tile { padding: 14px 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tile-k { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+.t-kn .tile-k { color: var(--kn); } .t-ta .tile-k { color: var(--ta); }
+.tile-v { font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.tile-v small { font-size: 1rem; color: var(--muted); font-weight: 500; }
+.pr-v { display: flex; gap: 12px; font-size: 1.6rem; }
+.c-kn { color: var(--kn); } .c-ta { color: var(--ta); }
+.tile-s { font-size: .82rem; color: var(--muted); }
+.tile .bar { margin-top: 6px; height: 6px; border-radius: 6px; background: var(--sunk); overflow: hidden; }
+.tile .bar i { display: block; height: 100%; width: var(--p); }
+.t-kn .bar i { background: var(--kn); } .t-ta .bar i { background: var(--ta); }
+.next-up { display: flex; flex-direction: column; margin-top: 16px; padding: 12px 16px; border-radius: var(--r); border: 1px solid var(--te); color: var(--ink); text-decoration: none; font-weight: 600; }
+.next-up small { color: var(--te); font-weight: 700; font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; }
+.next-up span { font-weight: 400; color: var(--muted); font-size: .88rem; }
+.cal { display: grid; grid-template-columns: repeat(12, 16px); grid-template-rows: repeat(7, 16px); gap: 4px; }
+.cal-c { display: inline-block; width: 16px; height: 16px; border-radius: 4px; background: var(--sunk); }
+.cal-c.l1 { background: color-mix(in srgb, var(--te) 30%, var(--sunk)); }
+.cal-c.l2 { background: color-mix(in srgb, var(--te) 55%, var(--sunk)); }
+.cal-c.l3 { background: color-mix(in srgb, var(--te) 80%, var(--sunk)); }
+.cal-c.l4 { background: var(--te); }
+.cal-c.lf { background: transparent; }
+.cal-key { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+.cal-key .cal-c { width: 12px; height: 12px; }
+.cal-tot { margin-left: 12px; }
+.ptab { width: 100%; border-collapse: collapse; }
+.ptab th { text-align: left; font-size: .8rem; padding: 8px 10px; background: var(--sunk); border-bottom: 1px solid var(--line); }
+.ptab td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: middle; }
+.ptab tbody tr:first-child td { border-top: 0; }
+.pt-n { color: var(--muted); font-variant-numeric: tabular-nums; width: 36px; }
+.pt-m a { color: var(--ink); font-weight: 600; text-decoration: none; }
+.pt-kn small, .pt-ta small { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+.chip-s { display: inline-block; font-size: .76rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+.chip-s.c-kn { border-color: var(--kn); color: var(--kn); } .chip-s.c-ta { border-color: var(--ta); color: var(--ta); }
+.chip-s.c-kn.s2 { background: var(--kn); color: var(--surface); } .chip-s.c-ta.s2 { background: var(--ta); color: var(--surface); }
+.chip-s.s0 { opacity: .6; }
+.has-note { color: var(--muted); }
+.rev { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.rev li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 4px 14px; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); align-items: baseline; }
+.rev-m { grid-column: 1 / -1; font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; text-decoration: none; color: var(--te); }
+.rev-en { color: var(--muted); font-size: .9rem; }
+.rev-te { font-family: var(--f-te); }
+.rev-a { font-size: 1.08rem; } .rev-kn { font-family: var(--f-kn); color: var(--kn); } .rev-ta { font-family: var(--f-ta); color: var(--ta); }
+.rev-a small { display: block; font-family: var(--f-te); color: var(--muted); font-size: .82rem; }
+.empty { font-family: var(--f-prose); color: var(--muted); }
+.bk { display: flex; flex-direction: column; gap: 10px; max-width: 560px; align-items: flex-start; }
+.bk .tl { margin: 8px 0 0; }
+#bk-in { width: 100%; font: inherit; font-size: .85rem; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.bk-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+button.btn { font: inherit; font-weight: 600; border: 0; cursor: pointer; }
+button.btn-2 { border: 1px solid var(--te); }
+@media (max-width: 760px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat { grid-template-columns: minmax(0, 1fr); } .score { grid-column: 1; } .rev li { grid-template-columns: minmax(0, 1fr); } }
+
+</style>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#home"><b>Sodara Bhashalu</b><span>సోదర భాషలు · ಕನ್ನಡ · தமிழ்</span></a>
+    <a class="mini" id="mini" href="#progress" aria-label="My progress"></a>
+    <div class="ctrls">
+      <div class="seg" role="group" aria-label="Languages to show">
+        <button type="button" data-set-lang="both" aria-pressed="true">Both</button>
+        <button type="button" data-set-lang="kn" aria-pressed="false">ಕನ್ನಡ</button>
+        <button type="button" data-set-lang="ta" aria-pressed="false">தமிழ்</button>
+      </div>
+      <label class="sw" for="t-read"><input type="checkbox" id="t-read" checked> Telugu readings</label>
+      <label class="sw" for="t-practice"><input type="checkbox" id="t-practice"> Practice</label>
+    </div>
+  </div>
+</header>
+<main class="shell" id="view"></main>
+<nav class="flow" id="flow" aria-label="Back, learning path and next"></nav>
+<script>
+// Row format: [meaning, Telugu, Kannada, Tamil, optionalTamilReadingOverride]
+// "|" inside Tamil text marks a compound boundary (invisible; only affects the Telugu-script reading).
+const SRC = "https://kannadakalike.org/grammar/";
+const MODULES = [];
+
+MODULES.push({
+  id: "alphabet", en: "The Alphabet", te: "వర్ణమాల", kn: "ಕನ್ನಡ ವರ್ಣಮಾಲೆ", ta: "தமிழ் எழுத்துக்கள்",
+  src: SRC + "kannada-alphabet",
+  big: "Kannada and Telugu grew from the same script, so every Telugu letter has a Kannada twin in the same position. Learning to read Kannada is mostly learning new shapes for letters you already know. Tamil is a smaller alphabet: one letter often stands for a whole Telugu row (క ఖ గ ఘ are all <b>க</b>), and context tells you how to say it.",
+  sections: [
+    { h: "Vowels · అచ్చులు · ಸ್ವರಗಳು · உயிர் எழுத்துக்கள்", noRead: true,
+      p: "Telugu and Kannada have the same 13 core vowels. Tamil has 12: there is no ఋ. Tamil calls vowels <i>uyir</i> (“life”).",
+      rows: [
+        ["a", "అ", "ಅ", "அ"], ["ā", "ఆ", "ಆ", "ஆ"], ["i", "ఇ", "ಇ", "இ"], ["ī", "ఈ", "ಈ", "ஈ"],
+        ["u", "ఉ", "ಉ", "உ"], ["ū", "ఊ", "ಊ", "ஊ"], ["ṛ", "ఋ", "ಋ", "—"], ["e", "ఎ", "ಎ", "எ"],
+        ["ē", "ఏ", "ಏ", "ஏ"], ["ai", "ఐ", "ಐ", "ஐ"], ["o", "ఒ", "ಒ", "ஒ"], ["ō", "ఓ", "ಓ", "ஓ"],
+        ["au", "ఔ", "ಔ", "ஔ"], ["aṃ (anusvāra)", "అం", "ಅಂ", "—"], ["aḥ (visarga / āytam)", "అః", "ಅಃ", "ஃ"]
+      ],
+      tip: "Short ఎ/ఒ and long ఏ/ఓ are kept apart in all three languages, just as in Telugu. Hindi speakers struggle with this; you won’t."
+    },
+    { h: "Structured consonants · వర్గ హల్లులు · ವರ್ಗೀಯ ವ್ಯಂಜನಗಳು", noRead: true,
+      p: "Kannada keeps all five Telugu letters in each row. Tamil keeps only the plain stop and the nasal. A Tamil reader decides from position whether க is k or g (see Module 2).",
+      rows: [
+        ["Velar k-row", "క ఖ గ ఘ ఙ", "ಕ ಖ ಗ ಘ ಙ", "க · · · ங"],
+        ["Palatal c-row", "చ ఛ జ ఝ ఞ", "ಚ ಛ ಜ ಝ ಞ", "ச · ஜ · ஞ"],
+        ["Retroflex ṭ-row", "ట ఠ డ ఢ ణ", "ಟ ಠ ಡ ಢ ಣ", "ட · · · ண"],
+        ["Dental t-row", "త థ ద ధ న", "ತ ಥ ದ ಧ ನ", "த · · · ந"],
+        ["Labial p-row", "ప ఫ బ భ మ", "ಪ ಫ ಬ ಭ ಮ", "ப · · · ம"]
+      ],
+      tip: "ஜ is a Grantha letter, borrowed for Sanskrit and English words. The dots mark letters Tamil does not have."
+    },
+    { h: "Other consonants · అవర్గ హల్లులు · ಅವರ್ಗೀಯ ವ್ಯಂಜನಗಳು", noRead: true,
+      p: "Tamil has three consonants a Telugu speaker needs to learn as new sounds: <b>ழ</b> (ḻa, the curled “zh” of தமிழ்), <b>ற</b> (a hard trilled r, the same sound as Telugu’s old <b>ఱ</b> బండి ర) and <b>ன</b> (an alveolar n, used mostly inside and at the end of words).",
+      rows: [
+        ["y", "య", "ಯ", "ய"], ["r", "ర", "ರ", "ர"], ["hard r", "ఱ", "ಱ (old)", "ற"], ["l", "ల", "ಲ", "ல"],
+        ["v", "వ", "ವ", "வ"], ["ś", "శ", "ಶ", "ஶ (rare)"], ["ṣ", "ష", "ಷ", "ஷ"], ["s", "స", "ಸ", "ஸ"],
+        ["h", "హ", "ಹ", "ஹ"], ["ḷ", "ళ", "ಳ", "ள"], ["ḻ (zh)", "ఴ (old)", "ೞ (old)", "ழ"], ["alveolar n", "—", "—", "ன"],
+        ["kṣ", "క్ష", "ಕ್ಷ", "க்ஷ"]
+      ],
+      tip: "On this site, Tamil ழ is shown in Telugu script as an underlined <span class='zha'>ళ</span>. Say it with the tongue curled back, letting air flow over it, halfway between ళ and ర."
+    },
+    { h: "Native digits", noRead: true,
+      p: "All three languages have their own digit shapes. Everyday life uses 0–9, but you will see these on old signs, calendars and in Kannada government print.",
+      rows: [
+        ["1 2 3 4 5", "౧ ౨ ౩ ౪ ౫", "೧ ೨ ೩ ೪ ೫", "௧ ௨ ௩ ௪ ௫"],
+        ["6 7 8 9 0", "౬ ౭ ౮ ౯ ౦", "೬ ೭ ೮ ೯ ೦", "௬ ௭ ௮ ௯ ௦"]
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "vowel-signs", en: "Vowel Signs & Reading Rules", te: "గుణింతాలు", kn: "ಕಾಗುಣಿತ", ta: "உயிர்மெய் எழுத்துக்கள்",
+  src: SRC + "additional-features-of-kannada-alphabet",
+  big: "Kannada ಕಾಗುಣಿತ works like Telugu గుణింతం: one consonant, 13 vowel signs, in the same order. Tamil’s உயிர்மெய் (“life + body”) works the same way, but three signs (ெ ே ை) sit <b>to the left</b> of the consonant, and the u/ū signs change shape from letter to letter.",
+  sections: [
+    { h: "The k-row in three scripts", noRead: true,
+      p: "Read across: the Kannada row is a letter-for-letter match of the Telugu row.",
+      rows: [
+        ["ka kā ki kī", "క కా కి కీ", "ಕ ಕಾ ಕಿ ಕೀ", "க கா கி கீ"],
+        ["ku kū kṛ", "కు కూ కృ", "ಕು ಕೂ ಕೃ", "கு கூ —"],
+        ["ke kē kai", "కె కే కై", "ಕೆ ಕೇ ಕೈ", "கெ கே கை"],
+        ["ko kō kau", "కొ కో కౌ", "ಕೊ ಕೋ ಕೌ", "கொ கோ கௌ"],
+        ["k (no vowel)", "క్", "ಕ್", "க்"]
+      ],
+      tip: "The Telugu pollu ్, the Kannada ್ and the Tamil dot ் (puḷḷi) all mean “no vowel”. Tamil uses the dot constantly because it never stacks letters into conjuncts."
+    },
+    { h: "Tamil u / ū signs: learn these by sight", noRead: true,
+      p: "In Telugu and Kannada the u-sign looks the same on every letter. In Tamil it fuses with the letter, so learn these as whole shapes.",
+      rows: [
+        ["ku ṅu cu ñu ṭu ṇu", "కు ఙు చు ఞు టు ణు", "ಕು ಙು ಚು ಞು ಟು ಣು", "கு ஙு சு ஞு டு ணு"],
+        ["tu nu pu mu yu ru", "తు ను పు ము యు రు", "ತು ನು ಪು ಮು ಯು ರು", "து நு பு மு யு ரு"],
+        ["lu vu ḻu ḷu ṟu ṉu", "లు వు ఴు ళు ఱు ను", "ಲು ವು ೞು ಳು ಱು —", "லு வு ழு ளு று னு"],
+        ["kū cū ṭū tū pū mū", "కూ చూ టూ తూ పూ మూ", "ಕೂ ಚೂ ಟೂ ತೂ ಪೂ ಮೂ", "கூ சூ டூ தூ பூ மூ"]
+      ]
+    },
+    { h: "How Tamil decides k or g, t or d",
+      p: "Since Tamil writes క and గ with one letter, pronunciation follows simple rules. Our Telugu-script readings apply them for you.",
+      rows: [
+        ["Word start → hard (k, t, p) · leg", "కాలు", "ಕಾಲು", "கால்"],
+        ["Word start → hard · milk", "పాలు", "ಹಾಲು", "பால்"],
+        ["Doubled → hard · elder sister", "అక్క", "ಅಕ್ಕ", "அக்கா"],
+        ["Doubled → hard · father", "నాన్న", "ಅಪ್ಪ", "அப்பா"],
+        ["After a nasal → soft (g, d, b) · ball", "బంతి", "ಚೆಂಡು", "பந்து"],
+        ["After a nasal → soft · gold", "బంగారం", "ಚಿನ್ನ", "தங்கம்"],
+        ["Between vowels → soft · son", "కొడుకు", "ಮಗ", "மகன்"],
+        ["Between vowels → soft · sing", "పాడు", "ಹಾಡು", "பாடு"]
+      ],
+      tip: "Initial ச is usually “s” (சரி sari, செய் sey), though some words such as சின்ன and சென்னை are said with “ch”. Between vowels ச is “s” (பசு pasu)."
+    },
+    { h: "Visual differences: Telugu vs Kannada", noRead: true,
+      p: "Kannada letters drop the Telugu tick-mark (తలకట్టు) and use a flat headstroke instead. A few pairs look different enough to practise:",
+      rows: [
+        ["ē / ī", "ఏ ఈ", "ಏ ಈ", "ஏ ஈ"],
+        ["ra / la / va", "ర ల వ", "ರ ಲ ವ", "ர ல வ"],
+        ["ja / ña / ṇa", "జ ఞ ణ", "ಜ ಞ ಣ", "ஜ ஞ ண"],
+        ["dha / bha / ha", "ధ భ హ", "ಧ ಭ ಹ", "— — ஹ"],
+        ["kī (long i sign)", "కీ", "ಕೀ", "கீ"]
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "clusters", en: "Consonant Clusters", te: "సంయుక్తాక్షరాలు / ఒత్తులు", kn: "ಒತ್ತಕ್ಷರಗಳು", ta: "மெய்யெழுத்துத் தொடர்",
+  src: SRC + "consonant-clusters",
+  big: "Kannada writes clusters exactly like Telugu: the second consonant drops below as an ఒత్తు (ಒತ್ತು). Tamil never stacks. It writes the first consonant with a dot (்) and puts the next letter beside it: క్క → க்க.",
+  sections: [
+    { h: "Doubled and joined consonants",
+      rows: [
+        ["elder sister", "అక్క", "ಅಕ್ಕ", "அக்கா"],
+        ["mother", "అమ్మ", "ಅಮ್ಮ", "அம்மா"],
+        ["elder brother", "అన్న", "ಅಣ್ಣ", "அண்ணன்"],
+        ["salt", "ఉప్పు", "ಉಪ್ಪು", "உப்பு"],
+        ["eye", "కన్ను", "ಕಣ್ಣು", "கண்"],
+        ["oil", "నూనె", "ಎಣ್ಣೆ", "எண்ணெய்"],
+        ["account", "లెక్క", "ಲೆಕ್ಕ", "கணக்கு"],
+        ["Krishna", "కృష్ణ", "ಕೃಷ್ಣ", "கிருஷ்ணன்"],
+        ["moon", "చంద్రుడు", "ಚಂದ್ರ", "சந்திரன்"]
+      ],
+      tip: "Kannada often has ṇṇ (ಣ್ಣ) where Telugu has nn (న్న): ಅಣ್ಣ / అన్న, ಹಣ್ಣು / పండు. Tamil agrees with Kannada: அண்ணன்."
+    },
+    { h: "Anusvāra (ం / ಂ) vs. Tamil’s written nasals",
+      p: "Telugu and Kannada write ం before any consonant. Tamil has no ం in native words: it writes the matching nasal with a dot.",
+      rows: [
+        ["five (Sanskrit)", "పంచ", "ಪಂಚ", "பஞ்ச"],
+        ["throat", "కంఠం", "ಕಂಠ", "கண்டம்"],
+        ["sandalwood", "చందనం", "ಚಂದನ", "சந்தனம்"],
+        ["pillar", "స్తంభం", "ಸ್ತಂಭ", "தூண்"],
+        ["red", "ఎరుపు", "ಕೆಂಪು", "சிவப்பு"]
+      ]
+    },
+    { h: "Visarga, ṛ and borrowed sounds",
+      p: "Visarga (ః) appears only in Sanskrit words in all three. Tamil rewrites Sanskrit sounds to fit its own letters, and has no f, so English ‘f’ becomes ப (or ஃப in careful spelling).",
+      rows: [
+        ["sorrow", "దుఃఖం", "ದುಃಖ", "துக்கம்"],
+        ["sage", "ఋషి", "ಋಷಿ", "ரிஷி"],
+        ["season", "ఋతువు", "ಋತು", "பருவம்"],
+        ["bank", "బ్యాంకు", "ಬ್ಯಾಂಕ್", "வங்கி"],
+        ["coffee", "కాఫీ", "ಕಾಫಿ", "காபி", "కాపి"]
+      ]
+    },
+    { h: "Starter words from the lesson",
+      rows: [
+        ["wave", "అల", "ಅಲೆ", "அலை"], ["this", "ఇది", "ಇದು", "இது"], ["river", "నది", "ನದಿ", "நதி / ஆறு"],
+        ["swim", "ఈదు", "ಈಜು", "நீந்து"], ["village", "ఊరు", "ಊರು", "ஊர்"], ["hundred", "వంద / నూరు", "ನೂರು", "நூறு"],
+        ["seven", "ఏడు", "ಏಳು", "ஏழு"], ["one", "ఒకటి", "ಒಂದು", "ஒன்று"], ["wall", "గోడ", "ಗೋಡೆ", "சுவர்"],
+        ["wind", "గాలి", "ಗಾಳಿ", "காற்று"], ["place", "చోటు / జాగా", "ಜಾಗ", "இடம்"], ["head", "తల", "ತಲೆ", "தலை"],
+        ["money", "డబ్బు", "ದುಡ್ಡು", "பணம் / காசு"], ["fox", "నక్క", "ನರಿ", "நரி"], ["word", "మాట", "ಮಾತು", "சொல்"],
+        ["tree", "చెట్టు", "ಮರ", "மரம்"], ["unripe fruit", "కాయ", "ಕಾಯಿ", "காய்"], ["debt", "అప్పు", "ಸಾಲ", "கடன்"],
+        ["milk", "పాలు", "ಹಾಲು", "பால்"]
+      ],
+      tip: "Spot the patterns: Telugu -a = Kannada -e = Tamil -ai (తల / ತಲೆ / தலை). Telugu p- = Kannada h- = Tamil p- (పాలు / ಹಾಲು / பால்). The Sound Shortcuts page lists more."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "imperative", en: "Commands (Imperative)", te: "విధ్యర్థకం", kn: "ಆಜ್ಞಾರ್ಥಕ ರೂಪಗಳು", ta: "ஏவல் வினை",
+  src: SRC + "imperative-mood",
+  big: "You already do this in Telugu: the bare verb is a casual command (చదువు) and adding -ండి makes it plural or polite (చదవండి). Kannada adds <b>-ಇ / -ಇರಿ</b> (ಓದು → ಓದಿ). Tamil adds <b>-உங்கள்</b>, said <b>-ங்க</b> in speech (படி → படியுங்கள் → படிங்க). That -ங்க feels just like Telugu -ండి.",
+  sections: [
+    { h: "The endings",
+      cols: ["", "Telugu", "Kannada", "Tamil"],
+      rows: [
+        ["casual / singular", "stem: చదువు", "stem: ಓದು", "stem: படி"],
+        ["plural / polite", "-ండి: చదవండి", "-ಇ: ಓದಿ", "-உங்கள்: படியுங்கள்"],
+        ["extra polite", "దయచేసి చదవండి", "-ಇರಿ: ಓದಿರಿ", "தயவுசெய்து படியுங்கள்"],
+        ["stems ending in i / e", "రాయి → రాయండి", "ಬರೆ → ಬರೆಯಿರಿ", "குடி → குடியுங்கள்"]
+      ],
+      tip: "“Please” is the same idea in Telugu and Tamil: దయ + చేసి = தயவு + செய்து (“having done kindness”). Kannada says ದಯವಿಟ್ಟು."
+    },
+    { h: "Common verbs: singular · plural",
+      rows: [
+        ["read", "చదువు · చదవండి", "ಓದು · ಓದಿ", "படி · படியுங்கள்"],
+        ["do", "చెయ్యి · చేయండి", "ಮಾಡು · ಮಾಡಿ", "செய் · செய்யுங்கள்"],
+        ["see / look", "చూడు · చూడండి", "ನೋಡು · ನೋಡಿ", "பார் · பாருங்கள்"],
+        ["give", "ఇవ్వు · ఇవ్వండి", "ಕೊಡು · ಕೊಡಿ", "கொடு · கொடுங்கள்"],
+        ["tell / say", "చెప్పు · చెప్పండి", "ಹೇಳು · ಹೇಳಿ", "சொல் · சொல்லுங்கள்"],
+        ["ask", "అడుగు · అడగండి", "ಕೇಳು · ಕೇಳಿ", "கேள் · கேளுங்கள்"],
+        ["search", "వెతుకు · వెతకండి", "ಹುಡುಕು · ಹುಡುಕಿ", "தேடு · தேடுங்கள்"],
+        ["lie down", "పడుకో · పడుకోండి", "ಮಲಗು · ಮಲಗಿ", "படு · படுங்கள்"],
+        ["believe", "నమ్ము · నమ్మండి", "ನಂಬು · ನಂಬಿ", "நம்பு · நம்புங்கள்"],
+        ["go", "వెళ్ళు · వెళ్ళండి", "ಹೋಗು · ಹೋಗಿ", "போ · போங்கள்"],
+        ["stay / be", "ఉండు · ఉండండి", "ಇರು · ಇರಿ", "இரு · இருங்கள்"],
+        ["sit", "కూర్చో · కూర్చోండి", "ಕೂರು · ಕೂರಿ", "உட்கார் · உட்காருங்கள்"],
+        ["write", "రాయి · రాయండి", "ಬರೆ · ಬರೆಯಿರಿ", "எழுது · எழுதுங்கள்"],
+        ["learn", "నేర్చుకో · నేర్చుకోండి", "ಕಲಿ · ಕಲಿಯಿರಿ", "கற்றுக்கொள் · கற்றுக்கொள்ளுங்கள்"],
+        ["drink", "తాగు · తాగండి", "ಕುಡಿ · ಕುಡಿಯಿರಿ", "குடி · குடியுங்கள்"],
+        ["bathe", "స్నానం చెయ్యి · చేయండి", "ಸ್ನಾನ ಮಾಡು · ಸ್ನಾನ ಮಾಡಿ", "குளி · குளியுங்கள்"],
+        ["scold", "తిట్టు · తిట్టండి", "ಬೈ · ಬೈಯಿರಿ", "திட்டு · திட்டுங்கள்"]
+      ]
+    },
+    { h: "Irregular: come and bring",
+      p: "“Come” is irregular in all three, and in the same way: a short singular (రా / ಬಾ / வா) and a longer plural.",
+      rows: [
+        ["come", "రా · రండి", "ಬಾ · ಬನ್ನಿ", "வா · வாருங்கள் (வாங்க)"],
+        ["bring", "తీసుకురా · తీసుకురండి", "ತಾ · ತನ್ನಿ", "கொண்டு வா · கொண்டு வாருங்கள்"],
+        ["give (to me)", "ఇవ్వు", "ಕೊಡು", "தா · தாருங்கள்"]
+      ],
+      tip: "False friend: Kannada ತಾ means “bring”, but Tamil தா means “give (me)”."
+    },
+    { h: "Sanskrit verbs: Telugu -ించు = Kannada -ಇಸು",
+      p: "Telugu turns Sanskrit nouns into verbs with -ించు; Kannada uses -ಇಸು in exactly the same slots. Swap the ending and you have the Kannada verb. Tamil usually prefers a native verb or noun + செய் (“do”).",
+      rows: [
+        ["protect", "రక్షించు", "ರಕ್ಷಿಸು", "காப்பாற்று"],
+        ["worship", "పూజించు", "ಪೂಜಿಸು", "பூஜை செய்"],
+        ["forgive", "క్షమించు", "ಕ್ಷಮಿಸು", "மன்னி"],
+        ["begin", "ప్రారంభించు", "ಪ್ರಾರಂಭಿಸು", "தொடங்கு"],
+        ["think", "ఆలోచించు", "ಯೋಚಿಸು", "யோசி"]
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "pronouns", en: "Pronouns", te: "సర్వనామాలు", kn: "ಸರ್ವನಾಮ", ta: "பிரதிப்பெயர்கள்",
+  src: SRC + "pronoun",
+  big: "Telugu and Tamil both have two words for “we”: one that includes the listener (మనం / நாம்) and one that excludes them (మేము / நாங்கள்). Kannada has only ನಾವು for both. Kannada and Tamil also give women their own pronoun and verb ending (ಅವಳು ಬಂದಳು, அவள் வந்தாள்). In Telugu, ఆమె takes the neuter ending (ఆమె వచ్చింది).",
+  sections: [
+    { h: "Personal pronouns",
+      rows: [
+        ["I", "నేను", "ನಾನು", "நான்"],
+        ["you (casual)", "నువ్వు / నీవు", "ನೀನು", "நீ"],
+        ["we (not you)", "మేము", "ನಾವು", "நாங்கள்"],
+        ["we (including you)", "మనం", "ನಾವು", "நாம்"],
+        ["you (plural / polite)", "మీరు", "ನೀವು", "நீங்கள்"],
+        ["you (very respectful)", "తమరు / మీరు", "ತಾವು", "தாங்கள்"],
+        ["oneself", "తాను / తను", "ತಾನು", "தான்"]
+      ],
+      tip: "Telugu తమరు, Kannada ತಾವು and Tamil தாங்கள் all come from the reflexive “self” and are used for “you, sir”."
+    },
+    { h: "That one · this one (demonstratives)",
+      p: "All three use a- for “that” and i- for “this”. Learn the a- column and you get the i- column free.",
+      rows: [
+        ["he (casual)", "వాడు", "ಅವನು", "அவன்"],
+        ["he (neutral)", "అతను", "ಆತ", "அவன் / அவர்"],
+        ["she", "ఆమె", "ಅವಳು / ಆಕೆ", "அவள்"],
+        ["it", "అది", "ಅದು", "அது"],
+        ["they / he, she (respect)", "వాళ్ళు / వారు / ఆయన", "ಅವರು", "அவர்கள் / அவர்"],
+        ["those (things)", "అవి", "ಅವು", "அவை"],
+        ["this man", "వీడు / ఇతను", "ಇವನು / ಈತ", "இவன்"],
+        ["this woman", "ఈమె", "ಇವಳು / ಈಕೆ", "இவள்"],
+        ["this (thing)", "ఇది", "ಇದು", "இது"],
+        ["these people", "వీళ్ళు / వీరు", "ಇವರು", "இவர்கள்"],
+        ["these (things)", "ఇవి", "ಇವು", "இவை"]
+      ],
+      tip: "Register works the way you expect from Telugu: ಅವನು / அவன் are like వాడు (friends, children), and ಅವರು / அவர் are like ఆయన / వారు (anyone you respect). ಆತ / ಆಕೆ sit in the middle, like అతను / ఆమె."
+    },
+    { h: "Who? What?",
+      rows: [
+        ["who", "ఎవరు", "ಯಾರು", "யார்"],
+        ["who (man, rude)", "ఎవడు", "ಯಾವನು", "எவன்"],
+        ["who (woman, rude)", "ఎవతె", "ಯಾವಳು", "எவள்"],
+        ["what", "ఏమిటి / ఏం", "ಏನು", "என்ன"],
+        ["which one", "ఏది", "ಯಾವುದು", "எது"]
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "nouns", en: "Nouns: Gender & Plurals", te: "నామవాచకాలు", kn: "ನಾಮಪದ", ta: "பெயர்ச்சொல்",
+  src: SRC + "noun",
+  big: "Like Telugu, the noun itself never shows gender; meaning does. Telugu splits the world into మహత్తు (men) and అమహత్తు (women + everything else). Kannada uses three genders: masculine, feminine, neuter. Tamil splits into உயர்திணை (people) and அஃறிணை (things). Plurals are easy: Telugu -లు ≈ Kannada -ಗಳು / -ರು ≈ Tamil -கள்.",
+  sections: [
+    { h: "Plural endings",
+      cols: ["", "Telugu", "Kannada", "Tamil"],
+      rows: [
+        ["things, animals", "-లు", "-ಗಳು", "-கள்"],
+        ["people", "-లు", "-ರು / -ಯರು", "-கள் / -அர்கள்"],
+        ["kin (sister, brother)", "-లు", "-ಅಂದಿರು", "-கள்"],
+        ["Sanskrit -ం nouns", "-ం → -ాలు", "-ಗಳು", "-ம் → -ங்கள்"]
+      ]
+    },
+    { h: "Singular → plural",
+      rows: [
+        ["king", "రాజు → రాజులు", "ರಾಜ → ರಾಜರು", "அரசன் → அரசர்கள்"],
+        ["boy", "అబ్బాయి → అబ్బాయిలు", "ಹುಡುಗ → ಹುಡುಗರು", "பையன் → பையன்கள்"],
+        ["girl", "అమ్మాయి → అమ్మాయిలు", "ಹುಡುಗಿ → ಹುಡುಗಿಯರು", "பெண் → பெண்கள்"],
+        ["elder sister", "అక్క → అక్కలు", "ಅಕ್ಕ → ಅಕ್ಕಂದಿರು", "அக்கா → அக்காக்கள்"],
+        ["younger brother", "తమ్ముడు → తమ్ముళ్ళు", "ತಮ್ಮ → ತಮ್ಮಂದಿರು", "தம்பி → தம்பிகள்"],
+        ["elephant", "ఏనుగు → ఏనుగులు", "ಆನೆ → ಆನೆಗಳು", "யானை → யானைகள்"],
+        ["book", "పుస్తకం → పుస్తకాలు", "ಪುಸ್ತಕ → ಪುಸ್ತಕಗಳು", "புத்தகம் → புத்தகங்கள்"],
+        ["flower", "పువ్వు → పువ్వులు", "ಹೂವು → ಹೂಗಳು", "பூ → பூக்கள்"],
+        ["house", "ఇల్లు → ఇళ్ళు", "ಮನೆ → ಮನೆಗಳು", "வீடு → வீடுகள்"],
+        ["child (irregular)", "పిల్ల → పిల్లలు", "ಮಗು → ಮಕ್ಕಳು", "குழந்தை → குழந்தைகள்"]
+      ],
+      tip: "False friend: Kannada ಮಕ್ಕಳು means “children”, but Tamil மக்கள் means “people”."
+    },
+    { h: "Nouns that don’t count",
+      p: "Mass nouns have one form. Watch out: Telugu treats water as plural (నీళ్ళు ఉన్నాయి); Kannada and Tamil treat it as singular (ನೀರು ಇದೆ, தண்ணீர் இருக்கிறது).",
+      rows: [
+        ["water", "నీళ్ళు", "ನೀರು", "தண்ணீர்"],
+        ["rice (raw)", "బియ్యం", "ಅಕ್ಕಿ", "அரிசி"],
+        ["paddy", "వడ్లు", "ಭತ್ತ", "நெல்"],
+        ["green gram dal", "పెసరపప్పు", "ಹೆಸರುಬೇಳೆ", "பாசிப்பருப்பு"],
+        ["salt", "ఉప్పు", "ಉಪ್ಪು", "உப்பு"]
+      ]
+    },
+    { h: "Respect and counting people",
+      p: "Plural forms show respect, just like Telugu గారు / వారు.",
+      rows: [
+        ["respected teacher", "గురువుగారు", "ಗುರುಗಳು", "குருநாதர் / ஆசிரியர்"],
+        ["Mr Ramu (respect)", "రాము గారు", "ರಾಮು ಅವರು", "ராமு அவர்கள்"],
+        ["one person", "ఒకరు", "ಒಬ್ಬರು", "ஒருவர்"],
+        ["two people", "ఇద్దరు", "ಇಬ್ಬರು", "இருவர்"]
+      ]
+    },
+    { h: "Family words",
+      rows: [
+        ["mother", "అమ్మ / తల్లి", "ಅಮ್ಮ / ತಾಯಿ", "அம்மா / தாய்"],
+        ["father", "నాన్న / తండ్రి", "ಅಪ್ಪ / ತಂದೆ", "அப்பா / தந்தை"],
+        ["elder brother", "అన్నయ్య", "ಅಣ್ಣ", "அண்ணன் / அண்ணா"],
+        ["younger brother", "తమ్ముడు", "ತಮ್ಮ", "தம்பி"],
+        ["elder sister", "అక్క", "ಅಕ್ಕ", "அக்கா"],
+        ["younger sister", "చెల్లెలు", "ತಂಗಿ", "தங்கை"],
+        ["son", "కొడుకు", "ಮಗ", "மகன்"],
+        ["daughter", "కూతురు", "ಮಗಳು", "மகள்"],
+        ["grandfather", "తాత", "ತಾತ / ಅಜ್ಜ", "தாத்தா"],
+        ["grandmother", "అవ్వ / నాయనమ్మ", "ಅಜ್ಜಿ", "பாட்டி"],
+        ["maternal uncle", "మామయ్య", "ಮಾವ", "மாமா"],
+        ["father’s sister", "అత్త", "ಅತ್ತೆ", "அத்தை"],
+        ["son-in-law", "అల్లుడు", "ಅಳಿಯ", "மருமகன்"]
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "verbless", en: "Sentences Without a Verb", te: "క్రియ లేని వాక్యాలు", kn: "ಕ್ರಿಯಾಪದ ರಹಿತ ವಾಕ್ಯಗಳು", ta: "வினையில்லா வாக்கியங்கள்",
+  src: SRC + "verbless-sentences",
+  big: "“That is a house” needs no verb in any of the three: అది ఇల్లు · ಅದು ಮನೆ · அது வீடு. Telugu and Tamil turn it into a yes/no question with <b>-ఆ / -ஆ</b>. Written Kannada uses <b>-ಏ</b>, though spoken Kannada also uses -ಆ.",
+  sections: [
+    { h: "X is Y",
+      rows: [
+        ["That is a house.", "అది ఇల్లు.", "ಅದು ಮನೆ.", "அது வீடு."],
+        ["This is a tree.", "ఇది చెట్టు.", "ಇದು ಮರ.", "இது மரம்."],
+        ["He is Rama.", "అతను రాముడు.", "ಅವನು ರಾಮ.", "அவன் ராமன்."],
+        ["This (woman) is Kamala.", "ఈమె కమల.", "ಇವಳು ಕಮಲಾ.", "இவள் கமலா."],
+        ["That is a cow.", "అది ఆవు.", "ಅದು ಹಸು.", "அது பசு."],
+        ["This is a calf.", "ఇది దూడ.", "ಇದು ಕರು.", "இது கன்று."]
+      ]
+    },
+    { h: "Noun + noun (no “of” needed)",
+      p: "Put two nouns side by side, as in Telugu. Tamil often doubles the next hard consonant at the join (எருமை + பால் → எருமைப் பால்). This is called <i>sandhi</i>; you will see it everywhere in written Tamil.",
+      rows: [
+        ["This is a film song.", "ఇది సినిమా పాట.", "ಇದು ಸಿನಿಮಾ ಹಾಡು.", "இது சினிமாப் பாட்டு."],
+        ["That is buffalo milk.", "అవి గేదె పాలు.", "ಅದು ಎಮ್ಮೆ ಹಾಲು.", "அது எருமைப் பால்."],
+        ["That is the game of cricket.", "అది క్రికెట్ ఆట.", "ಅದು ಕ್ರಿಕೆಟ್ ಆಟ.", "அது கிரிக்கெட் ஆட்டம்."]
+      ]
+    },
+    { h: "Yes / no questions",
+      rows: [
+        ["Is this a book?", "ఇది పుస్తకమా?", "ಇದು ಪುಸ್ತಕವೇ?", "இது புத்தகமா?"],
+        ["Is that an elephant?", "అది ఏనుగా?", "ಅದು ಆನೆಯೇ?", "அது யானையா?"],
+        ["Are they college students?", "వాళ్ళు కాలేజీ విద్యార్థులా?", "ಅವರು ಕಾಲೇಜ್ ವಿದ್ಯಾರ್ಥಿಗಳೇ?", "அவர்கள் கல்லூரி மாணவர்களா?"],
+        ["Is that a horse or a donkey?", "అది గుర్రమా, గాడిదా?", "ಅದು ಕುದುರೆಯೇ, ಕತ್ತೆಯೇ?", "அது குதிரையா, கழுதையா?"]
+      ],
+      tip: "Telugu -ం nouns lose ం before -ఆ (పుస్తకం → పుస్తకమా). Tamil -ம் nouns do the same (புத்தகம் → புத்தகமா). Kannada adds a v-glide (ಪುಸ್ತಕವೇ)."
+    },
+    { h: "Question-word sentences",
+      rows: [
+        ["What is that?", "అదేమిటి?", "ಅದೇನು?", "அது என்ன?"],
+        ["What is the price of that book?", "ఆ పుస్తకం ధర ఎంత?", "ಆ ಪುಸ್ತಕದ ಬೆಲೆ ಎಷ್ಟು?", "அந்தப் புத்தகத்தின் விலை என்ன?"],
+        ["Where is the box?", "పెట్టె ఎక్కడ?", "ಪೆಟ್ಟಿಗೆ ಎಲ್ಲಿ?", "பெட்டி எங்கே?"]
+      ],
+      tip: "“That book”: Telugu and Kannada say ఆ / ಆ, but Tamil uses அந்த (“that”) and இந்த (“this”)."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "present", en: "The Present Tense", te: "వర్తమాన కాలం", kn: "ವರ್ತಮಾನ ಕಾಲ", ta: "நிகழ்காலம்",
+  src: SRC + "the-present-tense",
+  big: "Every verb in all three languages ends in a <b>person marker</b> that echoes the pronoun: Telugu వచ్చా<b>డు</b> (వాడు), Kannada ಬರುತ್ತಾ<b>ನೆ</b> (ಅವನು), Tamil வருகிறா<b>ன்</b> (அவன்). Learn the Kannada and Tamil endings once and they work on every tense.",
+  sections: [
+    { h: "Person endings (memorise these)",
+      cols: ["", "Telugu", "Kannada", "Tamil"],
+      rows: [
+        ["I", "-ను", "-ಏನೆ", "-ஏன்"],
+        ["we", "-ము / -ం", "-ಏವೆ", "-ஓம்"],
+        ["you (casual)", "-వు", "-ಈಯೆ", "-ஆய்"],
+        ["you (plural / polite)", "-రు", "-ಈರಿ", "-ஈர்கள்"],
+        ["he", "-డు", "-ಆನೆ", "-ஆன்"],
+        ["she", "-ది", "-ಆಳೆ", "-ஆள்"],
+        ["they / respect", "-రు", "-ಆರೆ", "-ஆர்கள் / -ஆர்"],
+        ["it", "-ది", "-ಅದೆ", "-அது"],
+        ["they (things)", "-ఆయి", "-ಅವೆ", "-அன"]
+      ]
+    },
+    { h: "“To be” (ఉండు · ಇರು · இரு)",
+      rows: [
+        ["I am (here)", "నేను ఉన్నాను", "ನಾನು ಇದ್ದೇನೆ", "நான் இருக்கிறேன்"],
+        ["we are", "మేము ఉన్నాము", "ನಾವು ಇದ್ದೇವೆ", "நாங்கள் இருக்கிறோம்"],
+        ["you are (casual)", "నువ్వు ఉన్నావు", "ನೀನು ಇದ್ದೀಯೆ", "நீ இருக்கிறாய்"],
+        ["you are (polite)", "మీరు ఉన్నారు", "ನೀವು ಇದ್ದೀರಿ", "நீங்கள் இருக்கிறீர்கள்"],
+        ["he is", "అతను ఉన్నాడు", "ಅವನು ಇದ್ದಾನೆ", "அவன் இருக்கிறான்"],
+        ["she is", "ఆమె ఉంది", "ಅವಳು ಇದ್ದಾಳೆ", "அவள் இருக்கிறாள்"],
+        ["they are", "వాళ్ళు ఉన్నారు", "ಅವರು ಇದ್ದಾರೆ", "அவர்கள் இருக்கிறார்கள்"],
+        ["it is", "అది ఉంది", "ಅದು ಇದೆ", "அது இருக்கிறது"],
+        ["they (things) are", "అవి ఉన్నాయి", "ಅವು ಇವೆ", "அவை இருக்கின்றன"]
+      ],
+      tip: "Kannada ಇರು and Tamil இரு are the same verb. Telugu has it too, in old and compound forms (ఇరుకు, ఉండిరి)."
+    },
+    { h: "Describing someone (no verb)",
+      p: "Telugu adds a person ending to the noun (నేను విద్యార్థి<b>ని</b>). Kannada and Tamil don’t: the bare noun is enough.",
+      rows: [
+        ["I am a student.", "నేను విద్యార్థిని.", "ನಾನು ವಿದ್ಯಾರ್ಥಿ.", "நான் மாணவன்."],
+        ["We are students.", "మేము విద్యార్థులం.", "ನಾವು ವಿದ್ಯಾರ್ಥಿಗಳು.", "நாங்கள் மாணவர்கள்."],
+        ["You are a boy.", "నువ్వు అబ్బాయివి.", "ನೀನು ಹುಡುಗ.", "நீ பையன்."],
+        ["He is a good man.", "అతను మంచివాడు.", "ಅವನು ಒಳ್ಳೆಯವನು.", "அவன் நல்லவன்."],
+        ["She is a good woman.", "ఆమె మంచిది.", "ಅವಳು ಒಳ್ಳೆಯವಳು.", "அவள் நல்லவள்."],
+        ["They are good people.", "వాళ్ళు మంచివాళ్ళు.", "ಅವರು ಒಳ್ಳೆಯವರು.", "அவர்கள் நல்லவர்கள்."],
+        ["That is a small one.", "అది చిన్నది.", "ಅದು ಚಿಕ್ಕದು.", "அது சின்னது."],
+        ["Those are big ones.", "అవి పెద్దవి.", "ಅವು ದೊಡ್ಡವು.", "அவை பெரியவை."],
+        ["That book is mine.", "ఆ పుస్తకం నాది.", "ಆ ಪುಸ್ತಕ ನನ್ನದು.", "அந்தப் புத்தகம் என்னுடையது."]
+      ],
+      tip: "Telugu మంచివాడు = Kannada ಒಳ್ಳೆಯವನು = Tamil நல்லவன்: adjective + “person” ending, built the same way in all three."
+    },
+    { h: "Habitual: “I write, I go”",
+      p: "Telugu uses -తా- (రాస్తాను) for both habit and future; Kannada does the same with <b>-ುತ್ತ-</b> (ಬರೆಯುತ್ತೇನೆ). Tamil has a true present tense with <b>-கிற்- / -க்கிற்-</b> (எழுதுகிறேன், படிக்கிறேன்), and often uses the future for habits.",
+      rows: [
+        ["I write books.", "నేను పుస్తకాలు రాస్తాను.", "ನಾನು ಪುಸ್ತಕಗಳನ್ನು ಬರೆಯುತ್ತೇನೆ.", "நான் புத்தகங்கள் எழுதுகிறேன்."],
+        ["We go to our village every year.", "మేము ప్రతి సంవత్సరం మా ఊరికి వెళ్తాము.", "ನಾವು ಪ್ರತಿ ವರ್ಷ ನಮ್ಮ ಊರಿಗೆ ಹೋಗುತ್ತೇವೆ.", "நாங்கள் ஒவ்வொரு வருடமும் எங்கள் ஊருக்குப் போவோம்."],
+        ["You read.", "నువ్వు చదువుతావు.", "ನೀನು ಓದುತ್ತೀಯೆ.", "நீ படிக்கிறாய்."],
+        ["You (pl.) laugh.", "మీరు నవ్వుతారు.", "ನೀವು ನಗುತ್ತೀರಿ.", "நீங்கள் சிரிக்கிறீர்கள்."],
+        ["He (resp.) laughs nicely.", "ఆయన బాగా నవ్వుతారు.", "ಅವರು ಚೆನ್ನಾಗಿ ನಗುತ್ತಾರೆ.", "அவர் நன்றாகச் சிரிக்கிறார்."],
+        ["She writes stories.", "ఆమె కథలు రాస్తుంది.", "ಅವಳು ಕಥೆಗಳನ್ನು ಬರೆಯುತ್ತಾಳೆ.", "அவள் கதைகள் எழுதுகிறாள்."],
+        ["She lives in Mangaluru.", "ఆమె మంగళూరులో ఉంటుంది.", "ಆಕೆ ಮಂಗಳೂರಿನಲ್ಲಿ ಇರುತ್ತಾಳೆ.", "அவள் மங்களூரில் வசிக்கிறாள்."],
+        ["They read books.", "వాళ్ళు పుస్తకాలు చదువుతారు.", "ಅವರು ಪುಸ್ತಕಗಳನ್ನು ಓದುತ್ತಾರೆ.", "அவர்கள் புத்தகங்கள் படிக்கிறார்கள்."],
+        ["They buy houses.", "వాళ్ళు ఇళ్ళు కొంటారు.", "ಅವರು ಮನೆಗಳನ್ನು ಕೊಂಡುಕೊಳ್ಳುತ್ತಾರೆ.", "அவர்கள் வீடுகள் வாங்குகிறார்கள்."]
+      ],
+      tip: "“Our village” excludes the listener here: Telugu మా, Tamil எங்கள். Kannada uses ನಮ್ಮ for both మా and మన."
+    },
+    { h: "Continuous: “I am coming”",
+      p: "All three build it the same way: verb + “be”. Telugu వస్తు + ఉన్నాను → వస్తున్నాను. Kannada ಬರುತ್ತ + ಇದ್ದೇನೆ → ಬರುತ್ತಿದ್ದೇನೆ. Tamil வந்து + கொண்டு + இருக்கிறேன் → வந்துகொண்டிருக்கிறேன்.",
+      rows: [
+        ["I am coming.", "నేను వస్తున్నాను.", "ನಾನು ಬರುತ್ತಿದ್ದೇನೆ.", "நான் வந்து|கொண்டிருக்கிறேன்."],
+        ["We are playing.", "మేము ఆడుతున్నాము.", "ನಾವು ಆಡುತ್ತಿದ್ದೇವೆ.", "நாங்கள் விளையாடிக்கொண்டிருக்கிறோம்."],
+        ["You are going.", "నువ్వు వెళ్తున్నావు.", "ನೀನು ಹೋಗುತ್ತಿದ್ದೀಯೆ.", "நீ போய்க்கொண்டிருக்கிறாய்."],
+        ["You (pl.) are buying.", "మీరు కొంటున్నారు.", "ನೀವು ಕೊಂಡುಕೊಳ್ಳುತ್ತಿದ್ದೀರಿ.", "நீங்கள் வாங்கிக்கொண்டிருக்கிறீர்கள்."],
+        ["He is reading.", "అతను చదువుతున్నాడు.", "ಅವನು ಓದುತ್ತಿದ್ದಾನೆ.", "அவன் படித்துக்கொண்டிருக்கிறான்."],
+        ["She is coming.", "ఆమె వస్తోంది.", "ಅವಳು ಬರುತ್ತಿದ್ದಾಳೆ.", "அவள் வந்து|கொண்டிருக்கிறாள்."],
+        ["It is going.", "అది వెళ్తోంది.", "ಅದು ಹೋಗುತ್ತಿದೆ.", "அது போய்க்கொண்டிருக்கிறது."],
+        ["They (things) are coming.", "అవి వస్తున్నాయి.", "ಅವು ಬರುತ್ತಿವೆ.", "அவை வந்து|கொண்டிருக்கின்றன."],
+        ["They are eating.", "వాళ్ళు తింటున్నారు.", "ಅವರು ತಿನ್ನುತ್ತಿದ್ದಾರೆ.", "அவர்கள் சாப்பிட்டுக்கொண்டிருக்கிறார்கள்."]
+      ],
+      tip: "In everyday Tamil the simple present (நான் வருகிறேன், “I’m coming”) is more common than the long -கொண்டிருக்கிறேன் form."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "past", en: "The Past Tense", te: "భూత కాలం", kn: "ಭೂತ ಕಾಲ", ta: "இறந்தகாலம்",
+  src: SRC + "the-past-tense",
+  big: "Kannada marks the past with <b>-ದ- / -ಇದ-</b> before the person ending (ಆಡಿದೆ, ಬಂದೆ). Tamil uses <b>-த்- / -ந்த்- / -இன்- / -ட்-</b> (செய்தேன், வந்தேன், போனேன், கேட்டேன்). Many verbs that are irregular in Telugu are irregular in the same way in the other two: వచ్చాను · ಬಂದೆ · வந்தேன்.",
+  sections: [
+    { h: "Full pattern: “play”",
+      rows: [
+        ["I played", "నేను ఆడాను", "ನಾನು ಆಡಿದೆ(ನು)", "நான் விளையாடினேன்"],
+        ["we played", "మేము ఆడాము", "ನಾವು ಆಡಿದೆವು", "நாங்கள் விளையாடினோம்"],
+        ["you played", "నువ్వు ఆడావు", "ನೀನು ಆಡಿದೆ", "நீ விளையாடினாய்"],
+        ["you (pl.) played", "మీరు ఆడారు", "ನೀವು ಆಡಿದಿರಿ", "நீங்கள் விளையாடினீர்கள்"],
+        ["he played", "అతను ఆడాడు", "ಅವನು ಆಡಿದ(ನು)", "அவன் விளையாடினான்"],
+        ["she played", "ఆమె ఆడింది", "ಅವಳು ಆಡಿದಳು", "அவள் விளையாடினாள்"],
+        ["they played", "వాళ్ళు ఆడారు", "ಅವರು ಆಡಿದರು", "அவர்கள் விளையாடினார்கள்"],
+        ["it played", "అది ఆడింది", "ಅದು ಆಡಿತು", "அது விளையாடியது"],
+        ["they (things) played", "అవి ఆడాయి", "ಅವು ಆಡಿದುವು", "அவை விளையாடின"]
+      ],
+      tip: "Tamil ஆடு means “dance / sway”; for games Tamil uses விளையாடு. Kannada ಆಡು and Telugu ఆడు cover both."
+    },
+    { h: "Full pattern: “come” (irregular, the same in all three)",
+      rows: [
+        ["I came", "నేను వచ్చాను", "ನಾನು ಬಂದೆ", "நான் வந்தேன்"],
+        ["we came", "మేము వచ్చాము", "ನಾವು ಬಂದೆವು", "நாங்கள் வந்தோம்"],
+        ["you came", "నువ్వు వచ్చావు", "ನೀನು ಬಂದೆ", "நீ வந்தாய்"],
+        ["you (pl.) came", "మీరు వచ్చారు", "ನೀವು ಬಂದಿರಿ", "நீங்கள் வந்தீர்கள்"],
+        ["he came", "అతను వచ్చాడు", "ಅವನು ಬಂದ(ನು)", "அவன் வந்தான்"],
+        ["she came", "ఆమె వచ్చింది", "ಅವಳು ಬಂದಳು", "அவள் வந்தாள்"],
+        ["they came", "వాళ్ళు వచ్చారు", "ಅವರು ಬಂದರು", "அவர்கள் வந்தார்கள்"],
+        ["it came", "అది వచ్చింది", "ಅದು ಬಂದಿತು / ಬಂತು", "அது வந்தது"],
+        ["they (things) came", "అవి వచ్చాయి", "ಅವು ಬಂದುವು / ಬಂದವು", "அவை வந்தன"]
+      ]
+    },
+    { h: "Past stems to memorise",
+      p: "These are the lesson’s irregular groups. Kannada and Tamil often share the stem (ಕಂಡೆ / கண்டேன், ಕೊಂದೆ / கொன்றேன்).",
+      rows: [
+        ["I became · it became", "నేను అయ్యాను · అది అయింది", "ನಾನು ಆದೆ · ಅದು ಆಯಿತು", "நான் ஆனேன் · அது ஆனது"],
+        ["I went", "నేను వెళ్ళాను", "ನಾನು ಹೋದೆ", "நான் போனேன்"],
+        ["I ate", "నేను తిన్నాను", "ನಾನು ತಿಂದೆ", "நான் சாப்பிட்டேன்"],
+        ["I killed", "నేను చంపాను", "ನಾನು ಕೊಂದೆ", "நான் கொன்றேன்"],
+        ["I fell", "నేను పడ్డాను", "ನಾನು ಬಿದ್ದೆ", "நான் விழுந்தேன்"],
+        ["I won", "నేను గెలిచాను", "ನಾನು ಗೆದ್ದೆ", "நான் வென்றேன்"],
+        ["I saw", "నేను చూశాను", "ನಾನು ಕಂಡೆ / ನೋಡಿದೆ", "நான் கண்டேன் / பார்த்தேன்"],
+        ["I did", "నేను చేశాను", "ನಾನು ಮಾಡಿದೆ", "நான் செய்தேன்"],
+        ["I read", "నేను చదివాను", "ನಾನು ಓದಿದೆ", "நான் படித்தேன்"],
+        ["I heard / asked", "నేను విన్నాను / అడిగాను", "ನಾನು ಕೇಳಿದೆ", "நான் கேட்டேன்"],
+        ["I bought", "నేను కొన్నాను", "ನಾನು ಕೊಂಡೆ", "நான் வாங்கினேன்"]
+      ],
+      tip: "Kannada ಕೇಳು and Tamil கேள் each mean both “hear” and “ask”. Telugu splits these into విను and అడుగు."
+    },
+    { h: "Sentences",
+      rows: [
+        ["He did the work.", "అతను పని చేశాడు.", "ಅವನು ಕೆಲಸ ಮಾಡಿದನು.", "அவன் வேலை செய்தான்."],
+        ["We ate at his house.", "మేము అతని ఇంట్లో తిన్నాము.", "ನಾವು ಅವನ ಮನೆಯಲ್ಲಿ ಊಟ ಮಾಡಿದೆವು.", "நாங்கள் அவன் வீட்டில் சாப்பிட்டோம்."],
+        ["She bought three books.", "ఆమె మూడు పుస్తకాలు కొంది.", "ಅವಳು ಮೂರು ಪುಸ್ತಕಗಳನ್ನು ಕೊಂಡಳು.", "அவள் மூன்று புத்தகங்கள் வாங்கினாள்."],
+        ["They went to Kalaburagi.", "వాళ్ళు కలబురగికి వెళ్ళారు.", "ಅವರು ಕಲಬುರಗಿಗೆ ಹೋದರು.", "அவர்கள் கலபுரகிக்குப் போனார்கள்."] 
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "future", en: "The Future Tense", te: "భవిష్యత్ కాలం", kn: "ಭವಿಷ್ಯತ್ ಕಾಲ", ta: "எதிர்காலம்",
+  src: SRC + "the-future-tense",
+  big: "Modern Kannada works like Telugu: one form covers both habit and future (ಮಾಡುತ್ತೇನೆ = చేస్తాను). Add ನಾಳೆ (“tomorrow”) and it is future. Tamil has a separate future with <b>-வ்- / -ப்ப்-</b>: செய்வேன் (“I will do”), படிப்பேன் (“I will read”). For “let’s…”, Telugu -దాం = Kannada -ಓಣ = Tamil -ஓம் / -லாம்.",
+  sections: [
+    { h: "Full pattern: “do”",
+      p: "Kannada has an older literary future (ಮಾಡುವೆನು) that you will meet in books. In speech use the -ುತ್ತ- form.",
+      cols: ["", "Telugu", "Kannada (spoken · literary)", "Tamil"],
+      rows: [
+        ["I will do", "నేను చేస్తాను", "ನಾನು ಮಾಡುತ್ತೇನೆ · ಮಾಡುವೆನು", "நான் செய்வேன்"],
+        ["we will do", "మేము చేస్తాము", "ನಾವು ಮಾಡುತ್ತೇವೆ · ಮಾಡುವೆವು", "நாங்கள் செய்வோம்"],
+        ["you will do", "నువ్వు చేస్తావు", "ನೀನು ಮಾಡುತ್ತೀಯೆ · ಮಾಡುವೆ", "நீ செய்வாய்"],
+        ["you (pl.) will do", "మీరు చేస్తారు", "ನೀವು ಮಾಡುತ್ತೀರಿ · ಮಾಡುವಿರಿ", "நீங்கள் செய்வீர்கள்"],
+        ["he will do", "అతను చేస్తాడు", "ಅವನು ಮಾಡುತ್ತಾನೆ · ಮಾಡುವನು", "அவன் செய்வான்"],
+        ["she will do", "ఆమె చేస్తుంది", "ಅವಳು ಮಾಡುತ್ತಾಳೆ · ಮಾಡುವಳು", "அவள் செய்வாள்"],
+        ["they will do", "వాళ్ళు చేస్తారు", "ಅವರು ಮಾಡುತ್ತಾರೆ · ಮಾಡುವರು", "அவர்கள் செய்வார்கள்"],
+        ["it will do", "అది చేస్తుంది", "ಅದು ಮಾಡುತ್ತದೆ · ಮಾಡುವುದು", "அது செய்யும்"],
+        ["they (things) will do", "అవి చేస్తాయి", "ಅವು ಮಾಡುತ್ತವೆ · ಮಾಡುವುವು", "அவை செய்யும்"]
+      ],
+      tip: "Tamil’s neuter future -உம் (செய்யும், வரும்) is also used for general truths: மழை பெய்யும் (“it rains”)."
+    },
+    { h: "With time words",
+      rows: [
+        ["tomorrow", "రేపు", "ನಾಳೆ", "நாளை"],
+        ["day after tomorrow", "ఎల్లుండి", "ನಾಳಿದ್ದು", "நாளை மறுநாள்"],
+        ["I will buy the books tomorrow.", "నేను రేపు పుస్తకాలు కొంటాను.", "ನಾನು ನಾಳೆ ಪುಸ್ತಕಗಳನ್ನು ಕೊಂಡುಕೊಳ್ಳುತ್ತೇನೆ.", "நான் நாளை புத்தகங்கள் வாங்குவேன்."],
+        ["Are you going the day after tomorrow?", "మీరు ఎల్లుండి వెళ్తారా?", "ನೀವು ನಾಳಿದ್ದು ಹೋಗುತ್ತೀರಾ?", "நீங்கள் நாளை மறுநாள் போவீர்களா?"],
+        ["He (resp.) will come from Hampi.", "ఆయన హంపి నుంచి వస్తారు.", "ಅವರು ಹಂಪಿಯಿಂದ ಬರುತ್ತಾರೆ.", "அவர் ஹம்பியிலிருந்து வருவார்."],
+        ["She will read this book.", "ఆమె ఈ పుస్తకం చదువుతుంది.", "ಆಕೆ ಈ ಪುಸ್ತಕ ಓದುತ್ತಾಳೆ.", "அவள் இந்தப் புத்தகத்தைப் படிப்பாள்."],
+        ["They will sing two songs.", "వాళ్ళు రెండు పాటలు పాడతారు.", "ಅವರು ಎರಡು ಹಾಡುಗಳನ್ನು ಹಾಡುತ್ತಾರೆ.", "அவர்கள் இரண்டு பாடல்கள் பாடுவார்கள்."],
+        ["That book will come tomorrow.", "ఆ పుస్తకం రేపు వస్తుంది.", "ಆ ಪುಸ್ತಕ ನಾಳೆ ಬರುತ್ತದೆ.", "அந்தப் புத்தகம் நாளை வரும்."],
+        ["These buses will reach Chennai tomorrow.", "ఈ బస్సులు రేపు చెన్నై చేరుకుంటాయి.", "ಈ ಬಸ್ಸುಗಳು ನಾಳೆ ಚೆನ್ನೈ ತಲುಪುತ್ತವೆ.", "இந்தப் பேருந்துகள் நாளை சென்னையை அடையும்."]
+      ]
+    },
+    { h: "Let’s… (hortative)",
+      cols: ["", "Telugu -దాం", "Kannada -ಓಣ", "Tamil -ஓம் / -லாம்"],
+      rows: [
+        ["Let’s go.", "మనం వెళ్దాం.", "ನಾವು ಹೋಗೋಣ.", "நாம் போவோம். / போகலாம்."],
+        ["Let’s read tomorrow.", "రేపు చదువుదాం.", "ನಾವು ನಾಳೆ ಓದೋಣ.", "நாளை படிப்போம்."],
+        ["Let’s watch that movie.", "ఆ సినిమా చూద్దాం.", "ನಾವು ಆ ಸಿನಿಮಾ ನೋಡೋಣ.", "அந்தப் படத்தைப் பார்ப்போம்."],
+        ["Let all of us sing tomorrow.", "మనమందరం రేపు పాడదాం.", "ನಾವೆಲ್ಲಾ ನಾಳೆ ಹಾಡೋಣ.", "நாம் எல்லோரும் நாளை பாடுவோம்."]
+      ],
+      tip: "Spoken Tamil’s “let’s go” is போலாம் (pōlām). You will hear it constantly."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "cases", en: "Cases", te: "విభక్తులు", kn: "ವಿಭಕ್ತಿಗಳು", ta: "வேற்றுமை",
+  src: SRC + "cases",
+  big: "Telugu adds postpositions such as -ని, -కి, -లో, -తో to nouns. Kannada and Tamil do the same, with their own small set of endings. The most useful three: <b>to</b> = -కి · -ಗೆ/-ಕ್ಕೆ · -க்கு; <b>in</b> = -లో · -ಅಲ್ಲಿ · -இல்; <b>object</b> = -ని · -ಅನ್ನು · -ஐ.",
+  sections: [
+    { h: "The case endings",
+      cols: ["", "Telugu", "Kannada", "Tamil"],
+      rows: [
+        ["Nominative (subject)", "— (ప్రథమా)", "— / -ಉ (ಪ್ರಥಮಾ)", "— (எழுவாய்)"],
+        ["Accusative (object)", "-ని / -ను", "-ಅನ್ನು", "-ஐ"],
+        ["Instrumental (by, with)", "-తో / -చేత", "-ಇಂದ", "-ஆல்"],
+        ["Dative (to, for)", "-కి / -కు", "-ಗೆ / -ಇಗೆ / -ಕ್ಕೆ", "-க்கு / -உக்கு"],
+        ["Ablative (from)", "-నుంచి / -నుండి", "-ಇಂದ", "-இலிருந்து / -இடமிருந்து"],
+        ["Genitive (of, ’s)", "oblique / -యొక్క", "-ಅ", "-இன் / -உடைய"],
+        ["Locative (in, at)", "-లో / -మీద", "-ಅಲ್ಲಿ / -ಒಳಗೆ", "-இல் / -இடம்"],
+        ["Sociative (together with)", "-తో", "ಜೊತೆ / -ಒಡನೆ", "-உடன் / -ஓடு"],
+        ["Vocative (O …!)", "-ఆ / -ఓ", "-ಆ / -ಏ", "-ஏ / -ஆ"]
+      ],
+      tip: "Kannada -ಇಂದ means both “by” and “from”. Tamil splits them: -ஆல் for “by” and -இலிருந்து for “from”."
+    },
+    { h: "One noun through every case: “tree”",
+      rows: [
+        ["tree", "చెట్టు", "ಮರ", "மரம்"],
+        ["the tree (object)", "చెట్టును", "ಮರವನ್ನು", "மரத்தை"],
+        ["by the tree", "చెట్టుతో", "ಮರದಿಂದ", "மரத்தால்"],
+        ["to the tree", "చెట్టుకు", "ಮರಕ್ಕೆ", "மரத்துக்கு"],
+        ["from the tree", "చెట్టు నుంచి", "ಮರದಿಂದ", "மரத்திலிருந்து"],
+        ["of the tree", "చెట్టు (యొక్క)", "ಮರದ", "மரத்தின்"],
+        ["in the tree", "చెట్టులో", "ಮರದಲ್ಲಿ", "மரத்தில்"],
+        ["O tree!", "ఓ చెట్టా!", "ಮರವೇ!", "மரமே!"]
+      ],
+      tip: "Tamil -ம் nouns switch to a -த்த்- stem before endings (மரம் → மரத்தில்), much as Telugu ఇల్లు becomes ఇంటి- (ఇంటికి). Kannada neuter -a nouns use -ದ-, -ವ- or -ಕ್ಕ-."
+    },
+    { h: "A person through every case: “Rama”",
+      rows: [
+        ["Rama", "రాముడు", "ರಾಮ", "ராமன்"],
+        ["Rama (object)", "రాముడిని", "ರಾಮನನ್ನು", "ராமனை"],
+        ["to Rama", "రాముడికి", "ರಾಮನಿಗೆ", "ராமனுக்கு"],
+        ["Rama’s", "రాముడి", "ರಾಮನ", "ராமனின் / ராமனுடைய"],
+        ["with Rama", "రాముడితో", "ರಾಮನ ಜೊತೆ", "ராமனுடன்"],
+        ["O Rama!", "రామా!", "ರಾಮಾ!", "ராமா!"]
+      ],
+      tip: "Kannada human nouns in -a add -ನ- before an ending (ರಾಮ → ರಾಮನನ್ನು), the way Telugu adds -డి- (రాముడిని)."
+    },
+    { h: "Pronouns in the cases",
+      cols: ["", "Telugu", "Kannada", "Tamil"],
+      rows: [
+        ["me · to me · my", "నన్ను · నాకు · నా", "ನನ್ನನ್ನು · ನನಗೆ · ನನ್ನ", "என்னை · எனக்கு · என்"],
+        ["us · to us · our", "మమ్మల్ని · మాకు · మా", "ನಮ್ಮನ್ನು · ನಮಗೆ · ನಮ್ಮ", "எங்களை · எங்களுக்கு · எங்கள்"],
+        ["you · to you · your", "నిన్ను · నీకు · నీ", "ನಿನ್ನನ್ನು · ನಿನಗೆ · ನಿನ್ನ", "உன்னை · உனக்கு · உன்"],
+        ["you (pl.) · to you · your", "మిమ్మల్ని · మీకు · మీ", "ನಿಮ್ಮನ್ನು · ನಿಮಗೆ · ನಿಮ್ಮ", "உங்களை · உங்களுக்கு · உங்கள்"],
+        ["him · to him · his", "అతన్ని · అతనికి · అతని", "ಅವನನ್ನು · ಅವನಿಗೆ · ಅವನ", "அவனை · அவனுக்கு · அவனுடைய"],
+        ["her · to her · her", "ఆమెను · ఆమెకు · ఆమె", "ಅವಳನ್ನು · ಅವಳಿಗೆ · ಅವಳ", "அவளை · அவளுக்கு · அவளுடைய"],
+        ["it · to it · its", "దాన్ని · దానికి · దాని", "ಅದನ್ನು · ಅದಕ್ಕೆ · ಅದರ", "அதை · அதற்கு · அதன்"],
+        ["them · to them · their", "వాళ్ళని · వాళ్ళకి · వాళ్ళ", "ಅವರನ್ನು · ಅವರಿಗೆ · ಅವರ", "அவர்களை · அவர்களுக்கு · அவர்களுடைய"]
+      ],
+      tip: "Kannada pronouns shorten the long vowel, just like Telugu: నేను → నన్ను, ನಾನು → ನನ್ನನ್ನು. Tamil changes the vowel: நான் → என்னை, நீ → உன்னை."
+    },
+    { h: "Cases in sentences",
+      rows: [
+        ["He wrote with a pen.", "అతను పెన్నుతో రాశాడు.", "ಅವನು ಪೆನ್ನಿಂದ ಬರೆದನು.", "அவன் பேனாவால் எழுதினான்."],
+        ["It is not possible for him.", "ఇది అతని వల్ల కాదు.", "ಇದು ಅವನಿಂದ ಆಗುವುದಿಲ್ಲ.", "இது அவனால் முடியாது."],
+        ["He came from Mysuru.", "అతను మైసూరు నుంచి వచ్చాడు.", "ಅವನು ಮೈಸೂರಿನಿಂದ ಬಂದನು.", "அவன் மைசூரிலிருந்து வந்தான்."],
+        ["We get knowledge from books.", "పుస్తకాల నుంచి మనకు జ్ఞానం వస్తుంది.", "ಪುಸ್ತಕಗಳಿಂದ ನಮಗೆ ಜ್ಞಾನ ಸಿಗುತ್ತದೆ.", "புத்தகங்களிலிருந்து நமக்கு அறிவு கிடைக்கிறது."],
+        ["with father", "నాన్నతో", "ತಂದೆಯ ಜೊತೆ", "அப்பாவுடன்"],
+        ["father’s word", "నాన్న మాట", "ತಂದೆಯ ಮಾತು", "அப்பாவின் சொல்"],
+        ["cow’s milk", "ఆవు పాలు", "ಹಸುವಿನ ಹಾಲು", "பசுவின் பால்"],
+        ["in the house", "ఇంట్లో", "ಮನೆಯಲ್ಲಿ", "வீட்டில்"],
+        ["inside the house", "ఇంటి లోపల", "ಮನೆಯೊಳಗೆ", "வீட்டுக்குள்ளே"],
+        ["I have money (with me).", "నా దగ్గర డబ్బు ఉంది.", "ನನ್ನಲ್ಲಿ ಹಣ ಇದೆ.", "என்னிடம் பணம் இருக்கிறது."],
+        ["I will come by tomorrow.", "నేను రేపటిలోగా వస్తాను.", "ನಾನು ನಾಳೆಯೊಳಗೆ ಬರುತ್ತೇನೆ.", "நான் நாளைக்குள் வருவேன்."],
+        ["O sister!", "అక్కా!", "ಅಕ್ಕಾ!", "அக்கா!"],
+        ["O teacher!", "గురువుగారూ!", "ಗುರುಗಳೇ!", "குருவே!"]
+      ],
+      tip: "“I have” is “with me there is” in all three: నా దగ్గర ఉంది · ನನ್ನಲ್ಲಿ ಇದೆ · என்னிடம் இருக்கிறது."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "participles", en: "Participles", te: "క్త్వార్థకం & విశేషణ క్రియలు", kn: "ಕೃದಂತಗಳು", ta: "எச்சங்கள்",
+  src: SRC + "participles",
+  big: "Telugu chains actions with the -ఇ form: వెళ్ళి చూడు (“go and see”). Kannada and Tamil chain them the same way: ಹೋಗಿ ನೋಡು · போய்ப் பார். The “who did / which is” form also matches: నేను తిన్న పండు · ನಾನು ತಿಂದ ಹಣ್ಣು · நான் சாப்பிட்ட பழம்.",
+  sections: [
+    { h: "Having done… (adverbial participle)",
+      rows: [
+        ["having played", "ఆడి", "ಆಡಿ", "விளையாடி"],
+        ["having done", "చేసి", "ಮಾಡಿ", "செய்து"],
+        ["having sung", "పాడి", "ಹಾಡಿ", "பாடி"],
+        ["having climbed", "ఎక్కి", "ಹತ್ತಿ", "ஏறி"],
+        ["having gone", "వెళ్ళి", "ಹೋಗಿ", "போய்"],
+        ["having read", "చదివి", "ಓದಿ", "படித்து"],
+        ["having believed", "నమ్మి", "ನಂಬಿ", "நம்பி"],
+        ["having become", "అయి", "ಆಗಿ", "ஆகி"],
+        ["having put", "వేసి", "ಹಾಕಿ", "போட்டு"],
+        ["having closed", "మూసి", "ಮುಚ್ಚಿ", "மூடி"],
+        ["having asked / heard", "అడిగి / విని", "ಕೇಳಿ", "கேட்டு"],
+        ["having searched", "వెతికి", "ಹುಡುಕಿ", "தேடி"],
+        ["having bought", "కొని", "ಕೊಂಡು", "வாங்கி"],
+        ["having seen", "చూసి", "ಕಂಡು / ನೋಡಿ", "கண்டு / பார்த்து"],
+        ["having eaten", "తిని", "ತಿಂದು / ಉಂಡು", "தின்று / சாப்பிட்டு"],
+        ["having said (= “that…”)", "అని", "ಎಂದು / ಅಂತ", "என்று"],
+        ["having killed", "చంపి", "ಕೊಂದು", "கொன்று"],
+        ["having come", "వచ్చి", "ಬಂದು", "வந்து"],
+        ["having brought", "తెచ్చి", "ತಂದು", "கொண்டு|வந்து"],
+        ["having stayed", "ఉండి", "ಇದ್ದು", "இருந்து"],
+        ["having won", "గెలిచి", "ಗೆದ್ದು", "வென்று"],
+        ["having fallen", "పడి", "ಬಿದ್ದು", "விழுந்து"],
+        ["having opened", "తెరిచి", "ತೆರೆದು", "திறந்து"],
+        ["having called", "పిలిచి", "ಕರೆದು", "கூப்பிட்டு"],
+        ["having washed", "కడిగి", "ತೊಳೆದು", "கழுவி"],
+        ["having beaten", "కొట్టి", "ಹೊಡೆದು", "அடித்து"],
+        ["having stopped (sth.)", "ఆపి", "ನಿಲ್ಲಿಸಿ", "நிறுத்தி"],
+        ["having laughed", "నవ్వి", "ನಕ್ಕು", "சிரித்து"],
+        ["having given", "ఇచ్చి", "ಕೊಟ್ಟು", "கொடுத்து"],
+        ["having left", "వదిలి / విడిచి", "ಬಿಟ್ಟು", "விட்டு"],
+        ["having stood", "నిలబడి", "ನಿಂತು", "நின்று"],
+        ["having sat", "కూర్చుని", "ಕುಳಿತು", "உட்கார்ந்து"]
+      ],
+      tip: "Quotative “that”: Telugu అని = Kannada ಎಂದು (spoken ಅಂತ) = Tamil என்று (spoken -ன்னு). వస్తాను అని చెప్పాడు · ಬರುತ್ತೇನೆ ಎಂದು ಹೇಳಿದ · வருவேன் என்று சொன்னான்."
+    },
+    { h: "Chaining actions",
+      rows: [
+        ["He plays well and wins.", "అతను బాగా ఆడి గెలుస్తాడు.", "ಅವನು ಚೆನ್ನಾಗಿ ಆಡಿ ಗೆಲ್ಲುತ್ತಾನೆ.", "அவன் நன்றாக விளையாடி வெல்வான்."],
+        ["She trusts him and gives money.", "అతన్ని నమ్మి ఆమె డబ్బు ఇస్తుంది.", "ಅವನನ್ನು ನಂಬಿ ಆಕೆ ಹಣ ಕೊಡುತ್ತಾಳೆ.", "அவனை நம்பி அவள் பணம் கொடுப்பாள்."],
+        ["I’ll come tomorrow and go to their house.", "నేను రేపు వచ్చి వాళ్ళ ఇంటికి వెళ్తాను.", "ನಾನು ನಾಳೆ ಬಂದು ಅವರ ಮನೆಗೆ ಹೋಗುತ್ತೇನೆ.", "நான் நாளை வந்து அவர்கள் வீட்டுக்குப் போவேன்."],
+        ["I’ll write a book and send it to you.", "నేను పుస్తకం రాసి మీకు పంపిస్తాను.", "ನಾನು ಪುಸ್ತಕ ಬರೆದು ನಿಮಗೆ ಕಳುಹಿಸುತ್ತೇನೆ.", "நான் புத்தகம் எழுதி உங்களுக்கு அனுப்புவேன்."],
+        ["Go there and see her.", "అక్కడికి వెళ్ళి ఆమెను చూడు.", "ಅಲ್ಲಿಗೆ ಹೋಗಿ ಅವಳನ್ನು ನೋಡು.", "அங்கே போய் அவளைப் பார்."],
+        ["Finish that work and come.", "ఆ పని చేసి రా.", "ಆ ಕೆಲಸ ಮಾಡಿ ಬಾ.", "அந்த வேலையைச் செய்துவிட்டு வா."],
+        ["Bring her along.", "ఆమెను తీసుకురా.", "ಅವಳನ್ನು ಕರೆದುಕೊಂಡು ಬಾ.", "அவளை அழைத்துக்கொண்டு வா."]
+      ]
+    },
+    { h: "Which / who did… (adjectival participle)",
+      cols: ["", "Telugu (past · present)", "Kannada (past · present)", "Tamil (past · present)"],
+      rows: [
+        ["played · plays", "ఆడిన · ఆడే", "ಆಡಿದ · ಆಡುವ", "விளையாடிய · விளையாடும்"],
+        ["did · does", "చేసిన · చేసే", "ಮಾಡಿದ · ಮಾಡುವ", "செய்த · செய்யும்"],
+        ["went · goes", "వెళ్ళిన · వెళ్ళే", "ಹೋದ · ಹೋಗುವ", "போன · போகும்"],
+        ["came · comes", "వచ్చిన · వచ్చే", "ಬಂದ · ಬರುವ", "வந்த · வரும்"],
+        ["became · becomes", "అయిన · అయ్యే", "ಆದ · ಆಗುವ", "ஆன · ஆகும்"],
+        ["ate · eats", "తిన్న · తినే", "ತಿಂದ · ತಿನ್ನುವ", "சாப்பிட்ட · சாப்பிடும்"],
+        ["bought · buys", "కొన్న · కొనే", "ಕೊಂಡ · ಕೊಳ್ಳುವ", "வாங்கிய · வாங்கும்"],
+        ["searched · searches", "వెతికిన · వెతికే", "ಹುಡುಕಿದ · ಹುಡುಕುವ", "தேடிய · தேடும்"],
+        ["drove · drives", "నడిపిన · నడిపే", "ಓಡಿಸಿದ · ಓಡಿಸುವ", "ஓட்டிய · ஓட்டும்"]
+      ]
+    },
+    { h: "In sentences",
+      rows: [
+        ["This is the fruit I ate.", "ఇది నేను తిన్న పండు.", "ಇದು ನಾನು ತಿಂದ ಹಣ್ಣು.", "இது நான் சாப்பிட்ட பழம்."],
+        ["This is the work he did.", "ఇది ఆయన చేసిన పని.", "ಇದು ಆತ ಮಾಡಿದ ಕೆಲಸ.", "இது அவர் செய்த வேலை."],
+        ["This is the book she reads.", "ఇది ఆమె చదివే పుస్తకం.", "ಇದು ಅವಳು ಓದುವ ಪುಸ್ತಕ.", "இது அவள் படிக்கும் புத்தகம்."],
+        ["She is the one who played tennis.", "టెన్నిస్ ఆడింది ఆమే.", "ಅವಳೇ ಟೆನಿಸ್ ಆಡಿದವಳು.", "அவள்தான் டென்னிஸ் விளையாடியவள்."]
+      ],
+      tip: "Emphasis “she herself”: Telugu and Kannada both add -ఏ / -ಏ (ఆమే, ಅವಳೇ). Tamil uses -தான் (அவள்தான்)."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "adjectives", en: "Adjectives & Adverbs", te: "విశేషణాలు & క్రియా విశేషణాలు", kn: "ಗುಣವಾಚಕಗಳು ಮತ್ತು ಕ್ರಿಯಾ ವಿಶೇಷಣಗಳು", ta: "பெயரடை & வினையடை",
+  src: SRC + "adjectives-and-adverbs",
+  big: "Adjectives sit before the noun and never change, as in Telugu. To make an adverb, Telugu adds -గా (కొత్తగా). Kannada adds <b>-ಆಗಿ</b> (ಹೊಸದಾಗಿ) and Tamil adds <b>-ஆக</b> (புதிதாக). All three come from the verb “to become” (అవు / ಆಗು / ஆகு).",
+  sections: [
+    { h: "Adjective + noun",
+      rows: [
+        ["new book", "కొత్త పుస్తకం", "ಹೊಸ ಪುಸ್ತಕ", "புதிய புத்தகம்"],
+        ["old house", "పాత ఇల్లు", "ಹಳೆಯ ಮನೆ", "பழைய வீடு"],
+        ["small room", "చిన్న గది", "ಚಿಕ್ಕ ಕೋಣೆ", "சின்ன அறை"],
+        ["big village", "పెద్ద ఊరు", "ದೊಡ್ಡ ಹಳ್ಳಿ", "பெரிய கிராமம்"],
+        ["good boy", "మంచి అబ్బాయి", "ಒಳ್ಳೆಯ ಹುಡುಗ", "நல்ல பையன்"]
+      ],
+      tip: "Kannada ಹೊಸ = Tamil புதிய, and Kannada ಹಳೆಯ = Tamil பழைய: Kannada h- matches Tamil p- (see Sound Shortcuts)."
+    },
+    { h: "Compound nouns",
+      rows: [
+        ["brinjal", "వంకాయ", "ಬದನೇಕಾಯಿ", "கத்தரிக்காய்"],
+        ["banana", "అరటిపండు", "ಬಾಳೆಹಣ್ಣು", "வாழைப்பழம்"],
+        ["headache", "తలనొప్పి", "ತಲೆನೋವು", "தலைவலி"]
+      ],
+      tip: "Vegetables end in “unripe fruit” in all three: -కాయ · -ಕಾಯಿ · -காய். Fruits end in “ripe fruit”: -పండు · -ಹಣ್ಣು · -பழம்."
+    },
+    { h: "A noun of a noun = adjective",
+      rows: [
+        ["flower garden", "పూల తోట", "ಹೂವಿನ ತೋಟ", "பூந்தோட்டம்"],
+        ["the village’s name", "ఊరి పేరు", "ಹಳ್ಳಿಯ ಹೆಸರು", "கிராமத்தின் பெயர்"],
+        ["fruit of that tree", "ఆ చెట్టు పండు", "ಆ ಮರದ ಹಣ್ಣು", "அந்த மரத்தின் பழம்"]
+      ]
+    },
+    { h: "Adverbs: -గా · -ಆಗಿ · -ஆக",
+      rows: [
+        ["newly", "కొత్తగా", "ಹೊಸದಾಗಿ", "புதிதாக"],
+        ["well, nicely", "బాగా", "ಚೆನ್ನಾಗಿ", "நன்றாக"],
+        ["slowly", "నెమ్మదిగా", "ನಿಧಾನವಾಗಿ", "மெதுவாக"],
+        ["quickly", "వేగంగా / త్వరగా", "ಬೇಗ / ವೇಗವಾಗಿ", "வேகமாக / சீக்கிரம்"],
+        ["very", "చాలా", "ತುಂಬ / ಬಹಳ", "மிகவும் / ரொம்ப"],
+        ["This work is very difficult.", "ఈ పని చాలా కష్టంగా ఉంది.", "ಈ ಕೆಲಸ ತುಂಬ ಕಷ್ಟವಾಗಿದೆ.", "இந்த வேலை மிகவும் கஷ்டமாக இருக்கிறது."],
+        ["This is a newly built house.", "ఇది కొత్తగా కట్టిన ఇల్లు.", "ಇದು ಹೊಸದಾಗಿ ಕಟ್ಟಿದ ಮನೆ.", "இது புதிதாகக் கட்டிய வீடு."],
+        ["This water is very cold.", "ఈ నీళ్ళు చాలా చల్లగా ఉన్నాయి.", "ಈ ನೀರು ತುಂಬ ತಣ್ಣಗಿದೆ.", "இந்தத் தண்ணீர் மிகவும் குளிர்ச்சியாக இருக்கிறது."]
+      ],
+      tip: "Kannada often fuses -ಆಗಿ with ಇದೆ: ಕಷ್ಟವಾಗಿ + ಇದೆ → ಕಷ್ಟವಾಗಿದೆ (“is difficult”). Compare Telugu కష్టంగా ఉంది."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "numerals", en: "Numbers", te: "సంఖ్యలు", kn: "ಅಂಕೆಗಳು", ta: "எண்கள்",
+  src: SRC + "numerals",
+  big: "Kannada and Tamil numbers are close cousins of each other, and many share roots with Telugu: మూడు / ಮೂರು / மூன்று, ఆరు / ಆರು / ஆறு, నూరు / ನೂರು / நூறு. The teens and tens are where Telugu goes its own way, so drill those.",
+  sections: [
+    { h: "1 to 10",
+      rows: [
+        ["1", "ఒకటి", "ಒಂದು", "ஒன்று"], ["2", "రెండు", "ಎರಡು", "இரண்டு"], ["3", "మూడు", "ಮೂರು", "மூன்று"],
+        ["4", "నాలుగు", "ನಾಲ್ಕು", "நான்கு"], ["5", "ఐదు", "ಐದು", "ஐந்து"], ["6", "ఆరు", "ಆರು", "ஆறு"],
+        ["7", "ఏడు", "ಏಳು", "ஏழு"], ["8", "ఎనిమిది", "ಎಂಟು", "எட்டு"], ["9", "తొమ్మిది", "ಒಂಬತ್ತು", "ஒன்பது"],
+        ["10", "పది", "ಹತ್ತು", "பத்து"]
+      ]
+    },
+    { h: "11 to 19",
+      p: "Kannada builds teens on ಹದಿ- / ಹನ್- (“ten”), and Tamil on பதி- / பன்-. Telugu uses పద- / పన్-: the same root, with Kannada’s h- for p-.",
+      rows: [
+        ["11", "పదకొండు", "ಹನ್ನೊಂದು", "பதினொன்று"], ["12", "పన్నెండు", "ಹನ್ನೆರಡು", "பன்னிரண்டு"],
+        ["13", "పదమూడు", "ಹದಿಮೂರು", "பதின்மூன்று"], ["14", "పద్నాలుగు", "ಹದಿನಾಲ್ಕು", "பதினான்கு"],
+        ["15", "పదిహేను", "ಹದಿನೈದು", "பதினைந்து"], ["16", "పదహారు", "ಹದಿನಾರು", "பதினாறு"],
+        ["17", "పదిహేడు", "ಹದಿನೇಳು", "பதினேழு"], ["18", "పద్దెనిమిది", "ಹದಿನೆಂಟು", "பதினெட்டு"],
+        ["19", "పందొమ్మిది", "ಹತ್ತೊಂಬತ್ತು", "பத்தொன்பது"]
+      ]
+    },
+    { h: "Tens and big numbers",
+      rows: [
+        ["20", "ఇరవై", "ಇಪ್ಪತ್ತು", "இருபது"], ["30", "ముప్పై", "ಮೂವತ್ತು", "முப்பது"], ["40", "నలభై", "ನಲವತ್ತು", "நாற்பது"],
+        ["50", "యాభై", "ಐವತ್ತು", "ஐம்பது"], ["60", "అరవై", "ಅರವತ್ತು", "அறுபது"], ["70", "డెబ్బై", "ಎಪ್ಪತ್ತು", "எழுபது"],
+        ["80", "ఎనభై", "ಎಂಬತ್ತು", "எண்பது"], ["90", "తొంభై", "ತೊಂಬತ್ತು", "தொண்ணூறு"], ["100", "వంద / నూరు", "ನೂರು", "நூறு"],
+        ["200", "రెండు వందలు", "ಇನ್ನೂರು", "இருநூறு"], ["1,000", "వెయ్యి", "ಸಾವಿರ", "ஆயிரம்"],
+        ["1,00,000", "లక్ష", "ಲಕ್ಷ", "லட்சம்"], ["1,00,00,000", "కోటి", "ಕೋಟಿ", "கோடி"]
+      ],
+      tip: "Telugu tens end in -ఐ (ఇరవై, ముప్పై). Kannada tens end in -ಅತ್ತು (ಇಪ್ಪತ್ತು) and Tamil tens in -பது (இருபது). Same base number, different “ten” suffix."
+    },
+    { h: "Joining numbers and fractions",
+      rows: [
+        ["23", "ఇరవై మూడు", "ಇಪ್ಪತ್ಮೂರು", "இருபத்து மூன்று"],
+        ["101", "నూట ఒకటి", "ನೂರ ಒಂದು", "நூற்று ஒன்று"],
+        ["122", "నూట ఇరవై రెండు", "ನೂರ ಇಪ್ಪತ್ತೆರಡು", "நூற்று இருபத்திரண்டு"],
+        ["1,211", "వెయ్యి రెండు వందల పదకొండు", "ಒಂದು ಸಾವಿರದ ಇನ್ನೂರ ಹನ್ನೊಂದು", "ஆயிரத்து இருநூற்றுப் பதினொன்று"],
+        ["half", "అర", "ಅರ್ಧ / -ವರೆ", "அரை"],
+        ["quarter", "పావు", "ಕಾಲು", "கால்"],
+        ["3½ thousand", "మూడున్నర వేలు", "ಮೂರೂವರೆ ಸಾವಿರ", "மூன்றரை ஆயிரம்"],
+        ["2¼ lakh", "రెండుంపావు లక్షలు", "ಎರಡೂಕಾಲು ಲಕ್ಷ", "இரண்டே கால் லட்சம்"]
+      ]
+    },
+    { h: "Numbers with nouns",
+      p: "Before a noun, “one” shortens in Telugu and Tamil (ఒకటి → ఒక, ஒன்று → ஒரு). Kannada keeps ಒಂದು.",
+      rows: [
+        ["one fruit", "ఒక పండు", "ಒಂದು ಹಣ್ಣು", "ஒரு பழம்"],
+        ["two books", "రెండు పుస్తకాలు", "ಎರಡು ಪುಸ್ತಕಗಳು", "இரண்டு புத்தகங்கள்"],
+        ["ten people", "పది మంది", "ಹತ್ತು ಜನ", "பத்து பேர்"],
+        ["a hundred people", "వంద మంది", "ನೂರು ಜನ", "நூறு பேர்"],
+        ["four crore", "నాలుగు కోట్లు", "ನಾಲ್ಕು ಕೋಟಿ", "நான்கு கோடி"]
+      ],
+      tip: "Counting people uses a special word: Telugu మంది, Kannada ಜನ, Tamil பேர்."
+    },
+    { h: "Counting people",
+      rows: [
+        ["one man", "ఒకడు", "ಒಬ್ಬನು", "ஒருவன்"],
+        ["one woman", "ఒకతె / ఒకామె", "ಒಬ್ಬಳು", "ஒருத்தி"],
+        ["one person (resp.)", "ఒకరు", "ಒಬ್ಬರು", "ஒருவர்"],
+        ["two people", "ఇద్దరు", "ಇಬ್ಬರು", "இருவர் / இரண்டு பேர்"],
+        ["three people", "ముగ్గురు", "ಮೂವರು", "மூவர் / மூன்று பேர்"],
+        ["four people", "నలుగురు", "ನಾಲ್ವರು", "நால்வர் / நான்கு பேர்"],
+        ["five people", "ఐదుగురు", "ಐವರು", "ஐவர் / ஐந்து பேர்"]
+      ]
+    },
+    { h: "First, second, third",
+      cols: ["", "Telugu -వ", "Kannada -ಅನೆಯ", "Tamil -ஆவது / -ஆம்"],
+      rows: [
+        ["first book", "మొదటి పుస్తకం", "ಮೊದಲನೆಯ ಪುಸ್ತಕ", "முதல் புத்தகம்"],
+        ["second person", "రెండవ వ్యక్తి", "ಎರಡನೆಯ ವ್ಯಕ್ತಿ", "இரண்டாவது நபர்"],
+        ["third man", "మూడవ మనిషి", "ಮೂರನೆಯ ಮನುಷ್ಯ", "மூன்றாவது மனிதன்"],
+        ["I am the second son.", "నేను రెండవ కొడుకుని.", "ನಾನು ಎರಡನೆಯ ಮಗ.", "நான் இரண்டாவது மகன்."]
+      ],
+      tip: "“First” has a special word in all three, from “beginning”: మొదలు → మొదటి · ಮೊದಲು → ಮೊದಲನೆಯ · முதல்."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "causative", en: "Causatives: Making Someone Do", te: "ప్రేరణార్థకం", kn: "ಪ್ರೇರಣಾತ್ಮಕ ಪ್ರತ್ಯಯಗಳು", ta: "பிறவினை",
+  src: SRC + "causative-suffixes",
+  big: "Telugu makes “cause to do” with <b>-ించు / -పించు</b> (చేయించు, తినిపించు). Kannada has the same thing in <b>-ಇಸು</b> (ಮಾಡಿಸು, ತಿನ್ನಿಸು). Tamil usually says “put to do”: infinitive + <b>வை</b> (செய்ய வை, படிக்க வை).",
+  sections: [
+    { h: "Verb → make someone do it",
+      rows: [
+        ["make (someone) play", "ఆడించు", "ಆಡಿಸು", "விளையாட வை"],
+        ["make sing", "పాడించు", "ಹಾಡಿಸು", "பாட வை"],
+        ["make tell", "చెప్పించు", "ಹೇಳಿಸು", "சொல்ல வை"],
+        ["get (it) done", "చేయించు", "ಮಾಡಿಸು", "செய்ய வை"],
+        ["make read / educate", "చదివించు", "ಓದಿಸು", "படிக்க வை"],
+        ["feed (make eat)", "తినిపించు", "ತಿನ್ನಿಸು", "சாப்பிட வை / ஊட்டு"],
+        ["make laugh", "నవ్వించు", "ನಗಿಸು", "சிரிக்க வை"],
+        ["make cry", "ఏడిపించు", "ಅಳಿಸು", "அழ வை"],
+        ["seat (make sit)", "కూర్చోబెట్టు", "ಕೂರಿಸು", "உட்கார வை"],
+        ["make run / drive", "పరిగెత్తించు / నడుపు", "ಓಡಿಸು", "ஓட்டு"]
+      ],
+      tip: "Kannada ಓಡು “run” → ಓಡಿಸು “drive”. Tamil does it inside the word: ஓடு “run” → ஓட்டு “drive”."
+    },
+    { h: "Sanskrit-based verbs",
+      p: "Kannada verbs that already end in -ಇಸು (ರಕ್ಷಿಸು) take <b>-ಉವಂತೆ ಮಾಡು</b> (“make it so that…”) instead. Telugu says -ఏలా చేయు.",
+      rows: [
+        ["make (someone) protect", "రక్షించేలా చేయు", "ರಕ್ಷಿಸುವಂತೆ ಮಾಡು", "காப்பாற்றச் செய்"],
+        ["make (someone) worship", "పూజించేలా చేయు", "ಪೂಜಿಸುವಂತೆ ಮಾಡು", "பூஜை செய்ய வை"]
+      ]
+    },
+    { h: "Sentences",
+      rows: [
+        ["Make him read.", "అతన్ని చదివించు.", "ಅವನನ್ನು ಓದಿಸು.", "அவனைப் படிக்க வை."],
+        ["Make the dog eat.", "కుక్కకి తినిపించు.", "ನಾಯಿಗೆ ತಿನ್ನಿಸು.", "நாயைச் சாப்பிட வை."],
+        ["This is my book → These are our books.", "ఇది నా పుస్తకం → ఇవి మా పుస్తకాలు", "ಇದು ನನ್ನ ಪುಸ್ತಕ → ಇವು ನಮ್ಮ ಪುಸ್ತಕಗಳು", "இது என் புத்தகம் → இவை எங்கள் புத்தகங்கள்"],
+        ["This is her house.", "ఇది ఆమె ఇల్లు.", "ಇದು ಅವಳ ಮನೆ.", "இது அவளுடைய வீடு."],
+        ["This is the bird’s nest.", "ఇది పక్షి గూడు.", "ಇದು ಹಕ್ಕಿಯ ಗೂಡು.", "இது பறவையின் கூடு."]
+      ],
+      tip: "Telugu గూడు, Kannada ಗೂಡು and Tamil கூடு all mean “nest”. Tamil writes it with க but says “kūḍu”."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "modal", en: "May, Can, Must, If", te: "వివిధ క్రియా రూపాలు", kn: "ಕ್ರಿಯಾ ಪದಗಳ ವಿವಿಧ ರೂಪಗಳು", ta: "வினை வடிவங்கள்",
+  src: SRC + "the-potential-obligative-and-conditional-verbs",
+  big: "These four forms line up neatly. <b>may</b> = -వచ్చు · -ಬಹುದು · -லாம். <b>can</b> = -గలను · -ಬಲ್ಲೆ · (-ஆல்) முடியும். <b>must</b> = -ఆలి · -ಬೇಕು · -வேண்டும். <b>if</b> = -తే · -ದರೆ · -ஆல். Kannada ಬೇಕು and Tamil வேண்டும் are the same word (b ↔ v).",
+  sections: [
+    { h: "May (permission, possibility)",
+      rows: [
+        ["You may go.", "నువ్వు వెళ్ళవచ్చు.", "ನೀನು ಹೋಗಬಹುದು.", "நீ போகலாம்."],
+        ["You may come.", "నువ్వు రావచ్చు.", "ನೀನು ಬರಬಹುದು.", "நீ வரலாம்."],
+        ["He may read.", "అతను చదవవచ్చు.", "ಅವನು ಓದಬಹುದು.", "அவன் படிக்கலாம்."],
+        ["She may be there.", "ఆమె ఉండవచ్చు.", "ಅವಳು ಇರಬಹುದು.", "அவள் இருக்கலாம்."],
+        ["I may do (it).", "నేను చేయవచ్చు.", "ನಾನು ಮಾಡಬಹುದು.", "நான் செய்யலாம்."]
+      ],
+      tip: "Telugu -వచ్చు and Kannada -ಬಹುದು both literally mean “it may come” (వచ్చు ← రా, ಬಹುದು ← ಬರು)."
+    },
+    { h: "Can (ability)",
+      p: "Kannada ಬಲ್ಲ takes person endings, like Telugu గల. Tamil puts the doer in the instrumental (என்னால், “by me”) and uses முடியும் (“it is possible”). Compare Telugu నా వల్ల అవుతుంది.",
+      rows: [
+        ["I can come.", "నేను రాగలను.", "ನಾನು ಬರಬಲ್ಲೆ.", "என்னால் வர முடியும்."],
+        ["You can do (it).", "నువ్వు చేయగలవు.", "ನೀನು ಮಾಡಬಲ್ಲೆ.", "உன்னால் செய்ய முடியும்."],
+        ["He can read.", "అతను చదవగలడు.", "ಅವನು ಓದಬಲ್ಲ.", "அவனால் படிக்க முடியும்."],
+        ["She can come.", "ఆమె రాగలదు.", "ಅವಳು ಬರಬಲ್ಲಳು.", "அவளால் வர முடியும்."],
+        ["They can speak well.", "వాళ్ళు బాగా మాట్లాడగలరు.", "ಅವರು ಚೆನ್ನಾಗಿ ಮಾತಾಡಬಲ್ಲರು.", "அவர்களால் நன்றாகப் பேச முடியும்."]
+      ]
+    },
+    { h: "Must, should, want",
+      rows: [
+        ["You should do (it).", "నువ్వు చేయాలి.", "ನೀನು ಮಾಡಬೇಕು.", "நீ செய்ய வேண்டும்."],
+        ["They should come.", "వాళ్ళు రావాలి.", "ಅವರು ಬರಬೇಕು.", "அவர்கள் வர வேண்டும்."],
+        ["She should read.", "ఆమె చదవాలి.", "ಅವಳು ಓದಬೇಕು.", "அவள் படிக்க வேண்டும்."],
+        ["I must read (no choice).", "నేను చదవాల్సిందే.", "ನಾನು ಓದಲೇಬೇಕು.", "நான் படித்தே ஆக வேண்டும்."],
+        ["You must come.", "నువ్వు రావాల్సిందే.", "ನೀನು ಬರಲೇಬೇಕು.", "நீ வந்தே ஆக வேண்டும்."],
+        ["You (pl.) must go.", "మీరు వెళ్ళాల్సిందే.", "ನೀವು ಹೋಗಲೇಬೇಕು.", "நீங்கள் போயே ஆக வேண்டும்."],
+        ["I want (it).", "నాకు కావాలి.", "ನನಗೆ ಬೇಕು.", "எனக்கு வேண்டும்."],
+        ["I don’t want (it).", "నాకు వద్దు.", "ನನಗೆ ಬೇಡ.", "எனக்கு வேண்டாம்."]
+      ],
+      tip: "“Must” is made stronger with -ఏ / -ಏ / -ஏ in all three: రావాల్సిందే, ಬರಲೇಬೇಕು, வந்தே ஆக வேண்டும். Spoken Tamil shortens வேண்டும் to -ணும் (செய்யணும்)."
+    },
+    { h: "If, only if, even if",
+      cols: ["", "Telugu -తే · -తేనే · -నా", "Kannada -ದರೆ · -ದರೇನೇ · -ದರೂ", "Tamil -ஆல் · -ஆல்தான் · -ஆலும்"],
+      rows: [
+        ["If you do it, I’ll watch.", "నువ్వు చేస్తే నేను చూస్తాను.", "ನೀನು ಮಾಡಿದರೆ ನಾನು ನೋಡುತ್ತೇನೆ.", "நீ செய்தால் நான் பார்ப்பேன்."],
+        ["If he comes, I’ll go.", "అతను వస్తే నేను వెళ్తాను.", "ಅವನು ಬಂದರೆ ನಾನು ಹೋಗುತ್ತೇನೆ.", "அவன் வந்தால் நான் போவேன்."],
+        ["It’s good if you read books.", "నువ్వు పుస్తకాలు చదివితే మంచిది.", "ನೀನು ಪುಸ್ತಕ ಓದಿದರೆ ಒಳ್ಳೆಯದು.", "நீ புத்தகம் படித்தால் நல்லது."],
+        ["If you call, he will come.", "నువ్వు పిలిస్తే అతను వస్తాడు.", "ನೀನು ಕರೆದರೆ ಅವನು ಬರುತ್ತಾನೆ.", "நீ கூப்பிட்டால் அவன் வருவான்."],
+        ["We’ll give only if they ask.", "వాళ్ళు అడిగితేనే మేము ఇస్తాము.", "ಅವರು ಕೇಳಿದರೇನೇ ನಾವು ಕೊಡುತ್ತೇವೆ.", "அவர்கள் கேட்டால்தான் நாங்கள் கொடுப்போம்."],
+        ["He’ll buy a house only if I do.", "నేను ఇల్లు కొంటేనే అతను కొంటాడు.", "ನಾನು ಮನೆಯನ್ನು ಕೊಂಡುಕೊಂಡರೇನೇ ಅವನು ಕೊಂಡುಕೊಳ್ಳುತ್ತಾನೆ.", "நான் வீடு வாங்கினால்தான் அவன் வாங்குவான்."],
+        ["Even if you call, he won’t come.", "నువ్వు పిలిచినా అతను రాడు.", "ನೀನು ಕರೆದರೂ ಅವನು ಬರುವುದಿಲ್ಲ.", "நீ கூப்பிட்டாலும் அவன் வரமாட்டான்."]
+      ],
+      tip: "Telugu adds -తే to the verb stem (వస్తే, చదివితే). Kannada and Tamil add their ending to the past stem: ಬಂದ + ರೆ, வந்த + ால். If you know the past, you know the conditional."
+    }
+  ]
+});
+
+MODULES.push({
+  id: "questions", en: "Questions & Negatives", te: "ప్రశ్నార్థకాలు & వ్యతిరేకం", kn: "ಪ್ರಶ್ನಾರ್ಥಕ ಪದಗಳು", ta: "வினாச்சொற்கள் & எதிர்மறை",
+  src: SRC + "the-interrogatives",
+  big: "Telugu has a neat “that / this / which” system: అక్కడ / ఇక్కడ / ఎక్కడ. Tamil has exactly the same one: அங்கே / இங்கே / எங்கே. Kannada uses ಅಲ್ಲಿ / ಇಲ್ಲಿ / ಎಲ್ಲಿ. For negatives, all three keep two words apart: “not there” (లేదు · ಇಲ್ಲ · இல்லை) and “not so” (కాదు · ಅಲ್ಲ · அல்ல).",
+  sections: [
+    { h: "The a- / i- / e- system",
+      cols: ["", "Telugu (that · this · which)", "Kannada", "Tamil"],
+      rows: [
+        ["there · here · where", "అక్కడ · ఇక్కడ · ఎక్కడ", "ಅಲ್ಲಿ · ಇಲ್ಲಿ · ಎಲ್ಲಿ", "அங்கே · இங்கே · எங்கே"],
+        ["then · now · when", "అప్పుడు · ఇప్పుడు · ఎప్పుడు", "ಆಗ · ಈಗ · ಯಾವಾಗ", "அப்போது · இப்போது · எப்போது"],
+        ["that much · this much · how much", "అంత · ఇంత · ఎంత", "ಅಷ್ಟು · ಇಷ್ಟು · ಎಷ್ಟು", "அவ்வளவு · இவ்வளவு · எவ்வளவு"],
+        ["that way · this way · how", "అలా · ఇలా · ఎలా", "ಹಾಗೆ · ಹೀಗೆ · ಹೇಗೆ", "அப்படி · இப்படி · எப்படி"],
+        ["that · this · which (adj.)", "ఆ · ఈ · ఏ", "ಆ · ಈ · ಯಾವ", "அந்த · இந்த · எந்த"]
+      ]
+    },
+    { h: "Other question words",
+      rows: [
+        ["what?", "ఏమిటి? / ఏం?", "ಏನು?", "என்ன?"],
+        ["why?", "ఎందుకు?", "ಏಕೆ? / ಯಾಕೆ?", "ஏன்?"],
+        ["who?", "ఎవరు?", "ಯಾರು?", "யார்?"],
+        ["how many?", "ఎన్ని?", "ಎಷ್ಟು?", "எத்தனை?"],
+        ["What do you want?", "మీకు ఏం కావాలి?", "ನಿಮಗೇನು ಬೇಕು?", "உங்களுக்கு என்ன வேண்டும்?"],
+        ["Why did you come here?", "ఇక్కడికి ఎందుకు వచ్చావు?", "ಇಲ್ಲಿಗೆ ಏಕೆ ಬಂದೆ?", "இங்கே ஏன் வந்தாய்?"],
+        ["How far are you going?", "ఎంత దూరం వెళ్తున్నారు?", "ಎಷ್ಟು ದೂರ ಹೋಗುತ್ತಿದ್ದೀರಿ?", "எவ்வளவு தூரம் போகிறீர்கள்?"],
+        ["Where are you going?", "ఎక్కడికి వెళ్తున్నారు?", "ಎಲ್ಲಿಗೆ ಹೋಗುತ್ತಿದ್ದೀರಿ?", "எங்கே போகிறீர்கள்?"],
+        ["How are you?", "ఎలా ఉన్నారు?", "ಹೇಗಿದ್ದೀರಿ?", "எப்படி இருக்கிறீர்கள்?"],
+        ["Who are they?", "వాళ్ళు ఎవరు?", "ಅವರು ಯಾರು?", "அவர்கள் யார்?"],
+        ["What is your name?", "మీ పేరు ఏమిటి?", "ನಿಮ್ಮ ಹೆಸರೇನು?", "உங்கள் பெயர் என்ன?"]
+      ]
+    },
+    { h: "Yes / no: add -ఆ · -ಆ / -ಏ · -ஆ",
+      rows: [
+        ["Will he (resp.) come today?", "ఆయన ఈరోజు వస్తారా?", "ಅವರು ಈ ದಿನ ಬರುತ್ತಾರೆಯೇ?", "அவர் இன்று வருவாரா?"],
+        ["Do you read books?", "నువ్వు పుస్తకాలు చదువుతావా?", "ನೀನು ಪುಸ್ತಕ ಓದುತ್ತೀಯಾ?", "நீ புத்தகம் படிக்கிறாயா?"],
+        ["Which is your home town? Mangaluru?", "మీ సొంత ఊరు ఏది? మంగళూరా?", "ನಿಮ್ಮ ಸ್ವಂತ ಊರು ಯಾವುದು? ಮಂಗಳೂರೇ?", "உங்கள் சொந்த ஊர் எது? மங்களூரா?"]
+      ]
+    },
+    { h: "Not there (లేదు · ಇಲ್ಲ · இல்லை)",
+      p: "Good news for Telugu speakers: Telugu లేదు changes with the person (లేను, లేవు, లేడు, లేరు). Kannada ಇಲ್ಲ and Tamil இல்லை never change.",
+      rows: [
+        ["The book is with me.", "ఆ పుస్తకం నా దగ్గర ఉంది.", "ಆ ಪುಸ್ತಕ ನನ್ನ ಬಳಿ ಇದೆ.", "அந்தப் புத்தகம் என்னிடம் இருக்கிறது."],
+        ["The book is not with me.", "ఆ పుస్తకం నా దగ్గర లేదు.", "ಆ ಪುಸ್ತಕ ನನ್ನ ಬಳಿ ಇಲ್ಲ.", "அந்தப் புத்தகம் என்னிடம் இல்லை."],
+        ["There are houses there.", "అక్కడ ఇళ్ళు ఉన్నాయి.", "ಅಲ್ಲಿ ಮನೆಗಳಿವೆ.", "அங்கே வீடுகள் இருக்கின்றன."],
+        ["There are no houses there.", "అక్కడ ఇళ్ళు లేవు.", "ಅಲ್ಲಿ ಮನೆಗಳಿಲ್ಲ.", "அங்கே வீடுகள் இல்லை."],
+        ["He is not at home.", "అతను ఇంట్లో లేడు.", "ಅವನು ಮನೆಯಲ್ಲಿಲ್ಲ.", "அவன் வீட்டில் இல்லை."],
+        ["I know.", "నాకు తెలుసు.", "ನನಗೆ ಗೊತ್ತು.", "எனக்குத் தெரியும்."],
+        ["I don’t know.", "నాకు తెలియదు.", "ನನಗೆ ಗೊತ್ತಿಲ್ಲ.", "எனக்குத் தெரியாது."]
+      ]
+    },
+    { h: "Not so (కాదు · ಅಲ್ಲ · அல்ல)",
+      rows: [
+        ["That book is mine.", "ఆ పుస్తకం నాది.", "ಆ ಪುಸ್ತಕ ನನ್ನದು.", "அந்தப் புத்தகம் என்னுடையது."],
+        ["That book is not mine.", "ఆ పుస్తకం నాది కాదు.", "ಆ ಪುಸ್ತಕ ನನ್ನದಲ್ಲ.", "அந்தப் புத்தகம் என்னுடையது அல்ல."],
+        ["That is not a good village.", "అది మంచి ఊరు కాదు.", "ಅದು ಒಳ್ಳೆಯ ಊರಲ್ಲ.", "அது நல்ல ஊர் அல்ல."]
+      ],
+      tip: "In everyday Tamil, இல்லை often replaces அல்ல too: என்னுடையது இல்லை."
+    },
+    { h: "Negative verbs",
+      p: "Future and habit: Telugu has its own negative endings (రాను, రాడు). Kannada adds <b>-ಉವುದಿಲ್ಲ</b> (spoken -ಅಲ್ಲ: ಬರಲ್ಲ). Tamil adds <b>மாட்டு-</b> with person endings (வரமாட்டேன்). Past: all three use infinitive + “not”: రాలేదు · ಬರಲಿಲ್ಲ · வரவில்லை.",
+      rows: [
+        ["I won’t play today.", "నేను ఈరోజు ఆడను.", "ನಾನು ಇವತ್ತು ಆಡುವುದಿಲ್ಲ.", "நான் இன்று விளையாட மாட்டேன்."],
+        ["He will not come tomorrow.", "అతను రేపు రాడు.", "ಅವನು ನಾಳೆ ಬರುವುದಿಲ್ಲ.", "அவன் நாளை வரமாட்டான்."],
+        ["He doesn’t walk.", "అతను నడవడు.", "ಅವನು ನಡೆಯುವುದಿಲ್ಲ.", "அவன் நடப்பதில்லை."],
+        ["I did not read that book.", "నేను ఆ పుస్తకం చదవలేదు.", "ನಾನು ಆ ಪುಸ್ತಕ ಓದಲಿಲ್ಲ.", "நான் அந்தப் புத்தகத்தைப் படிக்கவில்லை."],
+        ["She did not come to my house.", "ఆమె మా ఇంటికి రాలేదు.", "ಅವಳು ನಮ್ಮ ಮನೆಗೆ ಬರಲಿಲ್ಲ.", "அவள் எங்கள் வீட்டுக்கு வரவில்லை."],
+        ["I was not at home.", "నేను ఇంట్లో లేను.", "ನಾನು ಮನೆಯಲ್ಲಿ ಇರಲಿಲ್ಲ.", "நான் வீட்டில் இருக்கவில்லை."]
+      ]
+    },
+    { h: "Don’t! (prohibitive)",
+      cols: ["", "Telugu -కు · -కండి", "Kannada -ಬೇಡ · -ಬೇಡಿ", "Tamil -ஆதே · -ஆதீர்கள்"],
+      rows: [
+        ["Do the work well.", "పని బాగా చేయండి.", "ಕೆಲಸ ಚೆನ್ನಾಗಿ ಮಾಡಿ.", "வேலையை நன்றாகச் செய்யுங்கள்."],
+        ["Don’t do the work.", "పని చేయకండి.", "ಕೆಲಸ ಮಾಡಬೇಡಿ.", "வேலையைச் செய்யாதீர்கள்."],
+        ["Come to our house.", "మా ఇంటికి రా.", "ನಮ್ಮ ಮನೆಗೆ ಬಾ.", "எங்கள் வீட்டுக்கு வா."],
+        ["Don’t come to our house.", "మా ఇంటికి రాకు.", "ನಮ್ಮ ಮನೆಗೆ ಬರಬೇಡ.", "எங்கள் வீட்டுக்கு வராதே."],
+        ["Don’t laugh at me.", "నన్ను చూసి నవ్వకు.", "ನನ್ನನ್ನು ನೋಡಿ ನಗಬೇಡ.", "என்னைப் பார்த்துச் சிரிக்காதே."]
+      ],
+      tip: "Kannada “don’t” is literally “not needed”: ಮಾಡಬೇಡ = ಮಾಡ + ಬೇಡ. Telugu says it the same way in చేయవద్దు."
+    },
+    { h: "Not-done (negative participle)",
+      rows: [
+        ["work he didn’t do", "అతను చేయని పని", "ಅವನು ಮಾಡದ ಕೆಲಸ", "அவன் செய்யாத வேலை"],
+        ["the book she didn’t read", "ఆమె చదవని పుస్తకం", "ಅವಳು ಓದದ ಪುಸ್ತಕ", "அவள் படிக்காத புத்தகம்"]
+      ]
+    }
+  ]
+});
+
+MODULES.push({
+  id: "spoken", en: "Written vs Spoken", te: "గ్రాంథికం & వ్యావహారికం", kn: "ಲಿಖಿತ ಮತ್ತು ಆಡು ಮಾತಿನ ರೀತಿಗಳು", ta: "எழுத்துத் தமிழ் & பேச்சுத் தமிழ்",
+  src: SRC + "the-written-and-spoken-styles",
+  big: "You know this split from Telugu: చేస్తున్నాను is written, చేస్తున్నా is spoken. Kannada’s gap is small and regular: vowels drop (ಬರುತ್ತಾನೆ → ಬರ್ತಾನೆ). Tamil’s gap is the widest of the three: books say வருகிறேன், people say வர்றேன். Learn written forms to read, spoken forms to talk.",
+  sections: [
+    { h: "Verbs: written → spoken",
+      cols: ["", "Telugu", "Kannada", "Tamil"],
+      rows: [
+        ["he comes", "వస్తాడు", "ಬರುತ್ತಾನೆ → ಬರ್ತಾನೆ", "வருகிறான் → வர்றான்"],
+        ["she does", "చేస్తుంది", "ಮಾಡುತ್ತಾಳೆ → ಮಾಡ್ತಾಳೆ", "செய்கிறாள் → செய்யறா"],
+        ["I will do", "చేస్తాను → చేస్తా", "ಮಾಡುತ್ತೇನೆ → ಮಾಡ್ತೀನಿ", "செய்வேன் → செய்வேன் / பண்றேன்"],
+        ["I did", "చేశాను → చేశా", "ಮಾಡಿದೆನು → ಮಾಡ್ದೆ", "செய்தேன் → செஞ்சேன்"],
+        ["he laughs", "నవ్వుతాడు", "ನಗುತ್ತಾನೆ → ನಗ್ತಾನೆ", "சிரிக்கிறான் → சிரிக்கறான்"],
+        ["he writes", "రాస్తాడు", "ಬರೆಯುತ್ತಾನೆ → ಬರೀತಾನೆ", "எழுதுகிறான் → எழுதுறான்"],
+        ["let it come", "రానీ", "ಬರಲಿ → ಬರ್ಲಿ", "வரட்டும்"],
+        ["sit", "కూర్చో", "ಕುಳಿತುಕೊಳ್ಳು → ಕೂತ್ಕೋ", "உட்கார் → உக்காரு"],
+        ["bring (it)", "తీసుకురా", "ತೆಗೆದುಕೊಂಡು ಬಾ → ತಗೊಂಡ್ಬಾ", "எடுத்துக்கொண்டு வா → எடுத்துட்டு வா"],
+        ["to do", "చేయడానికి", "ಮಾಡುವುದಕ್ಕೆ → ಮಾಡೋಕ್ಕೆ", "செய்வதற்கு → செய்யறதுக்கு"],
+        ["it’s not possible for me", "నా వల్ల కాదు", "ನನ್ನಿಂದ ಆಗುವುದಿಲ್ಲ → ನನ್ನಿಂದಾಗೋಲ್ಲ", "என்னால் முடியாது → என்னால முடியாது"]
+      ]
+    },
+    { h: "Words and nouns: written → spoken",
+      rows: [
+        ["not needed", "వద్దు", "ಬೇಡ → ಬ್ಯಾಡ", "வேண்டாம் → வேணாம்"],
+        ["needed", "కావాలి", "ಬೇಕು", "வேண்டும் → வேணும்"],
+        ["why", "ఎందుకు", "ಏಕೆ → ಯಾಕೆ", "ஏன்"],
+        ["how", "ఎలా", "ಹೇಗೆ → ಹೆಂಗೆ", "எப்படி → எப்டி"],
+        ["that way", "అలా", "ಹಾಗೆ → ಹಂಗೆ", "அப்படி → அப்டி"],
+        ["very", "చాలా", "ಬಹಳ → ಬಾಳ", "மிகவும் → ரொம்ப"],
+        ["boy", "అబ్బాయి", "ಹುಡುಗನು → ಹುಡ್ಗ", "பையன்"],
+        ["girls", "అమ్మాయిలు", "ಹುಡುಗಿಯರು → ಹುಡ್ಗೀರು", "பெண்கள் → பொண்ணுங்க"],
+        ["children", "పిల్లలు", "ಮಕ್ಕಳು → ಮಕ್ಳು", "குழந்தைகள் → கொழந்தைங்க"],
+        ["in the house", "ఇంటిలో → ఇంట్లో", "ಮನೆಯಲ್ಲಿ → ಮನೇಲಿ", "வீட்டில் → வீட்ல"],
+        ["on the wall", "గోడ మీద", "ಗೋಡೆಯ ಮೇಲೆ → ಗೋಡೇಮೇಲೆ", "சுவரின் மேல் → செவுத்து மேல"],
+        ["to the child", "పిల్లకి", "ಮಗುವಿಗೆ → ಮಗೀಗೆ", "குழந்தைக்கு → கொழந்தைக்கு"]
+      ]
+    },
+    { h: "Sentences: written → spoken",
+      rows: [
+        ["He came.", "అతను వచ్చాడు → వాడొచ్చాడు", "ಅವನು ಬಂದನು → ಅವನ್ ಬಂದ", "அவன் வந்தான் → அவன் வந்தான்"],
+        ["I saw the girl.", "నేను అమ్మాయిని చూశాను → చూశా", "ಹುಡುಗಿಯನ್ನು ನೋಡಿದೆನು → ಹುಡುಗೀನ ನೋಡ್ದೆ", "நான் பெண்ணைப் பார்த்தேன் → பொண்ணப் பாத்தேன்"],
+        ["I ate the fruit.", "నేను పండు తిన్నాను → తిన్నా", "ಹಣ್ಣನ್ನು ತಿಂದೆನು → ಹಣ್ಣು ತಿಂದೆ", "நான் பழம் சாப்பிட்டேன் → பழம் சாப்ட்டேன்"],
+        ["I came from Mysuru.", "నేను మైసూరు నుండి వచ్చాను → మైసూర్నుంచి వచ్చా", "ಮೈಸೂರಿನಿಂದ ಬಂದೆನು → ಮೈಸೂರಿಂದ ಬಂದೆ", "நான் மைசூரிலிருந்து வந்தேன் → மைசூர்லேர்ந்து வந்தேன்"]
+      ],
+      tip: "Five Tamil speech rules cover most of it: -கிறேன் → -றேன், -இல் → -ல, -ஐ → -அ, -கள் → -ங்க, and final -ம் is half-swallowed (மரம் ≈ “marõ”)."
+    }
+  ]
+});
+
+const SOUNDS = {
+  id: "sounds", en: "Sound Shortcuts", te: "ధ్వని సూత్రాలు", kn: "ಧ್ವನಿ ಸೂತ್ರಗಳು", ta: "ஒலி விதிகள்",
+  big: "All three languages come from one Dravidian parent, so words shifted in regular ways. Learn these patterns and you can often guess a Kannada or Tamil word from the Telugu one.",
+  sections: [
+    { h: "1 · Kannada h- = Telugu / Tamil p-",
+      rows: [
+        ["milk", "పాలు", "ಹಾಲು", "பால்"], ["tiger", "పులి", "ಹುಲಿ", "புலி"], ["snake", "పాము", "ಹಾವು", "பாம்பு"],
+        ["song", "పాట", "ಹಾಡು", "பாட்டு"], ["ten", "పది", "ಹತ್ತು", "பத்து"], ["name", "పేరు", "ಹೆಸರು", "பெயர்"],
+        ["flower", "పువ్వు", "ಹೂವು", "பூ"], ["tooth", "పన్ను / పల్లు", "ಹಲ್ಲು", "பல்"], ["cow", "ఆవు / పశువు", "ಹಸು", "பசு"],
+        ["old", "పాత", "ಹಳೆಯ", "பழைய"], ["new", "కొత్త", "ಹೊಸ", "புதிய"]
+      ],
+      tip: "This holds for native Dravidian words. Sanskrit and English loans keep p- in Kannada (ಪುಸ್ತಕ, ಪೆನ್ನು). In the last two rows the Telugu word is unrelated; the match is between Kannada and Tamil."
+    },
+    { h: "2 · Kannada b- = Tamil v-",
+      rows: [
+        ["come!", "రా", "ಬಾ", "வா"], ["butter", "వెన్న", "ಬೆಣ್ಣೆ", "வெண்ணெய்"], ["silver", "వెండి", "ಬೆಳ್ಳಿ", "வெள்ளி"],
+        ["root", "వేరు", "ಬೇರು", "வேர்"], ["bow", "విల్లు", "ಬಿಲ್ಲು", "வில்"], ["banana plant", "అరటి", "ಬಾಳೆ", "வாழை"],
+        ["fall", "పడు", "ಬೀಳು", "விழு"], ["needed", "కావాలి", "ಬೇಕು", "வேண்டும்"], ["not needed", "వద్దు", "ಬೇಡ", "வேண்டாம்"]
+      ],
+      tip: "Telugu usually keeps v- (వెన్న, వెండి, వేరు, విల్లు, వల), so Tamil v- words often look familiar."
+    },
+    { h: "3 · Telugu -a = Kannada -e = Tamil -ai",
+      rows: [
+        ["head", "తల", "ತಲೆ", "தலை"], ["wave", "అల", "ಅಲೆ", "அலை"], ["net", "వల", "ಬಲೆ", "வலை"],
+        ["art", "కళ", "ಕಲೆ", "கலை"], ["father’s sister", "అత్త", "ಅತ್ತೆ", "அத்தை"], ["price", "వెల", "ಬೆಲೆ", "விலை"]
+      ]
+    },
+    { h: "4 · Telugu ḍ ≈ Kannada ḷ ≈ Tamil ḻ",
+      rows: [
+        ["seven", "ఏడు", "ಏಳು", "ஏழு"], ["hen", "కోడి", "ಕೋಳಿ", "கோழி"], ["fruit", "పండు", "ಹಣ್ಣು", "பழம்"],
+        ["shade", "నీడ", "ನೆರಳು", "நிழல்"], ["Tamil", "తమిళం", "ತಮಿಳು", "தமிழ்"]
+      ]
+    },
+    { h: "5 · Tamil drops the final -u",
+      rows: [
+        ["village", "ఊరు", "ಊರು", "ஊர்"], ["water", "నీరు", "ನೀರು", "நீர்"], ["eye", "కన్ను", "ಕಣ್ಣು", "கண்"],
+        ["leg", "కాలు", "ಕಾಲು", "கால்"], ["hand", "చెయ్యి", "ಕೈ", "கை"], ["salt", "ఉప్పు", "ಉಪ್ಪು", "உப்பு"]
+      ],
+      tip: "Exception: Tamil keeps -u after doubled consonants (உப்பு, பத்து)."
+    },
+    { h: "6 · Telugu -ం = Kannada -a = Tamil -ம்",
+      rows: [
+        ["book", "పుస్తకం", "ಪುಸ್ತಕ", "புத்தகம்"], ["village", "గ్రామం", "ಗ್ರಾಮ", "கிராமம்"], ["country", "దేశం", "ದೇಶ", "தேசம்"],
+        ["knowledge", "జ్ఞానం", "ಜ್ಞಾನ", "ஞானம்"], ["time", "సమయం", "ಸಮಯ", "சமயம் / நேரம்"]
+      ]
+    },
+    { h: "7 · False friends",
+      cols: ["Word", "Telugu meaning", "Kannada meaning", "Tamil meaning"],
+      noRead: true,
+      rows: [
+        ["makkaḷ", "—", "ಮಕ್ಕಳು = children", "மக்கள் = people"],
+        ["tā", "తే / తీసుకురా = bring", "ತಾ = bring", "தா = give (me)"],
+        ["vēḷa / vēlai", "వేళ = time", "ಕೆಲಸ = work", "வேலை = work"],
+        ["āḍu", "ఆడు = play", "ಆಡು = play", "ஆடு = dance (also: goat)"],
+        ["kēḷ", "విను / అడుగు", "ಕೇಳು = hear, ask", "கேள் = hear, ask"],
+        ["kaḍe / kaḍai", "—", "ಕಡೆ = side, direction", "கடை = shop"]
+      ]
+    }
+  ]
+};
+
+/* ---------- Script conversion ---------- */
+// Kannada -> Telugu script: the two Unicode blocks are aligned, so this is exact.
+function knToTe(s) {
+  let o = "";
+  for (const ch of s) {
+    const c = ch.codePointAt(0);
+    o += (c >= 0x0C80 && c <= 0x0CFF) ? String.fromCodePoint(c - 0x80) : ch;
+  }
+  return o;
+}
+function teToKn(s) {
+  let o = "";
+  for (const ch of s) {
+    const c = ch.codePointAt(0);
+    o += (c >= 0x0C00 && c <= 0x0C7F) ? String.fromCodePoint(c + 0x80) : ch;
+  }
+  return o;
+}
+
+// Tamil -> Telugu-script pronunciation, applying Tamil voicing rules.
+const TA_V = { "அ":"అ","ஆ":"ఆ","இ":"ఇ","ஈ":"ఈ","உ":"ఉ","ஊ":"ఊ","எ":"ఎ","ஏ":"ఏ","ஐ":"ఐ","ஒ":"ఒ","ஓ":"ఓ","ஔ":"ఔ" };
+const TA_S = { "ா":"ా","ி":"ి","ீ":"ీ","ு":"ు","ூ":"ూ","ெ":"ె","ே":"ే","ை":"ై","ொ":"ొ","ோ":"ో","ௌ":"ౌ","்":"్" };
+const TA_C = { "ங":"ఙ","ஞ":"ఞ","ண":"ణ","ந":"న","ன":"న","ம":"మ","ய":"య","ர":"ర","ல":"ల","வ":"వ","ள":"ళ","ழ":"ఴ","ஜ":"జ","ஶ":"శ","ஷ":"ష","ஸ":"స","ஹ":"హ","ற":"ఱ" };
+const TA_STOP = { "க":["క","గ","క"], "ச":["స","స","చ","జ"], "ட":["ట","డ","ట"], "த":["త","ద","త"], "ப":["ప","బ","ప"] };
+const TA_NASAL = new Set(["ங","ஞ","ண","ந","ன","ம"]);
+const TA_HARD = new Set(["க","ச","ட","த","ப","ற","ஷ","ஸ","ஶ"]);
+const TA_HOMORG = { "ங":"க", "ஞ":"ச", "ண":"ட", "ந":"த", "ம":"ப", "ன":"ற" };
+const TA_WORDS = { "சென்னை":"చెన్నై", "சென்னையை":"చెన్నైయై", "சின்ன":"చిన్న", "சின்னது":"చిన్నదు", "காபி":"కాపి", "அஃறிணை":"అహ్ఱిణై", "சீக்கிரம்":"సీక్కిరమ్" };
+
+function taUnits(word) {
+  const u = [];
+  const chars = [...word];
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    if (TA_STOP[ch] || TA_C[ch] || ch === "க") {
+      let sign = "";
+      if (TA_S[chars[i + 1]]) { sign = chars[i + 1]; i++; }
+      u.push({ t: "c", c: ch, s: sign });
+    } else if (TA_V[ch]) u.push({ t: "v", v: ch });
+    else if (ch === "ஃ") u.push({ t: "x", raw: "హ్" });
+    else u.push({ t: "x", raw: ch });
+  }
+  return u;
+}
+
+function taWord(word, prevWordEnd) {
+  if (TA_WORDS[word]) return TA_WORDS[word];
+  const u = taUnits(word);
+  let out = "";
+  for (let i = 0; i < u.length; i++) {
+    const x = u[i], prev = u[i - 1] || null, next = u[i + 1] || null;
+    if (x.t === "v") { out += TA_V[x.v]; continue; }
+    if (x.t === "x") { out += x.raw; continue; }
+    const pulli = x.s === "்";
+    // nasal + homorganic stop -> anusvara
+    if (pulli && TA_NASAL.has(x.c) && next && next.t === "c" && TA_HOMORG[x.c] === next.c && !(prev && prev.t === "c" && prev.s === "்")) { out += "ం"; continue; }
+    let base;
+    if (TA_STOP[x.c]) {
+      const m = TA_STOP[x.c];
+      let mode; // 0 initial, 1 soft, 2 hard (geminate), 3 voiced after nasal
+      if (pulli) mode = 2; // a stop with no vowel is always voiceless (க்க, ட்க, final ட்)
+      else if (!prev) mode = (prevWordEnd && prevWordEnd.c === x.c && prevWordEnd.s === "்") ? 2 : 0;
+      else if (prev.t === "c" && prev.s === "்") {
+        if (prev.c === x.c) mode = 2;
+        else if (TA_NASAL.has(prev.c)) mode = 3;
+        else if (TA_HARD.has(prev.c)) mode = 2;
+        else mode = 1;
+      } else mode = 1;
+      if (x.c === "ச") base = mode === 0 ? "స" : mode === 1 ? "స" : mode === 2 ? "చ" : "జ";
+      else base = mode === 0 || mode === 2 ? m[0] : m[1];
+    } else if (x.c === "ற") {
+      if (prev && prev.t === "c" && prev.s === "்" && prev.c === "ன") base = "డ్ర";
+      else if (prev && prev.t === "c" && prev.s === "்" && prev.c === "ற") base = "ర";
+      else if (pulli && next && next.t === "c" && next.c === "ற") { out += "ట్"; continue; }
+      else if (pulli && next && next.t === "c") { out += "ర్"; continue; }
+      else base = "ఱ";
+    } else base = TA_C[x.c];
+    out += base + (x.s ? TA_S[x.s] : "");
+  }
+  return out;
+}
+
+function taToTe(s) {
+  // "|" marks a compound boundary; split into words while keeping separators
+  const parts = s.split(/([\s|.,?!;:()\/·→—“”"'-]+)/);
+  let out = "", lastUnits = null;
+  for (const p of parts) {
+    if (!p) continue;
+    if (/^[\s|.,?!;:()\/·→—“”"'-]+$/.test(p)) {
+      out += p.replace(/\|/g, "");
+      if (/[^\s|]/.test(p.replace(/\|/g, ""))) lastUnits = null; // punctuation breaks gemination
+      continue;
+    }
+    if (!/[஀-௿]/.test(p)) { out += p; lastUnits = null; continue; }
+    const prevEnd = lastUnits && lastUnits.length ? lastUnits[lastUnits.length - 1] : null;
+    out += taWord(p, prevEnd && prevEnd.t === "c" ? prevEnd : null);
+    lastUnits = taUnits(p);
+  }
+  return out;
+}
+
+// Telugu -> Tamil letters (approximate, letter by letter) for the converter tool
+const TE_TA_C = { "క":"க","ఖ":"க","గ":"க","ఘ":"க","ఙ":"ங","చ":"ச","ఛ":"ச","జ":"ஜ","ఝ":"ஜ","ఞ":"ஞ","ట":"ட","ఠ":"ட","డ":"ட","ఢ":"ட","ణ":"ண","త":"த","థ":"த","ద":"த","ధ":"த","న":"ந","ప":"ப","ఫ":"ப","బ":"ப","భ":"ப","మ":"ம","య":"ய","ర":"ர","ఱ":"ற","ల":"ல","వ":"வ","శ":"ஶ","ష":"ஷ","స":"ஸ","హ":"ஹ","ళ":"ள","ఴ":"ழ" };
+const TE_ROW = c => "కఖగఘఙ".includes(c) ? "ங்" : "చఛజఝఞ".includes(c) ? "ஞ்" : "టఠడఢణ".includes(c) ? "ண்" : "తథదధన".includes(c) ? "ந்" : "ம்";
+function teToTa(s) {
+  const ch = [...s]; let o = "";
+  for (let i = 0; i < ch.length; i++) {
+    const c = ch[i], cp = c.codePointAt(0);
+    if (TE_TA_C[c]) {
+      let t = TE_TA_C[c];
+      if (c === "న") {
+        const prevIsLetter = i > 0 && /[ఀ-౿]/.test(ch[i - 1]);
+        const nextCons = ch[i + 1] === "్" ? ch[i + 2] : null;
+        if (prevIsLetter && !(nextCons && "తథదధ".includes(nextCons))) t = "ன";
+      }
+      o += t;
+    } else if (c === "ం") o += TE_ROW(ch[i + 1] || "");
+    else if (c === "ః") o += "ஃ";
+    else if (c === "ఋ") o += "ரு";
+    else if (c === "ృ") o += "்ரு";
+    else if (cp >= 0x0C05 && cp <= 0x0C14) o += String.fromCodePoint(cp - 0x80);
+    else if (cp >= 0x0C3E && cp <= 0x0C4D) o += String.fromCodePoint(cp - 0x80);
+    else if (cp >= 0x0C66 && cp <= 0x0C6F) o += String.fromCodePoint(cp - 0x80);
+    else o += c;
+  }
+  return o;
+}
+
+
+/* ---------- Rendering helpers ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const zha = s => esc(s).replace(/ఴ/g, '<span class="zha" title="Tamil ழ (zh)">ళ</span>');
+const clean = s => s.replace(/\|/g, "");
+
+function cell(lang, text, override, noRead) {
+  const native = esc(clean(text));
+  if (noRead || text === "—") return `<span class="nat">${native}</span>`;
+  let reading = lang === "kn" ? knToTe(text) : (override || taToTe(text));
+  reading = lang === "kn" ? esc(reading) : zha(reading);
+  return `<span class="nat">${native}</span><span class="rd" aria-label="Telugu reading">${reading}</span>`;
+}
+
+const JUDGE = `<span class="judge" role="group" aria-label="How did you do?"><button type="button" class="j-ok" data-j="1">✓ Knew it</button><button type="button" class="j-no" data-j="-1">✗ Missed</button></span>`;
+
+function table(sec, pageId, si) {
+  const cols = sec.cols || ["", "తెలుగు", "ಕನ್ನಡ", "தமிழ்"];
+  const sc = (pageId && S.scores[pageId]) || {};
+  const head = `<thead><tr><th class="c-en" scope="col">${esc(cols[0] || "Meaning")}</th><th class="c-te" scope="col">${esc(cols[1])}</th><th class="c-kn" scope="col">${esc(cols[2])}</th><th class="c-ta" scope="col">${esc(cols[3])}</th></tr></thead>`;
+  const body = sec.rows.map((r, ri) => {
+    const key = si + "." + ri, mark = sc[key] || {};
+    const cls = l => mark[l] === 1 ? " k-ok" : mark[l] === -1 ? " k-no" : "";
+    const scoreable = l => pageId && r[l === "kn" ? 2 : 3] !== "—";
+    return `<tr>
+      <td class="c-en" data-l="Meaning">${esc(r[0])}</td>
+      <td class="c-te" data-l="తెలుగు"><span class="nat">${esc(r[1])}</span></td>
+      <td class="c-kn hide-able${cls("kn")}" data-l="ಕನ್ನಡ"${scoreable("kn") ? ` data-k="${key}" data-lg="kn"` : ""}>${cell("kn", r[2], null, sec.noRead)}${scoreable("kn") ? JUDGE : ""}</td>
+      <td class="c-ta hide-able${cls("ta")}" data-l="தமிழ்"${scoreable("ta") ? ` data-k="${key}" data-lg="ta"` : ""}>${cell("ta", r[3], r[4], sec.noRead)}${scoreable("ta") ? JUDGE : ""}</td>
+    </tr>`;
+  }).join("");
+  return `<div class="tablewrap"><table class="cmp">${head}<tbody>${body}</tbody></table></div>`;
+}
+
+function sectionHTML(pageId) {
+  return (sec, i) => `<section class="sec" id="s${i}">
+    <h2>${esc(sec.h)}</h2>
+    ${sec.p ? `<p class="lede">${sec.p}</p>` : ""}
+    ${table(sec, pageId, i)}
+    ${sec.tip ? `<aside class="tip"><span class="tip-k">Telugu shortcut</span><p>${sec.tip}</p></aside>` : ""}
+  </section>`;
+}
+
+const GROUPS = [
+  { name: "Reading the script", ids: ["alphabet", "vowel-signs", "clusters"] },
+  { name: "First sentences", ids: ["imperative", "pronouns", "nouns", "verbless"] },
+  { name: "Tenses", ids: ["present", "past", "future"] },
+  { name: "Building longer sentences", ids: ["cases", "participles", "adjectives", "numerals"] },
+  { name: "Verb power-ups", ids: ["causative", "modal", "questions"] },
+  { name: "Real-world use", ids: ["spoken"] }
+];
+const LANGS = { kn: "Kannada", ta: "Tamil" };
+const STATUS = ["Not started", "Learning", "Done"];
+
+/* ---------- On-device memory ---------- */
+// Uses the native Preferences store inside the iOS/Android app, and browser storage on the web.
+const KV = (() => {
+  const P = () => { try { return window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Preferences; } catch (e) { return null; } };
+  const KEY = "sb_state";
+  return {
+    async load() {
+      try { const p = P(); if (p) { const r = await p.get({ key: KEY }); if (r && r.value) return JSON.parse(r.value); } } catch (e) {}
+      try { const v = localStorage.getItem(KEY); return v ? JSON.parse(v) : null; } catch (e) { return null; }
+    },
+    save(obj) {
+      const s = JSON.stringify(obj);
+      try { localStorage.setItem(KEY, s); } catch (e) {}
+      try { const p = P(); if (p) p.set({ key: KEY, value: s }); } catch (e) {}
+    }
+  };
+})();
+
+const blank = () => ({ v: 2, status: {}, scores: {}, notes: {}, days: {}, prefs: { lang: "both", read: true, practice: false }, last: null, lastPath: "home" });
+let S = blank();
+let saveTimer = null;
+function save(now) {
+  clearTimeout(saveTimer);
+  if (now) KV.save(S); else saveTimer = setTimeout(() => KV.save(S), 250);
+}
+function legacy() {
+  // carry over "done" marks from the first version of the site
+  try {
+    const d = JSON.parse(localStorage.getItem("sb_done") || "{}");
+    for (const k in d) if (d[k]) S.status[k] = { kn: 2, ta: 2 };
+    const lang = JSON.parse(localStorage.getItem("sb_lang") || "null"); if (lang) S.prefs.lang = lang;
+  } catch (e) {}
+}
+const today = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+function activity(n = 1) { const t = today(); S.days[t] = (S.days[t] || 0) + n; save(); }
+function streak() {
+  let n = 0; const d = new Date();
+  if (!S.days[today(d)]) d.setDate(d.getDate() - 1); // a streak survives until the end of today
+  while (S.days[today(d)]) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+const st = (id, l) => (S.status[id] && S.status[id][l]) || 0;
+function setStatus(id, l, v) { S.status[id] = S.status[id] || { kn: 0, ta: 0 }; S.status[id][l] = v; activity(); }
+function rowTotal(m, l) { let n = 0; m.sections.forEach(s => s.rows.forEach(r => { if (r[l === "kn" ? 2 : 3] !== "—") n++; })); return n; }
+function scoreOf(id, l) {
+  const sc = S.scores[id] || {}; let ok = 0, no = 0;
+  for (const k in sc) { if (sc[k][l] === 1) ok++; else if (sc[k][l] === -1) no++; }
+  return { ok, no, seen: ok + no };
+}
+
+/* ---------- Preferences ---------- */
+const root = document.documentElement;
+function applyPrefs() {
+  const p = S.prefs;
+  root.dataset.lang = p.lang;
+  root.dataset.read = p.read ? "on" : "off";
+  root.dataset.practice = p.practice ? "on" : "off";
+  document.querySelectorAll("[data-set-lang]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.setLang === p.lang)));
+  document.getElementById("t-read").checked = p.read;
+  document.getElementById("t-practice").checked = p.practice;
+}
+
+/* ---------- Views ---------- */
+const view = document.getElementById("view");
+const dots = id => `<span class="dots" aria-label="Kannada ${STATUS[st(id, "kn")]}, Tamil ${STATUS[st(id, "ta")]}"><i class="d d-kn s${st(id, "kn")}"></i><i class="d d-ta s${st(id, "ta")}"></i></span>`;
+
+// The learning path: one straight line. Every page has exactly one Back and one Next.
+const PATH = ["home"].concat(MODULES.map(m => m.id), ["sounds"]);
+const OFF = { progress: "My Progress", tool: "Script Converter", map: "Learning Path" };
+function pageName(id) {
+  if (id === "home") return "Start";
+  if (id === "sounds") return "Sound Shortcuts";
+  const m = MODULES.find(m => m.id === id); return m ? m.en : OFF[id] || "";
+}
+function counts() {
+  const r = { kn: 0, ta: 0 };
+  for (const m of MODULES) for (const l of ["kn", "ta"]) if (st(m.id, l) === 2) r[l]++;
+  return r;
+}
+function renderFlow(active) {
+  const bar = document.getElementById("flow");
+  let back = null, next = null;
+  const i = PATH.indexOf(active);
+  if (i >= 0) {
+    if (i > 0) back = PATH[i - 1];
+    next = i < PATH.length - 1 ? PATH[i + 1] : "progress";
+  } else {
+    back = S.lastPath || "home"; // off-path pages return to where you were
+  }
+  const a = (id, dir) => id ? `<a class="fl fl-${dir}" href="#${id}"><small>${dir === "back" ? "← Back" : "Next →"}</small><span>${esc(pageName(id))}</span></a>` : `<span class="fl fl-${dir} fl-none" aria-hidden="true"></span>`;
+  bar.innerHTML = `${a(back, "back")}
+    <a class="fl-map${active === "map" ? " on" : ""}" href="#map" aria-label="Learning path map"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="18" cy="12" r="2.4"/><circle cx="6" cy="19" r="2.4"/><path d="M8 6.2 15.8 10.8M15.8 13.2 8 17.8" fill="none" stroke-width="1.8"/></svg><span>Path</span></a>
+    ${a(next, "next")}`;
+  const c = counts();
+  document.getElementById("mini").innerHTML = `<span class="pk">ಕನ್ನಡ ${c.kn}/${MODULES.length}</span><span class="pt">தமிழ் ${c.ta}/${MODULES.length}</span><span class="ps">${streak()}-day streak</span>`;
+}
+
+function renderMap() {
+  const here = S.lastPath || "home";
+  // nodes in path order, with a stage header before each group
+  const items = [{ t: "node", id: "home", n: "▶", title: "Start here", sub: "How the course works" }];
+  GROUPS.forEach(g => {
+    items.push({ t: "stage", label: g.name });
+    g.ids.forEach(id => { const i = MODULES.findIndex(m => m.id === id), m = MODULES[i]; items.push({ t: "node", id, n: String(i + 1).padStart(2, "0"), title: m.en, sub: m.kn + "  ·  " + m.ta, mod: true }); });
+  });
+  items.push({ t: "stage", label: "Bonus" });
+  items.push({ t: "node", id: "sounds", n: "★", title: "Sound Shortcuts", sub: "Guess words from Telugu" });
+  items.push({ t: "node", id: "progress", n: "✓", title: "Finish: My Progress", sub: "Review what you missed" });
+  const W = 360, X = 30, NH = 58, GAP = 30, SH = 30;
+  let y = 14, svg = "", pos = [];
+  for (const it of items) {
+    if (it.t === "stage") { svg += `<text class="g-stage" x="${X + 30}" y="${y + 20}">${esc(it.label.toUpperCase())}</text>`; y += SH; continue; }
+    pos.push({ it, y }); y += NH + GAP;
+  }
+  const H = y - GAP + 14;
+  // edges first, so nodes draw on top
+  let edges = "";
+  for (let k = 0; k < pos.length - 1; k++) {
+    const y1 = pos[k].y + NH / 2 + 15, y2 = pos[k + 1].y + NH / 2 - 17;
+    const done = pos[k].it.mod ? (st(pos[k].it.id, "kn") === 2 && st(pos[k].it.id, "ta") === 2) : false;
+    edges += `<line class="g-edge${done ? " g-done" : ""}" x1="${X}" y1="${y1}" x2="${X}" y2="${y2}" marker-end="url(#arr)"/>`;
+  }
+  let nodes = "";
+  for (const { it, y } of pos) {
+    const cy = y + NH / 2, isHere = it.id === here;
+    const sk = it.mod ? st(it.id, "kn") : -1, stt = it.mod ? st(it.id, "ta") : -1;
+    const both = sk === 2 && stt === 2;
+    const stateTxt = it.mod ? `Kannada ${STATUS[sk]}, Tamil ${STATUS[stt]}` : "";
+    nodes += `<a href="#${it.id}" class="g-node${isHere ? " here" : ""}${both ? " done" : ""}" aria-label="${esc(it.title)}${stateTxt ? ". " + stateTxt : ""}${isHere ? ". You are here" : ""}">
+      <rect class="g-card" x="${X + 26}" y="${y}" width="${W - X - 34}" height="${NH}" rx="10"/>
+      <circle class="g-dot" cx="${X}" cy="${cy}" r="15"/>
+      <text class="g-num" x="${X}" y="${cy + 4.5}" text-anchor="middle">${both ? "✓" : esc(it.n)}</text>
+      <text class="g-title" x="${X + 40}" y="${y + 24}">${esc(it.title)}</text>
+      <text class="g-sub" x="${X + 40}" y="${y + 43}">${esc(it.sub)}</text>
+      ${it.mod ? `<circle class="g-s g-kn s${sk}" cx="${W - 34}" cy="${y + 19}" r="5"/><circle class="g-s g-ta s${stt}" cx="${W - 20}" cy="${y + 19}" r="5"/>` : ""}
+      ${isHere ? `<text class="g-here" x="${W - 14}" y="${y + 47}" text-anchor="end">YOU ARE HERE</text>` : ""}
+    </a>`;
+  }
+  view.innerHTML = `<article class="mod map">
+    <header class="mod-h"><p class="eyebrow">Learning path</p><h1>Your route through the course</h1>
+      <p class="lede">Follow the arrows from top to bottom. Tap any step to jump straight to it. The two small dots on each step show your <span class="c-kn">Kannada</span> and <span class="c-ta">Tamil</span> status: hollow = not started, half = learning, filled = done.</p></header>
+    <div class="map-tools"><a class="btn" href="#${here === "home" ? "alphabet" : here}">${here === "home" ? "Start module 1" : "Continue: " + esc(pageName(here))}</a><a class="btn btn-2" href="#progress">My Progress</a><a class="btn btn-2" href="#tool">Script Converter</a></div>
+    <div class="graph"><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Learning path: ${pos.length} steps in order">
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" class="g-arrow"/></marker></defs>
+      ${svg}${edges}${nodes}</svg></div>
+  </article>`;
+  const h = view.querySelector(".g-node.here");
+  if (h) setTimeout(() => { const r = h.getBoundingClientRect(); window.scrollTo(0, Math.max(0, window.scrollY + r.top - window.innerHeight / 3)); }, 30);
+}
+
+function titleTrio(m) {
+  return `<div class="trio"><span class="pill p-te">${esc(m.te)}</span><span class="pill p-kn">${esc(m.kn)}</span><span class="pill p-ta">${esc(m.ta)}</span></div>`;
+}
+
+function statusPanel(id, m) {
+  const seg = l => `<div class="stat stat-${l}"><span class="stat-l">${l === "kn" ? "ಕನ್ನಡ" : "தமிழ்"} <small>${LANGS[l]}</small></span>
+    <div class="seg seg-s" role="group" aria-label="${LANGS[l]} status">${STATUS.map((s, v) => `<button type="button" data-st="${l}" data-v="${v}" aria-pressed="${st(id, l) === v}">${s}</button>`).join("")}</div>
+    ${scoreLine(id, m, l)}</div>`;
+  return `<div class="panel" id="status-panel"><h2 class="panel-h">Your progress on this module</h2>${seg("kn")}${seg("ta")}</div>`;
+}
+function scoreLine(id, m, l) {
+  const s = scoreOf(id, l), t = rowTotal(m, l);
+  return `<p class="score">Practice: <b>${s.ok}</b> known, <b>${s.no}</b> missed, ${t - s.seen} not tried yet</p>`;
+}
+
+function practiceBar(id) {
+  return `<div class="pbar" id="pbar"><p><b>Practice mode is on.</b> Tap a blurred Kannada or Tamil cell to reveal it, then mark whether you knew it. Your marks are saved on this device.</p>
+    <button type="button" class="link-btn" id="clear-practice">Clear practice marks for this module</button></div>`;
+}
+
+function renderModule(id) {
+  const i = MODULES.findIndex(m => m.id === id);
+  const m = MODULES[i];
+  const g = GROUPS.find(g => g.ids.includes(id));
+  if (S.last !== id) { S.last = id; activity(); }
+  view.innerHTML = `<article class="mod">
+    <header class="mod-h">
+      <p class="eyebrow">Module ${i + 1} of ${MODULES.length} · ${esc(g.name)}</p>
+      <h1>${esc(m.en)}</h1>
+      ${titleTrio(m)}
+    </header>
+    <div class="big"><span class="big-k">The big idea</span><p>${m.big}</p></div>
+    ${S.prefs.practice ? practiceBar(id) : ""}
+    ${m.sections.map(sectionHTML(id)).join("")}
+    <footer class="mod-f">
+      ${statusPanel(id, m)}
+      <div class="panel"><label class="panel-h" for="note">My notes</label>
+        <textarea id="note" rows="4" placeholder="Words to remember, tricky forms, questions for a native speaker…">${esc(S.notes[id] || "")}</textarea>
+        <p class="hint" id="note-state">Saved on this device as you type.</p></div>
+      <p class="src">Lesson sequence and Kannada examples follow <a href="${m.src}" target="_blank" rel="noopener">Kannada Kalike: ${esc(m.kn)}</a>. Telugu and Tamil equivalents added here.</p>
+    </footer>
+  </article>`;
+  wireModule(id, m);
+}
+
+function wireModule(id, m) {
+  document.querySelectorAll("[data-st]").forEach(b => b.onclick = () => {
+    setStatus(id, b.dataset.st, +b.dataset.v);
+    document.getElementById("status-panel").outerHTML = statusPanel(id, m);
+    wireModule(id, m); refresh();
+  });
+  const note = document.getElementById("note");
+  if (note && !note.dataset.wired) {
+    note.dataset.wired = "1";
+    let t;
+    note.oninput = () => {
+      S.notes[id] = note.value; save();
+      clearTimeout(t); t = setTimeout(() => { activity(); document.getElementById("note-state").textContent = "Saved."; }, 800);
+    };
+  }
+  const clr = document.getElementById("clear-practice");
+  if (clr) clr.onclick = () => { delete S.scores[id]; save(); renderModule(id); };
+}
+
+function renderSounds() {
+  const m = SOUNDS;
+  view.innerHTML = `<article class="mod">
+    <header class="mod-h"><p class="eyebrow">Bonus · Pattern spotting</p><h1>${esc(m.en)}</h1>${titleTrio(m)}</header>
+    <div class="big"><span class="big-k">The big idea</span><p>${m.big}</p></div>
+    ${S.prefs.practice ? practiceBar("sounds") : ""}
+    ${m.sections.map(sectionHTML("sounds")).join("")}
+  </article>`;
+  const clr = document.getElementById("clear-practice");
+  if (clr) clr.onclick = () => { delete S.scores.sounds; save(); renderSounds(); };
+}
+
+function calendarHTML() {
+  // 12 weeks, columns = weeks, rows = Mon..Sun, ending this week
+  const end = new Date(); const dow = (end.getDay() + 6) % 7;
+  const start = new Date(end); start.setDate(end.getDate() - dow - 7 * 11);
+  let cells = "";
+  for (let w = 0; w < 12; w++) for (let d = 0; d < 7; d++) {
+    const day = new Date(start); day.setDate(start.getDate() + w * 7 + d);
+    const k = today(day), n = S.days[k] || 0, future = day > end;
+    const lv = future ? "f" : n === 0 ? 0 : n < 3 ? 1 : n < 8 ? 2 : n < 20 ? 3 : 4;
+    cells += `<i class="cal-c l${lv}" style="grid-column:${w + 1};grid-row:${d + 1}" title="${k}: ${n} activit${n === 1 ? "y" : "ies"}"></i>`;
+  }
+  const active = Object.keys(S.days).filter(k => S.days[k]).length;
+  return `<div class="cal" aria-label="Study activity over the last 12 weeks">${cells}</div>
+    <div class="cal-key"><span>Less</span><i class="cal-c l0"></i><i class="cal-c l1"></i><i class="cal-c l2"></i><i class="cal-c l3"></i><i class="cal-c l4"></i><span>More</span><span class="cal-tot">${active} day${active === 1 ? "" : "s"} studied in total</span></div>`;
+}
+
+function reviewList() {
+  const items = [];
+  for (const m of MODULES.concat([SOUNDS])) {
+    const sc = S.scores[m.id]; if (!sc) continue;
+    for (const k in sc) for (const l of ["kn", "ta"]) if (sc[k][l] === -1) {
+      const [si, ri] = k.split(".").map(Number); const r = m.sections[si] && m.sections[si].rows[ri]; if (!r) continue;
+      items.push({ m, l, r });
+    }
+  }
+  if (!items.length) return `<p class="empty">Nothing to review yet. Turn on <b>Practice</b>, open a module, reveal cells and mark the ones you missed. They will collect here.</p>`;
+  return `<ul class="rev">${items.slice(0, 40).map(x => `<li><a href="#${x.m.id}" class="rev-m">${esc(x.m.en)}</a>
+     <span class="rev-en">${esc(x.r[0])}</span><span class="rev-te">${esc(x.r[1])}</span>
+     <span class="rev-a rev-${x.l}">${esc(clean(x.r[x.l === "kn" ? 2 : 3]))}<small>${x.l === "kn" ? esc(knToTe(x.r[2])) : zha(x.r[4] || taToTe(x.r[3]))}</small></span></li>`).join("")}</ul>
+     ${items.length > 40 ? `<p class="hint">Showing 40 of ${items.length}.</p>` : ""}`;
+}
+
+function renderProgress() {
+  const c = counts(), N = MODULES.length;
+  let ok = { kn: 0, ta: 0 }, seen = { kn: 0, ta: 0 };
+  MODULES.forEach(m => ["kn", "ta"].forEach(l => { const s = scoreOf(m.id, l); ok[l] += s.ok; seen[l] += s.seen; }));
+  const pct = l => seen[l] ? Math.round(ok[l] / seen[l] * 100) + "%" : "–";
+  const learning = l => MODULES.filter(m => st(m.id, l) === 1).length;
+  const nextUp = MODULES.find(m => st(m.id, "kn") < 2 || st(m.id, "ta") < 2);
+  const rows = MODULES.map((m, i) => {
+    const sk = scoreOf(m.id, "kn"), stt = scoreOf(m.id, "ta");
+    const chip = l => `<span class="chip-s c-${l} s${st(m.id, l)}">${STATUS[st(m.id, l)]}</span>`;
+    const sc = s => s.seen ? `${s.ok}/${s.seen}` : "–";
+    return `<tr><td class="pt-n">${String(i + 1).padStart(2, "0")}</td><td class="pt-m"><a href="#${m.id}">${esc(m.en)}</a>${S.notes[m.id] ? ' <span class="has-note" title="Has notes">✎</span>' : ""}</td>
+      <td class="pt-kn">${chip("kn")}<small>${sc(sk)}</small></td><td class="pt-ta">${chip("ta")}<small>${sc(stt)}</small></td></tr>`;
+  }).join("");
+  view.innerHTML = `<article class="mod prog">
+    <header class="mod-h"><p class="eyebrow">Saved on this device</p><h1>My Progress</h1>
+      <div class="trio"><span class="pill p-te">నా ప్రగతి</span><span class="pill p-kn">ನನ್ನ ಪ್ರಗತಿ</span><span class="pill p-ta">என் முன்னேற்றம்</span></div></header>
+    <div class="tiles">
+      <div class="tile t-kn"><span class="tile-k">Kannada</span><span class="tile-v">${c.kn}<small>/${N}</small></span><span class="tile-s">modules done · ${learning("kn")} in progress</span><div class="bar"><i style="--p:${c.kn / N * 100}%"></i></div></div>
+      <div class="tile t-ta"><span class="tile-k">Tamil</span><span class="tile-v">${c.ta}<small>/${N}</small></span><span class="tile-s">modules done · ${learning("ta")} in progress</span><div class="bar"><i style="--p:${c.ta / N * 100}%"></i></div></div>
+      <div class="tile t-st"><span class="tile-k">Study streak</span><span class="tile-v">${streak()}<small> day${streak() === 1 ? "" : "s"}</small></span><span class="tile-s">${S.days[today()] ? "You studied today." : "Open a module today to keep it going."}</span></div>
+      <div class="tile t-pr"><span class="tile-k">Practice accuracy</span><span class="tile-v pr-v"><span class="c-kn">${pct("kn")}</span><span class="c-ta">${pct("ta")}</span></span><span class="tile-s">Kannada · Tamil, from ${seen.kn + seen.ta} marked answers</span></div>
+    </div>
+    ${nextUp ? `<a class="next-up" href="#${nextUp.id}"><small>Up next</small>${esc(nextUp.en)} <span>${esc(nextUp.kn)} · ${esc(nextUp.ta)}</span></a>` : `<p class="next-up done-all">All 18 modules are done in both languages. Keep practising with the review list below.</p>`}
+    <section class="sec"><h2>Activity</h2>${calendarHTML()}</section>
+    <section class="sec"><h2>Every module</h2>
+      <div class="tablewrap"><table class="ptab"><thead><tr><th></th><th>Module</th><th class="c-kn">ಕನ್ನಡ</th><th class="c-ta">தமிழ்</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <p class="hint">Numbers under each status are practice answers known out of marked.</p></section>
+    <section class="sec"><h2>Review list</h2><p class="lede">Answers you marked as missed. Go back to the module and practise them again; marking one “Knew it” removes it from this list.</p>${reviewList()}</section>
+    <section class="sec"><h2>Backup</h2>
+      <p class="lede">Your progress lives only on this device. To move it to another phone or browser, copy the backup code here and paste it there.</p>
+      <div class="bk">
+        <button type="button" class="btn" id="bk-copy">Copy backup code</button>
+        <label class="tl" for="bk-in">Restore from a backup code</label>
+        <textarea id="bk-in" rows="3" placeholder="Paste a backup code here"></textarea>
+        <div class="bk-row"><button type="button" class="btn btn-2" id="bk-restore">Restore</button><button type="button" class="link-btn danger" id="bk-reset">Reset all progress</button></div>
+        <p class="hint" id="bk-msg" aria-live="polite"></p>
+      </div></section>
+  </article>`;
+  const msg = t => document.getElementById("bk-msg").textContent = t;
+  document.getElementById("bk-copy").onclick = async () => {
+    const code = JSON.stringify(S);
+    try { await navigator.clipboard.writeText(code); msg("Backup code copied. Paste it into My Progress on your other device."); }
+    catch (e) { const ta = document.getElementById("bk-in"); ta.value = code; ta.focus(); ta.select(); msg("Copying isn’t allowed here, so the code is selected in the box. Copy it from there."); }
+  };
+  document.getElementById("bk-restore").onclick = () => {
+    try {
+      const o = JSON.parse(document.getElementById("bk-in").value.trim());
+      if (!o || o.v !== 2 || typeof o.status !== "object") throw 0;
+      S = Object.assign(blank(), o); save(true); applyPrefs(); renderProgress(); refresh();
+      document.getElementById("bk-msg").textContent = "Progress restored.";
+    } catch (e) { msg("That doesn’t look like a Sodara Bhashalu backup code. Copy the whole code and try again."); }
+  };
+  let armed = false;
+  document.getElementById("bk-reset").onclick = e => {
+    if (!armed) { armed = true; e.target.textContent = "Tap again to erase everything"; setTimeout(() => { armed = false; if (e.target.isConnected) e.target.textContent = "Reset all progress"; }, 4000); return; }
+    const prefs = S.prefs; S = blank(); S.prefs = prefs; save(true); renderProgress(); refresh(); msg("All progress erased.");
+  };
+}
+
+function renderTool() {
+  view.innerHTML = `<article class="mod">
+    <header class="mod-h"><p class="eyebrow">Tool</p><h1>Script Converter</h1>
+      <div class="trio"><span class="pill p-te">లిపి మార్పిడి</span><span class="pill p-kn">ಲಿಪಿ ಪರಿವರ್ತಕ</span><span class="pill p-ta">எழுத்து மாற்றி</span></div></header>
+    <div class="big"><span class="big-k">How it works</span><p>Type or paste in any of the three scripts. Telugu becomes Kannada letter for letter, which is exact because the two alphabets match. Telugu to Tamil is approximate, since Tamil has fewer letters. Kannada or Tamil text is shown back in Telugu script so you can read it aloud.</p></div>
+    <label class="tl" for="tool-in">Your text</label>
+    <textarea id="tool-in" rows="3" spellcheck="false">నేను రేపు మీ ఇంటికి వస్తాను</textarea>
+    <div class="chips" role="group" aria-label="Examples">
+      <button type="button" class="chip" data-ex="నేను రేపు మీ ఇంటికి వస్తాను">Telugu sample</button>
+      <button type="button" class="chip" data-ex="ನಾನು ನಾಳೆ ನಿಮ್ಮ ಮನೆಗೆ ಬರುತ್ತೇನೆ">Kannada sample</button>
+      <button type="button" class="chip" data-ex="நான் நாளை உங்கள் வீட்டுக்கு வருவேன்">Tamil sample</button>
+    </div>
+    <div class="out" id="tool-out" aria-live="polite"></div>
+  </article>`;
+  const inp = document.getElementById("tool-in"), out = document.getElementById("tool-out");
+  const run = () => {
+    const s = inp.value;
+    const hasTe = /[ఀ-౿]/.test(s), hasKn = /[ಀ-೿]/.test(s), hasTa = /[஀-௿]/.test(s);
+    let h = "";
+    if (hasTe) {
+      h += `<div class="o o-kn"><span class="o-k">Kannada script (exact)</span><p class="o-v">${esc(teToKn(s))}</p></div>`;
+      h += `<div class="o o-ta"><span class="o-k">Tamil letters (approximate)</span><p class="o-v">${esc(teToTa(s))}</p><p class="o-n">Letter-for-letter only. Real Tamil words often differ: the Telugu ఇంటికి is வீட்டுக்கு in Tamil.</p></div>`;
+    }
+    if (hasKn) h += `<div class="o o-kn"><span class="o-k">Kannada read in Telugu script</span><p class="o-v">${esc(knToTe(s))}</p></div>`;
+    if (hasTa) h += `<div class="o o-ta"><span class="o-k">Tamil read in Telugu script</span><p class="o-v">${zha(taToTe(s))}</p><p class="o-n">Applies Tamil’s k/g, t/d, p/b rules. An underlined <span class="zha">ళ</span> is Tamil ழ.</p></div>`;
+    if (!h) h = `<p class="o-n">Type something in Telugu, Kannada or Tamil script to see it converted.</p>`;
+    out.innerHTML = h;
+  };
+  inp.addEventListener("input", run);
+  document.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => { inp.value = b.dataset.ex; run(); });
+  run();
+}
+
+function renderHome() {
+  const groups = GROUPS.map(g => `<div class="hg"><h3>${esc(g.name)}</h3><ol class="hl">${g.ids.map(id => {
+    const i = MODULES.findIndex(m => m.id === id), m = MODULES[i];
+    return `<li><a href="#${id}"><span class="hl-n">${String(i + 1).padStart(2, "0")}</span><span class="hl-t">${esc(m.en)}<small>${esc(m.te)} · ${esc(m.kn)} · ${esc(m.ta)}</small></span>${dots(id)}</a></li>`;
+  }).join("")}</ol></div>`).join("");
+  const last = S.last && MODULES.find(m => m.id === S.last);
+  const c = counts();
+  const resume = last ? `<a class="resume" href="#${last.id}"><span class="resume-k">Continue where you left off</span><span class="resume-t">${esc(last.en)}</span>
+      <span class="resume-s">ಕನ್ನಡ ${c.kn}/${MODULES.length} · தமிழ் ${c.ta}/${MODULES.length} · ${streak()}-day streak</span></a>` : "";
+  view.innerHTML = `<article class="home">
+    ${resume}
+    <section class="hero">
+      <p class="eyebrow">For people who already speak Telugu</p>
+      <h1>Learn Kannada and Tamil through the Telugu you already know.</h1>
+      <div class="bridge" aria-label="The word milk in three languages">
+        <div class="b b-te"><span class="b-w">పాలు</span><span class="b-l">Telugu</span></div>
+        <div class="b b-kn"><span class="b-w">ಹಾಲು</span><span class="b-r">హాలు</span><span class="b-l">Kannada</span></div>
+        <div class="b b-ta"><span class="b-w">பால்</span><span class="b-r">పాల్</span><span class="b-l">Tamil</span></div>
+      </div>
+      <p class="hero-p">All three are Dravidian sisters. Each of the 18 grammar modules below puts a Telugu pattern next to its Kannada and Tamil equivalents, in native script with a Telugu-script reading underneath, so you can say every word before you can read the new letters.</p>
+      <div class="cta"><a class="btn" href="#${last ? last.id : "alphabet"}">${last ? "Continue learning" : "Start with the alphabet"}</a></div>
+    </section>
+    <section class="howto">
+      <h2>How to read the tables</h2>
+      <div class="demo">${table({ rows: [["I came.", "నేను వచ్చాను.", "ನಾನು ಬಂದೆ.", "நான் வந்தேன்."]] }, null, 0)}</div>
+      <ul class="keys">
+        <li><b>Big letters</b> show how the word is spelled in Kannada or Tamil.</li>
+        <li><b>Small Telugu letters</b> underneath show how to say it. Turn them off once you can read the script.</li>
+        <li><b>Practice mode</b> hides the answers. Tap a cell to reveal it, then mark “Knew it” or “Missed”. Missed answers collect in My Progress.</li>
+        <li><b>Your progress stays on this device:</b> module status for each language, practice marks, notes and your daily streak.</li>
+      </ul>
+    </section>
+    <section class="mods"><h2>Your learning path</h2><p class="lede">The course is one straight path: the alphabet first, then 18 grammar modules in six stages, then a bonus page. Use <b>Next</b> at the bottom of each page to move forward and <b>Back</b> to go back one step. To jump anywhere, open the <b>Path</b> map in the middle of the bottom bar.</p>
+      <ol class="stages">${GROUPS.map((g, k) => `<li><span class="stg-n">${k + 1}</span><span class="stg-t">${esc(g.name)}<small>${g.ids.length} module${g.ids.length > 1 ? "s" : ""}</small></span></li>`).join('<li class="stg-arr" aria-hidden="true">↓</li>')}</ol>
+      <a class="btn btn-2" href="#map">Open the learning path map</a></section>
+    <p class="src">The grammar sequence and Kannada examples follow the 18 “Learn Basics” modules of <a href="https://kannadakalike.org/grammar-modules.php" target="_blank" rel="noopener">Kannada Kalike</a> (Kannada Language Chair, JNU). Telugu equivalents, Tamil equivalents and the Telugu-script readings were added for this course.</p>
+  </article>`;
+}
+
+function route() {
+  const id = (location.hash || "#home").slice(1);
+  let active = "home";
+  if (MODULES.some(m => m.id === id)) { renderModule(id); active = id; }
+  else if (id === "sounds") { renderSounds(); active = "sounds"; }
+  else if (id === "tool") { renderTool(); active = "tool"; }
+  else if (id === "progress") { renderProgress(); active = "progress"; }
+  else if (id === "map") { renderMap(); active = "map"; }
+  else renderHome();
+  if (PATH.includes(active) && S.lastPath !== active) { S.lastPath = active; save(); }
+  renderFlow(active);
+  if (active !== "map") window.scrollTo(0, 0);
+}
+function refresh() { const id = (location.hash || "#home").slice(1); renderFlow(PATH.includes(id) || OFF[id] ? id : "home"); }
+
+/* ---------- Wiring ---------- */
+document.querySelectorAll("[data-set-lang]").forEach(b => b.onclick = () => { S.prefs.lang = b.dataset.setLang; save(); applyPrefs(); });
+document.getElementById("t-read").onchange = e => { S.prefs.read = e.target.checked; save(); applyPrefs(); };
+document.getElementById("t-practice").onchange = e => { S.prefs.practice = e.target.checked; save(); applyPrefs(); const y = window.scrollY; route(); window.scrollTo(0, y); };
+
+view.addEventListener("click", e => {
+  const j = e.target.closest(".judge button");
+  if (j) {
+    const td = j.closest("td"), id = (location.hash || "#home").slice(1), k = td.dataset.k, l = td.dataset.lg, v = +j.dataset.j;
+    S.scores[id] = S.scores[id] || {}; S.scores[id][k] = S.scores[id][k] || {};
+    if (S.scores[id][k][l] === v) delete S.scores[id][k][l]; else S.scores[id][k][l] = v;
+    if (MODULES.some(m => m.id === id) && st(id, l) === 0) setStatus(id, l, 1);
+    activity();
+    td.classList.toggle("k-ok", S.scores[id][k][l] === 1);
+    td.classList.toggle("k-no", S.scores[id][k][l] === -1);
+    const m = MODULES.find(m => m.id === id);
+    if (m) { document.getElementById("status-panel").outerHTML = statusPanel(id, m); wireModule(id, m); }
+    refresh();
+    return;
+  }
+  const td = e.target.closest("td.hide-able");
+  if (td && root.dataset.practice === "on") td.classList.toggle("revealed");
+});
+window.addEventListener("hashchange", route);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") save(true); });
+window.addEventListener("pagehide", () => save(true));
+
+(async () => {
+  const saved = await KV.load();
+  if (saved && saved.v === 2) S = Object.assign(blank(), saved); else { legacy(); save(); }
+  applyPrefs();
+  route();
+})();
+
+</script>

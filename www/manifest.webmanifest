@@ -1,0 +1,29 @@
+{
+  "name": "Sodara Bhashalu: Kannada & Tamil for Telugu speakers",
+  "short_name": "Sodara",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F5F7",
+  "theme_color": "#3443B0",
+  "lang": "en",
+  "description": "Learn Kannada and Tamil grammar through Telugu, with progress tracking on your device.",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

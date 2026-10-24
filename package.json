@@ -1,0 +1,31 @@
+{
+  "name": "sodara-bhashalu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Learn Kannada and Tamil through Telugu. Offline app with on-device progress tracking.",
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "serve": "python3 -m http.server 8080 --directory www",
+    "sync": "npm run build && cap sync",
+    "android": "npm run sync && cap open android",
+    "ios": "npm run sync && cap open ios",
+    "apk": "npm run sync && cd android && ./gradlew assembleDebug",
+    "aab": "npm run sync && cd android && ./gradlew bundleRelease",
+    "icons": "capacitor-assets generate --ios --android --iconBackgroundColor '#3443B0' --iconBackgroundColorDark '#3443B0' --splashBackgroundColor '#F4F5F7' --splashBackgroundColorDark '#0F131A'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/preferences": "^8.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.3",
+    "@fontsource/anek-kannada": "^5.3.0",
+    "@fontsource/anek-latin": "^5.3.0",
+    "@fontsource/anek-tamil": "^5.3.0",
+    "@fontsource/anek-telugu": "^5.3.0",
+    "@fontsource/source-serif-4": "^5.3.1"
+  }
+}

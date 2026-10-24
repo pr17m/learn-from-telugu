@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Sodara Bhashalu</string>
+    <string name="title_activity_main">Sodara Bhashalu</string>
+    <string name="package_name">com.sodarabhashalu.app</string>
+    <string name="custom_url_scheme">com.sodarabhashalu.app</string>
+</resources>
